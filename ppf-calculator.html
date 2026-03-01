@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GFXVPNLB74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GFXVPNLB74');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPF Calculator - Public Provident Fund Calculator India | ArthaStambh</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Free PPF calculator for India. Calculate PPF interest, balance, maturity amount, loan eligibility and withdrawal eligibility with historical interest rate data. Track deposits, withdrawals, and returns with XIRR calculation.">
+    <meta name="keywords" content="PPF calculator India, public provident fund calculator, PPF interest calculator, PPF balance calculator, PPF maturity calculator, PPF loan eligibility calculator, PPF withdrawal calculator, PPF return calculator, PPF XIRR calculator, PPF account calculator online, post office PPF calculator, PPF interest rate India, PPF investment calculator, PPF tax calculator, PPF compounding calculator, best PPF calculator, accurate PPF calculator, PPF calculator with interest rates, PPF financial year calculator, PPF quarterly interest calculator, PPF monthly deposit calculator, PPF yearly deposit calculator, ArthaStambh PPF, calculate PPF returns, PPF scheme calculator, small savings scheme calculator, government savings scheme calculator, PPF partial withdrawal calculator, PPF premature closure calculator, PPF tenure calculator, 15 year PPF calculator, PPF extension calculator, PPF calculator 2024, PPF calculator 2025, PPF calculator 2026">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="ArthaStambh.com">
+    <meta property="og:title" content="PPF Calculator - Public Provident Fund Calculator India">
+    <meta property="og:description" content="Free online PPF calculator with historical interest rates. Calculate PPF interest, maturity, withdrawals, and loan eligibility accurately.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ArthaStambh">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="PPF Calculator - Public Provident Fund Calculator India">
+    <meta name="twitter:description" content="Free online PPF calculator with historical interest rates. Calculate PPF interest, maturity, withdrawals, and loan eligibility accurately.">
+    <link rel="canonical" href="https://arthastambh.com/ppf-calculator">
+    <link rel="stylesheet" href="site.css">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:Calibri,'Segoe UI',Tahoma,sans-serif; }
+        body { background:#f5f5f5; color:#333; font-size:14px; padding:8px; user-select:none; -webkit-user-select:none; }
+        #header-placeholder { margin:-8px -8px 8px -8px; padding:0; user-select:text; -webkit-user-select:text; }
+        #footer-placeholder { margin:8px -8px -8px -8px; padding:0; user-select:text; -webkit-user-select:text; }
+        #header-placeholder *, #footer-placeholder * { user-select:text; -webkit-user-select:text; }
+
+        .container { max-width:1800px; margin:0 auto; }
+        h1 { text-align:center; font-size:22px; margin-bottom:8px; color:#2c5f2d; }
+
+        .toolbar { display:flex; justify-content:center; gap:10px; margin-bottom:8px; }
+        .toolbar button { padding:6px 16px; background:#2c5f2d; color:white; border:none; border-radius:4px; cursor:pointer; font-size:14px; font-weight:500; }
+        .toolbar button:hover { background:#1a3d1f; }
+
+        /* Summary section - single row layout with separators */
+        .summary-section {
+            background: white;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+        }
+
+        .summary-title {
+            font-weight: 700;
+            font-size: 15px;
+            color: #2c5f2d;
+            text-align: center;
+            border-bottom: 2px solid #2c5f2d;
+            padding-bottom: 2px;
+            margin-bottom: 8px;
+        }
+
+        .sum-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: space-between;
+        }
+
+        .sum-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .sum-field label {
+            font-size: 14px;
+            color: #333;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+
+        .sum-field .sv {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c5f2d;
+            white-space: nowrap;
+        }
+
+        .sum-field input[type="month"] {
+            font-size: 14px;
+            font-weight: 400;
+            color: #333;
+            border: 1px solid #bbb;
+            border-radius: 2px;
+            padding: 3px 5px;
+            background: white;
+        }
+
+        .sum-sep {
+            width: 1px;
+            height: 24px;
+            background: #d0d0d0;
+            flex-shrink: 0;
+        }
+
+        /* Three-column layout */
+        .three-col {
+            display:grid;
+            grid-template-columns: minmax(200px, 22fr) minmax(480px, 55fr) minmax(175px, 23fr);
+            gap:8px;
+            margin-bottom:8px;
+            align-items:start;
+        }
+
+        .panel { background:white; border:1px solid #d0d0d0; padding:6px; overflow:hidden; }
+        .panel-title { font-weight:600; font-size:15px; margin-bottom:4px; color:#2c5f2d; text-align:center; border-bottom:2px solid #2c5f2d; padding-bottom:2px; }
+
+        /* Tables */
+        .tbl-wrap { overflow-x:auto; }
+        table { width:100%; border-collapse:collapse; }
+        th {
+            background:#2c5f2d; color:white; padding:4px 4px;
+            text-align:center; font-weight:600; font-size:12px;
+            vertical-align:middle; line-height:1.2;
+        }
+        td { padding:3px 2px; border-bottom:1px solid #e0e0e0; }
+
+        /* Tighter column spacing for Interest Rate table */
+        #rateTable td { padding:3px 1px; }
+
+        /* Input styling - matching loan calculator */
+        td input[type="text"],
+        td input[type="number"] {
+            width: 100%;
+            padding: 4px 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: Calibri, 'Segoe UI', Tahoma, sans-serif;
+            box-sizing: border-box;
+            text-align: right;
+        }
+
+        td input[type="date"] {
+            width: 95px;
+            padding: 4px 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: Calibri, 'Segoe UI', Tahoma, sans-serif;
+            box-sizing: border-box;
+            text-align: right;
+        }
+
+        /* Rate table specific styling */
+        #rateTable td input[type="text"] {
+            width: 95px;
+        }
+
+        #rateTable td input[type="number"] {
+            width: 55px;
+        }
+
+        #rateTable td input[type="text"].g.r {
+            width: 55px;
+        }
+
+        td input[type="text"]:focus,
+        td input[type="number"]:focus,
+        td input[type="date"]:focus {
+            outline: none;
+            border-color: #2c5f2d !important;
+
+        }
+
+        input[type="month"] {
+            text-align: right;
+        }
+
+        td input[readonly],
+        td input:read-only {
+            background: #f9f9f9;
+            color: #2c5f2d;
+            font-weight: 600;
+            border: 1px solid #ccc;
+        }
+
+        td input.c {
+            text-align: center;
+        }
+
+        /* Settlement date input */
+        .settle-inp {
+            padding:3px 6px; border:1px solid #ddd; border-radius:3px;
+            font-size:13px; background:white; font-family:inherit;
+        }
+        .settle-inp:focus { outline:none; border-color:#2c5f2d; }
+
+        /* Buttons */
+        .btn-add { background:#97bc62; color:white; border:none; cursor:pointer; border-radius:4px; padding:4px 12px; font-size:13px; margin-top:4px; }
+        .btn-add:hover { background:#2c5f2d; }
+        .btn-del { background:#d32f2f; color:white; border:none; cursor:pointer; border-radius:3px; padding:1px 5px; font-size:13px; line-height:1.4; }
+        .btn-del:hover { background:#b71c1c; }
+
+        /* PPF year table row classes */
+        tr.settle-yr td { background:#fff3cd !important; }
+        tr.settle-yr td input { background:#fff3cd !important; font-weight:700; }
+        tr.ext-a td { background:#e3f2fd; }
+        tr.ext-a td input.g { background:#d8edfb; }
+        tr.ext-b td { background:#e8f5e9; }
+        tr.ext-b td input.g { background:#dcf0e0; }
+
+        /* Rate table */
+        tr.hist-rate td input { background:#f5f5f5; color:#444; }
+        tr.transition-rate td input.y { background:white; }
+        tr.future-rate td input.y { background:white; }
+        tr.future-rate input[type=number] {
+            background:white; border:1px solid #bbb; border-radius:2px;
+            text-align:right; width:100%; padding:2px 4px; font-size:12px; font-family:inherit;
+        }
+        tr.future-rate input[type=number]:focus { outline:none; border-color:#2c5f2d; background:#fff8e1; }
+
+        /* Notes */
+        .legal-notice { margin-top:8px; padding:8px; background:#fff3cd; border:2px solid #ffc107; border-radius:4px; font-size:12px; line-height:1.6; }
+        .legal-notice strong { color:#d32f2f; font-size:13px; }
+
+        /* ═══════════════════════════════════════ */
+        /* MOBILE RESPONSIVE - TABLES              */
+        /* ═══════════════════════════════════════ */
+
+        @media(max-width:768px){
+            /* Make tables horizontally scrollable on mobile */
+            .tbl-wrap{
+                overflow-x:auto;
+                -webkit-overflow-scrolling:touch;
+                margin:0 -16px;
+                padding:0 16px;
+            }
+
+            /* Add scroll hint */
+            .tbl-wrap::after{
+                content:"← Swipe to see more →";
+                display:block;
+                text-align:center;
+                font-size:11px;
+                color:#999;
+                padding:8px 0;
+                font-style:italic;
+            }
+
+            /* Adjust table font sizes */
+            table{font-size:12px}
+            th{font-size:11px;padding:6px 4px}
+            td{padding:6px 4px}
+            input{font-size:12px;padding:4px}
+
+            /* Buttons */
+            button,.btn{
+                font-size:14px;
+                padding:10px 16px;
+                width:100%;
+                margin:4px 0;
+            }
+
+            /* Panel adjustments */
+            .panel{margin-bottom:16px}
+            .panel-title{font-size:16px;padding:10px}
+
+            /* Three column layout becomes single column */
+            .three-col{
+                grid-template-columns:1fr !important;
+                gap:16px;
+            }
+
+            /* Summary section */
+            .summary-grid{
+                grid-template-columns:1fr;
+                gap:12px;
+            }
+
+            .summary-item{
+                padding:12px;
+            }
+
+            .summary-label{font-size:12px}
+            .summary-value{font-size:16px}
+        }
+
+        @media(max-width:480px){
+            table{font-size:11px}
+            th{font-size:10px;padding:4px 2px}
+            td{padding:4px 2px}
+            input{font-size:11px;padding:2px}
+            .panel-title{font-size:14px}
+        }
+    </style>
+
+    <!-- JSON-LD Schema Markup for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PPF Calculator",
+        "description": "Free online Public Provident Fund calculator for India with historical interest rates, loan eligibility, and withdrawal calculations",
+        "url": "https://arthastambh.com/ppf-calculator",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "INR"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "ArthaStambh",
+            "url": "https://arthastambh.com"
+        },
+        "featureList": [
+            "Calculate PPF interest with historical rates",
+            "Track deposits and withdrawals",
+            "Calculate loan eligibility",
+            "Calculate withdrawal eligibility",
+            "XIRR rate of return calculation",
+            "Multiple year projections",
+            "Adjustable interest rates"
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "2500"
+        }
+    }
+    </script>
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<div class="container">
+    <h1>PPF Calculator – Public Provident Fund</h1>
+
+    <div class="toolbar">
+        <button onclick="saveData()">&#128190; Save</button>
+        <button onclick="loadData()">&#128194; Load</button>
+        <button onclick="clearData()">&#128465; Clear</button>
+    </div>
+    <input type="file" id="fileInput" style="display:none" accept=".json" onchange="handleFileLoad(event)">
+
+    <!-- Summary Bar -->
+    <div class="summary-section">
+        <div class="summary-title">PPF Summary</div>
+        <div class="sum-container">
+            <div class="sum-field">
+                <label>Total Deposited</label>
+                <span class="sv" id="sumDeposited">₹ 0</span>
+            </div>
+            <div class="sum-sep"></div>
+            <div class="sum-field">
+                <label>Total Withdrawal</label>
+                <span class="sv" id="sumWithdrawal">₹ 0</span>
+            </div>
+            <div class="sum-sep"></div>
+            <div class="sum-field">
+                <label>Total Interest Accrued</label>
+                <span class="sv" id="sumInterest">₹ 0</span>
+            </div>
+            <div class="sum-sep"></div>
+            <div class="sum-field">
+                <label>Total Balance</label>
+                <span class="sv" id="sumBalance">₹ 0</span>
+            </div>
+            <div class="sum-sep"></div>
+            <div class="sum-field">
+                <label>Rate of Return</label>
+                <span class="sv" id="sumROR">—</span>
+            </div>
+            <div class="sum-sep"></div>
+            <div class="sum-field">
+                <label>Settlement Date</label>
+                <input type="month" id="settlementDate" onchange="onSettlementChange()" style="font-size:14px; padding:3px 5px; border:1px solid #ddd; border-radius:2px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Instruction text -->
+    <div style="text-align:center; font-size:14px; color:#555; margin:8px 0;">
+        Use Settlement Date to calculate Interest and Balance till the end of any particular month.
+    </div>
+
+    <!-- Three-column layout -->
+    <div class="three-col">
+
+        <!-- LEFT: Deposits & Withdrawals -->
+        <div class="panel">
+            <div class="panel-title">Deposits &amp; Withdrawals</div>
+            <div class="tbl-wrap">
+                <table id="inputTable">
+                    <thead>
+                        <tr>
+                            <th style="width:24px">#</th>
+                            <th style="width:100px;cursor:pointer" onclick="sortInputTable()" title="Click to sort by date">Date &#9660;</th>
+                            <th style="width:90px">Deposit (&#8377;)</th>
+                            <th style="width:90px">Withdrawal (&#8377;)</th>
+                            <th style="width:22px"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="inputTbody"></tbody>
+                </table>
+            </div>
+            <button class="btn-add" onclick="addInputRow()">+ Add</button>
+        </div>
+
+        <!-- MIDDLE: PPF Year Table -->
+        <div class="panel">
+            <div class="panel-title">PPF Year-wise Summary</div>
+            <div class="tbl-wrap">
+                <table id="ppfYearTable">
+                    <thead>
+                        <tr>
+                            <th style="width:28px">Yr</th>
+                            <th style="width:82px">Start Date</th>
+                            <th style="width:82px">End Date</th>
+                            <th style="width:94px">Deposit<br>(&#8377;)</th>
+                            <th style="width:94px">Withdrawal<br>(&#8377;)</th>
+                            <th style="width:94px">Calc Interest<br>(&#8377;)</th>
+                            <th style="width:68px;background:#4a7c59">Int Adj<br>(&#8377;)</th>
+                            <th style="width:94px">Int Received<br>(&#8377;)</th>
+                            <th style="width:94px">Balance<br>(&#8377;)</th>
+                            <th style="width:94px">Loan Elig<br>(&#8377;)</th>
+                            <th style="width:94px">Withdr Elig<br>(&#8377;)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ppfYearTbody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- RIGHT: Interest Rate Table -->
+        <div class="panel">
+            <div class="panel-title">PPF Interest Rates</div>
+            <div class="tbl-wrap">
+                <table id="rateTable">
+                    <thead>
+                        <tr>
+                            <th style="width:95px">Start Date</th>
+                            <th style="width:95px">End Date</th>
+                            <th style="width:55px">Rate (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rateTbody"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div><!-- end three-col -->
+
+    <div class="legal-notice">
+        <strong>Notes:</strong>
+        Interest is computed on the minimum balance between the 5th and last day of each month — deposits on or before the 5th earn interest that month; deposits after the 5th earn from the following month.
+        PPF initial period is 15 years (years 0&#8211;15). Loan eligibility applies in years 3&#8211;5 (25% of the balance 2 years prior). Partial withdrawal eligibility begins from year 7 (50% of the balance 4 years prior). The account can be extended in 5-year blocks after year 15.
+        Future interest rates default to the last known rate &#8212; you may edit them.
+    </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// PPF CALCULATOR — ArthaStambh.com
+// ═══════════════════════════════════════════════════════════
+
+// ─── Constants ────────────────────────────────────────────
+const EARLIEST_PPF_DATE = new Date(1968, 3, 1); // 1st April 1968
+const EARLIEST_PPF_DATE_STR = '1968-04-01';
+
+// ─── Historical Interest Rates ───────────────────────────
+const HIST_RATES = [
+    { start:'1968-04-01', end:'1970-03-31', rate:4.8 },
+    { start:'1970-04-01', end:'1973-03-31', rate:5.0 },
+    { start:'1973-04-01', end:'1974-03-31', rate:5.3 },
+    { start:'1974-04-01', end:'1974-07-31', rate:5.8 },
+    { start:'1974-08-01', end:'1977-03-31', rate:7.0 },
+    { start:'1977-04-01', end:'1980-03-31', rate:7.5 },
+    { start:'1980-04-01', end:'1981-03-31', rate:8.0 },
+    { start:'1981-04-01', end:'1983-03-31', rate:8.5 },
+    { start:'1983-04-01', end:'1984-03-31', rate:9.0 },
+    { start:'1984-04-01', end:'1985-03-31', rate:9.5 },
+    { start:'1985-04-01', end:'1986-03-31', rate:10.0 },
+    { start:'1986-04-01', end:'2000-01-14', rate:12.0 },
+    { start:'2000-01-15', end:'2001-02-28', rate:11.0 },
+    { start:'2001-03-01', end:'2002-02-28', rate:9.5 },
+    { start:'2002-03-01', end:'2003-02-28', rate:9.0 },
+    { start:'2003-03-01', end:'2011-11-30', rate:8.0 },
+    { start:'2011-12-01', end:'2012-03-31', rate:8.6 },
+    { start:'2012-04-01', end:'2013-03-31', rate:8.8 },
+    { start:'2013-04-01', end:'2016-03-31', rate:8.7 },
+    { start:'2016-04-01', end:'2016-09-30', rate:8.1 },
+    { start:'2016-10-01', end:'2017-03-31', rate:8.0 },
+    { start:'2017-04-01', end:'2017-06-30', rate:7.9 },
+    { start:'2017-07-01', end:'2017-12-31', rate:7.8 },
+    { start:'2018-01-01', end:'2018-09-30', rate:7.6 },
+    { start:'2018-10-01', end:'2019-06-30', rate:8.0 },
+    { start:'2019-07-01', end:'2020-03-31', rate:7.9 },
+    { start:'2020-04-01', end:'2026-03-31', rate:7.1 },
+];
+const LAST_RATE = 7.1;
+const FUTURE_START = '2026-04-01'; // first quarter after last historical
+
+// ─── State ───────────────────────────────────────────────
+let rateOverrides  = {}; // quarterStart -> { rate: number, endDate?: 'YYYY-MM-DD' }
+let intAdjustments = {}; // yearIndex -> adjustment value
+
+// ─── Date & Quarter Helpers ───────────────────────────────
+const MN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function ymd(d) {
+    const y = d.getFullYear(), m = d.getMonth()+1, dd = d.getDate();
+    return `${y}-${String(m).padStart(2,'0')}-${String(dd).padStart(2,'0')}`;
+}
+function parseDate(s) {
+    if (!s) return null;
+    const [y,m,d] = s.split('-').map(Number);
+    return new Date(y, m-1, d);
+}
+function fmtDate(d) {
+    const dt = (d instanceof Date) ? d : parseDate(d);
+    if (!dt) return '';
+    return `${String(dt.getDate()).padStart(2,'0')}-${String(dt.getMonth()+1).padStart(2,'0')}-${dt.getFullYear()}`;
+}
+function todayYMD() { return ymd(new Date()); }
+function fyStart(date) {
+    const m = date.getMonth();
+    return m >= 3
+        ? new Date(date.getFullYear(), 3, 1)
+        : new Date(date.getFullYear()-1, 3, 1);
+}
+
+// Quarter helpers
+function qStart(dateStr) {
+    const d = parseDate(dateStr);
+    const m = d.getMonth();
+    const qm = m < 3 ? 0 : m < 6 ? 3 : m < 9 ? 6 : 9;
+    return ymd(new Date(d.getFullYear(), qm, 1));
+}
+function qEnd(qs) {
+    const d = parseDate(qs);
+    const m = d.getMonth();
+    const [em,ed] = m===0?[2,31]: m===3?[5,30]: m===6?[8,30]: [11,31];
+    return ymd(new Date(d.getFullYear(), em, ed));
+}
+function nextQStart(qs) {
+    const e = parseDate(qEnd(qs));
+    e.setDate(e.getDate()+1);
+    return ymd(e);
+}
+
+// ─── Rate Lookup ─────────────────────────────────────────
+function getRateForDate(dateStr) {
+    const qs = qStart(dateStr);
+    if (rateOverrides[qs]?.rate !== undefined) return rateOverrides[qs].rate;
+    for (const r of HIST_RATES) {
+        if (dateStr >= r.start && dateStr <= r.end) return r.rate;
+    }
+    return LAST_RATE;
+}
+
+function buildFutureRates(needUntilDate) {
+    const rows = [];
+
+    // Check if transition row (last historical) has custom end date
+    const transitionRow = HIST_RATES[HIST_RATES.length - 1];
+    const transitionEnd = rateOverrides[transitionRow.start]?.endDate || transitionRow.end;
+
+    // First future quarter starts day after transition row ends
+    const endDate = parseDate(transitionEnd);
+    endDate.setDate(endDate.getDate() + 1);
+    let qs = ymd(endDate);
+
+    const needStr = ymd(needUntilDate);
+
+    // Build quarterly rows, but use overrides for end dates if present
+    while (qs <= needStr) {
+        const defaultQE = qEnd(qs);
+        // Check if user has overridden this quarter's end date
+        const qe = rateOverrides[qs]?.endDate || defaultQE;
+        const rate = rateOverrides[qs]?.rate !== undefined ? rateOverrides[qs].rate : LAST_RATE;
+        rows.push({ start:qs, end:qe, rate });
+
+        // Next quarter starts day after current end
+        const qEndDate = parseDate(qe);
+        qEndDate.setDate(qEndDate.getDate() + 1);
+        qs = ymd(qEndDate);
+
+        if (rows.length > 200) break; // safety
+    }
+    return rows;
+}
+
+// Update rateOverrides structure: { quarterStart: { rate: X, endDate: 'YYYY-MM-DD' } }
+// Also handle transition row (last historical with editable end date)
+function onRateEndBlur(inp) {
+    const qs = inp.dataset.qs;
+    const newEnd = inp.value;
+
+    if (!newEnd) return; // Allow empty during editing
+
+    const startDate = parseDate(qs);
+    const endDate = parseDate(newEnd);
+
+    // Validate: end date must be >= start date
+    if (endDate < startDate) {
+        alert('End date must be on or after the start date.');
+        // Reset to default or current override
+        const currentEnd = rateOverrides[qs]?.endDate || qEnd(qs);
+        inp.value = currentEnd;
+        return;
+    }
+
+    // For future rows, validate against PPF end date
+    const ppfEndDateStr = inp.getAttribute('data-ppf-end');
+    if (ppfEndDateStr) {
+        const ppfEndDate = parseDate(ppfEndDateStr);
+        if (endDate > ppfEndDate) {
+            alert(`End date cannot be later than PPF tenure end date (${fmtDate(ppfEndDate)}).`);
+            inp.value = ppfEndDateStr;
+            return;
+        }
+    }
+
+    // Store override (works for both transition row and future rows)
+    if (!rateOverrides[qs]) {
+        // For transition row, get rate from HIST_RATES
+        const histRow = HIST_RATES.find(r => r.start === qs);
+        const rate = histRow ? histRow.rate : LAST_RATE;
+        rateOverrides[qs] = { rate };
+    }
+    rateOverrides[qs].endDate = newEnd;
+
+    // Find next focusable input to restore focus after calc
+    const allInputs = Array.from(document.querySelectorAll('input:not([readonly]):not([disabled])'));
+    const currentIndex = allInputs.indexOf(inp);
+    if (currentIndex >= 0 && currentIndex < allInputs.length - 1) {
+        const nextInput = allInputs[currentIndex + 1];
+        if (nextInput.id) {
+            nextFocusTarget = `#${nextInput.id}`;
+        } else if (nextInput.dataset.yr) {
+            nextFocusTarget = `input[data-yr="${nextInput.dataset.yr}"]`;
+        } else if (nextInput.dataset.qs) {
+            nextFocusTarget = `input[data-qs="${nextInput.dataset.qs}"].${nextInput.className.split(' ').filter(c => c).pop()}`;
+        }
+    }
+
+    // Recalc only on blur - tab navigation already complete
+    calc();
+}
+
+function onRateBlur(inp) {
+    const qs = inp.dataset.qs;
+    const v = parseFloat(inp.value);
+
+    if (!isNaN(v)) {
+        if (!rateOverrides[qs]) rateOverrides[qs] = {};
+        rateOverrides[qs].rate = v;
+
+        // Cascade: update all following rows
+        const allRows = document.querySelectorAll('#rateTbody tr.future-rate');
+        let found = false;
+
+        allRows.forEach(tr => {
+            const inp2 = tr.querySelector('.rate-val');
+            if (!inp2) return;
+            const qs2 = inp2.dataset.qs;
+
+            if (qs2 === qs) {
+                found = true;
+                return;
+            }
+
+            if (found) {
+                // Cascade to all following rows
+                if (!rateOverrides[qs2]) rateOverrides[qs2] = {};
+                rateOverrides[qs2].rate = v;
+                inp2.value = v.toFixed(2);
+            }
+        });
+    } else {
+        delete rateOverrides[qs];
+    }
+
+    // Find next focusable input to restore focus after calc
+    const allInputs = Array.from(document.querySelectorAll('input:not([readonly]):not([disabled])'));
+    const currentIndex = allInputs.indexOf(inp);
+    if (currentIndex >= 0 && currentIndex < allInputs.length - 1) {
+        const nextInput = allInputs[currentIndex + 1];
+        if (nextInput.id) {
+            nextFocusTarget = `#${nextInput.id}`;
+        } else if (nextInput.dataset.yr) {
+            nextFocusTarget = `input[data-yr="${nextInput.dataset.yr}"]`;
+        } else if (nextInput.dataset.qs) {
+            nextFocusTarget = `input[data-qs="${nextInput.dataset.qs}"].${nextInput.className.split(' ').filter(c => c).pop()}`;
+        }
+    }
+
+    // Recalc only on blur - tab navigation already complete
+    calc();
+}
+
+// ─── Number helpers ───────────────────────────────────────
+function fmt(n) {
+    if (n === null || n === undefined || isNaN(n) || n === 0) return '';
+    return Math.round(n).toLocaleString('en-IN');
+}
+function fmtZ(n) { // fmt but shows 0
+    if (n === null || n === undefined || isNaN(n)) return '';
+    return Math.round(n).toLocaleString('en-IN');
+}
+function parseNum(s) {
+    if (!s && s !== 0) return 0;
+    return parseFloat(String(s).replace(/,/g,'')) || 0;
+}
+
+// ─── Input Table ─────────────────────────────────────────
+function addInputRow(date, dep, wth) {
+    const tbody = document.getElementById('inputTbody');
+    const seq = tbody.rows.length + 1;
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+        `<td style="text-align:center;font-size:11px;color:#999;padding:1px 3px">${seq}</td>` +
+        `<td style="padding:1px"><input type="date" class="inp-date y" value="${date||''}" onblur="onInputBlur(this)"></td>` +
+        `<td style="padding:1px"><input type="text" class="inp-dep y r" value="${dep!=null&&dep!==''?dep:''}" onblur="fmtAmtAndCalc(this)"></td>` +
+        `<td style="padding:1px"><input type="text" class="inp-wth y r" value="${wth!=null&&wth!==''?wth:''}" onblur="fmtAmtAndCalc(this)"></td>` +
+        `<td style="padding:1px 2px"><button class="btn-del" onclick="delInputRow(this)">&#215;</button></td>`;
+    tbody.appendChild(tr);
+}
+
+function fmtAmtAndCalc(inp) {
+    const num = parseNum(inp.value);
+    if (num > 0) inp.value = fmt(num);
+
+    // Auto-fill following rows with same deposit amount
+    const row = inp.closest('tr');
+    const rowIndex = Array.from(row.parentElement.children).indexOf(row);
+    const allRows = Array.from(document.querySelectorAll('#inputTbody tr'));
+
+    if (inp.classList.contains('inp-dep')) {
+        const depVal = inp.value;
+        if (depVal) {
+            for (let i = rowIndex + 1; i < allRows.length; i++) {
+                const nextRow = allRows[i];
+                const nextDepInput = nextRow.querySelector('.inp-dep');
+                if (!nextDepInput.value) { // Only fill empty deposits
+                    nextDepInput.value = depVal;
+                }
+            }
+        }
+    }
+
+    calc();
+}
+
+function delInputRow(btn) {
+    btn.closest('tr').remove();
+    renumber();
+    calc();
+}
+
+function renumber() {
+    document.querySelectorAll('#inputTbody tr').forEach((tr,i) => {
+        tr.cells[0].textContent = i+1;
+    });
+}
+
+function onInputBlur(inp) {
+    const row = inp.closest('tr');
+    const rowIndex = Array.from(row.parentElement.children).indexOf(row);
+    const allRows = Array.from(document.querySelectorAll('#inputTbody tr'));
+
+    // Check what type of input was changed
+    if (inp.classList.contains('inp-date')) {
+        // First, validate the date is not before PPF start date
+        if (!validatePPFDate(inp)) {
+            return; // Stop processing if validation fails
+        }
+        
+        // Validation: First date field cannot be blank (only if there are deposits in other rows)
+        if (rowIndex === 0 && !inp.value) {
+            const hasOtherData = allRows.some((r, i) => {
+                if (i === 0) return false;
+                const dateInput = r.querySelector('.inp-date');
+                const depInput = r.querySelector('.inp-dep');
+                return (dateInput && dateInput.value) || (depInput && depInput.value);
+            });
+
+            if (hasOtherData) {
+                alert('The first date field cannot be blank when there are other entries. Please enter a valid date.');
+                inp.value = todayYMD(); // Set to today as default
+            }
+        }
+
+        // Date was changed - fill all following rows with date 1 year ahead
+        const dateVal = inp.value;
+        if (dateVal) {
+            let currentDate = parseDate(dateVal);
+            for (let i = rowIndex + 1; i < allRows.length; i++) {
+                const nextRow = allRows[i];
+                const nextDateInput = nextRow.querySelector('.inp-date');
+                if (!nextDateInput.value) { // Only fill empty dates
+                    // Add 1 year
+                    currentDate = new Date(currentDate.getFullYear() + 1, currentDate.getMonth(), currentDate.getDate());
+                    nextDateInput.value = ymd(currentDate);
+                }
+            }
+        }
+    } else if (inp.classList.contains('inp-dep')) {
+        // Deposit was changed - fill all following deposits with same amount
+        const depVal = inp.value;
+        if (depVal) {
+            for (let i = rowIndex + 1; i < allRows.length; i++) {
+                const nextRow = allRows[i];
+                const nextDepInput = nextRow.querySelector('.inp-dep');
+                if (!nextDepInput.value) { // Only fill empty deposits
+                    nextDepInput.value = depVal;
+                }
+            }
+        }
+    }
+
+    calc();
+}
+
+function sortInputTable() {
+    // Sort by date: filled dates first (ascending), then empty dates last
+    const tbody = document.getElementById('inputTbody');
+    const rows = Array.from(tbody.rows);
+    rows.sort((a,b) => {
+        const da = a.querySelector('.inp-date').value || '';
+        const db = b.querySelector('.inp-date').value || '';
+        // Empty dates go to end
+        if (!da && !db) return 0;
+        if (!da) return 1;
+        if (!db) return -1;
+        return da.localeCompare(db);
+    });
+    rows.forEach(r => tbody.appendChild(r));
+    renumber();
+    calc();
+}
+
+function getInputRows() {
+    const rows = [];
+    document.querySelectorAll('#inputTbody tr').forEach(tr => {
+        const date = tr.querySelector('.inp-date').value;
+        const dep  = parseNum(tr.querySelector('.inp-dep').value);
+        const wth  = parseNum(tr.querySelector('.inp-wth').value);
+        if (date) rows.push({ date, deposit:dep, withdrawal:wth });
+    });
+    return rows;
+}
+
+// ─── XIRR Calculation ─────────────────────────────────────
+function calculateXIRR(deposits, finalValue, settleDate) {
+    if (!deposits || deposits.length === 0) return null;
+
+    // Build cash flow array: deposits are negative (outflow), withdrawals are positive (inflow), final value is positive
+    const cashFlows = [];
+    deposits.forEach(d => {
+        if (d.deposit > 0) {
+            cashFlows.push({ date: parseDate(d.date), amount: -d.deposit });
+        }
+        if (d.withdrawal > 0) {
+            cashFlows.push({ date: parseDate(d.date), amount: d.withdrawal });
+        }
+    });
+
+    // Add final value at settlement date
+    cashFlows.push({ date: settleDate, amount: finalValue });
+
+    // Sort by date
+    cashFlows.sort((a, b) => a.date - b.date);
+
+    if (cashFlows.length < 2) return null;
+
+    const firstDate = cashFlows[0].date;
+
+    // Convert dates to years from first date
+    const flows = cashFlows.map(cf => ({
+        years: (cf.date - firstDate) / (365.25 * 24 * 60 * 60 * 1000),
+        amount: cf.amount
+    }));
+
+    // Newton-Raphson method to solve for IRR
+    let rate = 0.1; // Initial guess: 10%
+    const maxIter = 100;
+    const tolerance = 0.0001;
+
+    for (let i = 0; i < maxIter; i++) {
+        let npv = 0;
+        let dnpv = 0;
+
+        flows.forEach(f => {
+            const factor = Math.pow(1 + rate, f.years);
+            npv += f.amount / factor;
+            dnpv -= f.years * f.amount / (factor * (1 + rate));
+        });
+
+        const newRate = rate - npv / dnpv;
+
+        if (Math.abs(newRate - rate) < tolerance) {
+            return newRate * 100; // Return as percentage
+        }
+
+        rate = newRate;
+
+        // Bounds checking
+        if (rate < -0.99) rate = -0.99;
+        if (rate > 10) rate = 10;
+    }
+
+    return rate * 100; // Return as percentage even if not fully converged
+}
+
+// ─── Settlement Date Handler ─────────────────────────────────────
+function onSettlementChange() {
+    const input = document.getElementById('settlementDate');
+    if (!input.value) return;
+
+    // Parse YYYY-MM from month input
+    const [year, month] = input.value.split('-').map(Number);
+
+    // Create date object for last day of month
+    const lastDay = new Date(year, month, 0); // Day 0 of next month = last day of current month
+
+    // Validation: Settlement date cannot be earlier than earliest deposit
+    const rawRows = getInputRows();
+    if (rawRows.length > 0) {
+        // Find earliest date from all rows (they may not be in order)
+        const datesWithDeposits = rawRows
+            .filter(r => r.date && r.deposit > 0)
+            .map(r => parseDate(r.date))
+            .filter(d => d !== null);
+
+        if (datesWithDeposits.length > 0) {
+            const earliestDepositDate = new Date(Math.min(...datesWithDeposits));
+            if (lastDay < earliestDepositDate) {
+                alert('Settlement Date cannot be earlier than the earliest deposit date (' + fmtDate(earliestDepositDate) + ').');
+                // Revert to previous value or set to earliest deposit month
+                const prevMonth = earliestDepositDate.getMonth() + 1; // 0-indexed
+                const prevYear = earliestDepositDate.getFullYear();
+                input.value = `${prevYear}-${prevMonth.toString().padStart(2, '0')}`;
+                return;
+            }
+        }
+    }
+
+    calc();
+}
+
+function lastDayOfCurrentMonth() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1; // 0-indexed, so add 1
+    return `${year}-${month.toString().padStart(2, '0')}`;
+}
+
+// ─── Main Calculation ─────────────────────────────────────
+let isCalculating = false;
+let nextFocusTarget = null;
+
+function calc() {
+    if (isCalculating) return;
+    isCalculating = true;
+
+    const settleDateStr = document.getElementById('settlementDate').value;
+    let settleDate;
+
+    if (settleDateStr) {
+        // Parse YYYY-MM and convert to last day of month
+        const [year, month] = settleDateStr.split('-').map(Number);
+        settleDate = new Date(year, month, 0); // Day 0 of next month = last day of current month
+    } else {
+        settleDate = new Date();
+    }
+
+    const rawRows = getInputRows();
+    rawRows.sort((a,b) => a.date.localeCompare(b.date));
+
+    if (rawRows.length === 0) {
+        renderYearTable([], -1, [], new Date());
+        // Show future rates up to ~15 years from now when no data
+        const futureEnd = new Date(); futureEnd.setFullYear(futureEnd.getFullYear() + 16);
+        renderRateTable(futureEnd);
+        updateSummary(0,0,0,0,null);
+        isCalculating = false;
+        return;
+    }
+
+    // PPF FY start = Apr 1 of the year of earliest deposit
+    const earliest = parseDate(rawRows[0].date);
+    const ppfFYS   = fyStart(earliest);
+
+    // Year index helper
+    function fyIdx(date) {
+        return fyStart(date).getFullYear() - ppfFYS.getFullYear();
+    }
+
+    // Calculate settlement year index (used throughout)
+    const settleYrIdx = fyIdx(settleDate);
+
+    // Number of years: always show minimum 16 years (0-15), expand in blocks of 5
+    // Also extend to settlement year if it's beyond current range
+    const minYears = 16;
+
+    // Calculate how many years needed based on latest deposit
+    let numYears = minYears;
+    if (rawRows.length > 0) {
+        const latestDep = parseDate(rawRows[rawRows.length-1].date);
+        const latestDepYrIdx = fyIdx(latestDep);
+
+        // Only extend if latest deposit is beyond current range
+        if (latestDepYrIdx >= minYears) {
+            // Extend to include full 5-year block containing the deposit
+            numYears = minYears + Math.ceil((latestDepYrIdx - minYears + 1) / 5) * 5;
+        }
+    }
+
+    // Also extend to settlement year if needed
+    if (settleYrIdx >= numYears) {
+        // Extend to include full 5-year block containing settlement
+        numYears = minYears + Math.ceil((settleYrIdx - minYears + 1) / 5) * 5;
+    }
+
+    if (numYears > 60) numYears = 60;
+
+    // Build month entries
+    const months = [];
+    for (let yr = 0; yr < numYears; yr++) {
+        const fyS = new Date(ppfFYS);
+        fyS.setFullYear(ppfFYS.getFullYear() + yr);
+        for (let mth = 0; mth < 12; mth++) {
+            const ms = new Date(fyS.getFullYear(), fyS.getMonth() + mth, 1);
+            months.push({ yr, mthNo:mth+1, monthStart:ms, deposit:0, effDeposit:0, withdrawal:0, rate:0, rawInt:0, balance:0 });
+        }
+    }
+
+    // Place physical deposits/withdrawals
+    rawRows.forEach(row => {
+        const d = parseDate(row.date);
+        const m = months.find(m =>
+            m.monthStart.getFullYear() === d.getFullYear() &&
+            m.monthStart.getMonth()    === d.getMonth()
+        );
+        if (m) { m.deposit += row.deposit; m.withdrawal += row.withdrawal; }
+    });
+
+    // Place effective deposits (day<=5 = this month, else next month)
+    rawRows.forEach(row => {
+        if (row.deposit <= 0) return;
+        const d = parseDate(row.date);
+        const eff = d.getDate() <= 5
+            ? new Date(d.getFullYear(), d.getMonth(), 1)
+            : new Date(d.getFullYear(), d.getMonth()+1, 1);
+        const m = months.find(m =>
+            m.monthStart.getFullYear() === eff.getFullYear() &&
+            m.monthStart.getMonth()    === eff.getMonth()
+        );
+        if (m) m.effDeposit += row.deposit;
+    });
+
+    // Assign rates
+    months.forEach(m => { m.rate = getRateForDate(ymd(m.monthStart)); });
+
+    // Two-pass compute (so prior-year interest is included in next-year opening)
+    function computeYears(priorBalances) {
+        const yd = [];
+
+        for (let yr = 0; yr < numYears; yr++) {
+            const yMths = months.filter(m => m.yr === yr);
+            const openBal = yr === 0 ? 0 : (priorBalances[yr-1] || 0);
+            let rawSum = 0;
+
+            // Track month balance separately for interest calc (includes eff deposits, not physical)
+            // Start with previous year's December month-end balance (not year-end balance!)
+            let mb = 0;
+            if (yr > 0) {
+                // Get December of previous year
+                const prevDecember = months.find(m => m.yr === yr - 1 && m.mthNo === 12);
+                mb = prevDecember ? prevDecember.balance : 0;
+            }
+
+            yMths.forEach(m => {
+                // For settlement year, only calculate interest up to settlement month
+                const isSettleYear = (yr === settleYrIdx);
+                let includeMonth = true;
+
+                if (isSettleYear) {
+                    // Calculate settlement month in PPF year (1-12)
+                    // PPF year: Apr(1) to Mar(12)
+                    const fyStart = new Date(ppfFYS);
+                    fyStart.setFullYear(ppfFYS.getFullYear() + yr);
+
+                    let settleMonthPPF;
+                    if (settleDate.getMonth() >= 3) {
+                        // Apr-Dec: months 1-9 of PPF year
+                        settleMonthPPF = settleDate.getMonth() - 3 + 1;
+                    } else {
+                        // Jan-Mar: months 10-12 of PPF year
+                        settleMonthPPF = settleDate.getMonth() + 10;
+                    }
+
+                    includeMonth = (m.mthNo <= settleMonthPPF);
+                }
+
+                if (includeMonth) {
+                    // Interest = (month_balance + eff_deposit - withdrawal) * rate / 12
+                    const balForInt = Math.max(0, mb + m.effDeposit - m.withdrawal);
+                    m.rawInt = balForInt * m.rate / 100 / 12;
+                    rawSum += m.rawInt;
+                }
+                // Update month balance: only eff deposits affect it, not physical
+                mb = mb + m.effDeposit - m.withdrawal;
+            });
+
+            const calcInt  = Math.round(rawSum);
+            const adj      = intAdjustments[yr] || 0;
+            const intRecv  = calcInt + adj;
+            const dep      = yMths.reduce((s,m) => s + m.deposit,    0);
+            const wth      = yMths.reduce((s,m) => s + m.withdrawal, 0);
+
+            // Balance = previous year balance + deposits - withdrawals + interest
+            // Use the balance from previous year in THIS PASS (from yd array), not priorBalances parameter
+            const prevYearBalance = yr === 0 ? 0 : yd[yr-1].balance;
+            const balance = prevYearBalance + dep - wth + intRecv;
+
+            // Update month balances (interest credited at year end)
+            mb = 0;
+            if (yr > 0) {
+                const prevDecember = months.find(m => m.yr === yr - 1 && m.mthNo === 12);
+                mb = prevDecember ? prevDecember.balance : 0;
+            }
+            yMths.forEach(m => {
+                // Monthly balance = prev + effDeposit - withdrawal (physical deposit NOT included until year end)
+                mb = mb + m.effDeposit - m.withdrawal;
+                if (m.mthNo === 12) mb += intRecv;  // Add interest at year end
+                m.balance = mb;
+            });
+
+            const fyS = new Date(ppfFYS); fyS.setFullYear(ppfFYS.getFullYear() + yr);
+            const fyE = new Date(fyS.getFullYear()+1, 2, 31);
+            yd.push({ yr, startDate:fyS, endDate:fyE, deposit:dep, withdrawal:wth, calcInterest:calcInt, adj, intReceived:intRecv, balance, loanElig:0, wdElig:0 });
+        }
+        return yd;
+    }
+
+    let pass1 = computeYears(new Array(numYears).fill(0));
+    const yearData = computeYears(pass1.map(y => y.balance));
+
+    // Loan / withdrawal eligibility (using final balances)
+    yearData.forEach((y, yr) => {
+        // Loan eligibility: Years 2-5 (3rd to 6th year in PPF terms)
+        // Formula: 25% of balance 2 years prior
+        if (yr >= 2 && yr <= 5 && yearData[yr-2]) {
+            y.loanElig = Math.floor(yearData[yr-2].balance * 0.25);
+        }
+
+        // Withdrawal eligibility
+        if (yr >= 6) {
+            if (yr <= 15) {
+                // Years 6-15: min(50% of 4yr prior, 50% of 1yr prior)
+                if (yearData[yr-4] && yearData[yr-1]) {
+                    const wd4yr = yearData[yr-4].balance * 0.5;
+                    const wd1yr = yearData[yr-1].balance * 0.5;
+                    y.wdElig = Math.floor(Math.min(wd4yr, wd1yr));
+                }
+            } else {
+                // Extended blocks (5-year extensions after Year 15)
+                // First year of each block: 60% of previous year balance
+                // Subsequent years: previous wd_elig - withdrawals
+                const blockStart = 16 + Math.floor((yr - 16) / 5) * 5;
+                if (yr === blockStart) {
+                    // First year of extension block: 60% of prev year
+                    if (yearData[yr-1]) {
+                        y.wdElig = Math.floor(yearData[yr-1].balance * 0.6);
+                    }
+                } else {
+                    // Subsequent years in block: prev wd_elig - PREVIOUS YEAR withdrawals
+                    if (yearData[yr-1]) {
+                        const prevWithdrawal = yearData[yr-1].withdrawal || 0;
+                        y.wdElig = Math.floor((yearData[yr-1].wdElig || 0) - prevWithdrawal);
+                    }
+                }
+            }
+        }
+    });
+
+    // Settlement balance
+    let settleBalance = 0;
+    const sMth = months.find(m =>
+        m.monthStart.getFullYear() === settleDate.getFullYear() &&
+        m.monthStart.getMonth()    === settleDate.getMonth()
+    );
+    if (sMth) settleBalance = sMth.balance;
+    else if (months.length) settleBalance = months[months.length-1].balance;
+
+    // Summary: calculate totals matching the Summary table Total row
+    const yearsUpToSettle = yearData.filter(y => y.yr <= settleYrIdx);
+
+    // Calculate deposits and withdrawals only up to settlement date (same logic as Total row)
+    let totalDep = 0;
+    let totalWth = 0;
+
+    yearsUpToSettle.forEach(y => {
+        if (y.yr === settleYrIdx && rawRows) {
+            // For settlement year, only count deposits/withdrawals before settlement date
+            totalDep += rawRows
+                .filter(r => {
+                    const d = parseDate(r.date);
+                    return d >= y.startDate && d <= y.endDate && d <= settleDate && r.deposit > 0;
+                })
+                .reduce((sum, r) => sum + r.deposit, 0);
+
+            totalWth += rawRows
+                .filter(r => {
+                    const d = parseDate(r.date);
+                    return d >= y.startDate && d <= y.endDate && d <= settleDate && r.withdrawal > 0;
+                })
+                .reduce((sum, r) => sum + r.withdrawal, 0);
+        } else {
+            totalDep += y.deposit;
+            totalWth += y.withdrawal;
+        }
+    });
+
+    const totalInt = yearsUpToSettle.reduce((s,y) => s + y.intReceived, 0);
+
+    // Total balance is the last year's balance in yearsUpToSettle
+    const totalBalance = yearsUpToSettle.length > 0 ? yearsUpToSettle[yearsUpToSettle.length - 1].balance : 0;
+
+    // Calculate XIRR (Internal Rate of Return considering cash flow timing)
+    const ror = calculateXIRR(rawRows, totalBalance, settleDate);
+
+    updateSummary(totalDep, totalWth, totalInt, totalBalance, ror);
+    // Only render years up to settlement date
+    renderYearTable(yearData, settleYrIdx, rawRows, settleDate);
+    // Pass last PPF year's end date so future rate rows cover the full PPF period
+    const lastYearEnd = yearData.length > 0 ? yearData[yearData.length-1].endDate : settleDate;
+    renderRateTable(lastYearEnd);
+
+    // Restore focus to next field if calc was triggered by field change
+    if (nextFocusTarget) {
+        setTimeout(() => {
+            const target = document.querySelector(nextFocusTarget);
+            if (target) {
+                target.focus();
+                target.select?.(); // Select text if it's a text input
+            }
+            nextFocusTarget = null;
+            isCalculating = false;
+        }, 0);
+    } else {
+        isCalculating = false;
+    }
+}
+
+// ─── Update Summary ───────────────────────────────────────
+function updateSummary(dep, wth, int, bal, ror) {
+    document.getElementById('sumDeposited').textContent = '₹ ' + (dep ? fmt(dep) : '0');
+    document.getElementById('sumWithdrawal').textContent = '₹ ' + (wth ? fmt(wth) : '0');
+    document.getElementById('sumInterest').textContent  = '₹ ' + (int ? fmt(int) : '0');
+    document.getElementById('sumBalance').textContent   = '₹ ' + (bal ? fmt(bal) : '0');
+    document.getElementById('sumROR').textContent = ror !== null ? ror.toFixed(2) + '%' : '—';
+}
+
+// ─── Render PPF Year Table ────────────────────────────────
+function renderYearTable(yearData, settleYrIdx, rawRows, settleDate) {
+    const tbody = document.getElementById('ppfYearTbody');
+    if (!tbody) return;
+
+    tbody.innerHTML = '';
+
+    if (!yearData || yearData.length === 0) return;
+
+    yearData.forEach(yd => {
+        const tr = document.createElement('tr');
+
+        // Check if we should show data for this year
+        const showData = (yd.yr < settleYrIdx) || (yd.yr === settleYrIdx);
+
+        // For settlement year, check if deposits/withdrawals are before settlement date
+        let actualDeposit = yd.deposit;
+        let actualWithdrawal = yd.withdrawal;
+
+        if (yd.yr === settleYrIdx && rawRows && rawRows.length > 0 && settleDate) {
+            // Only count deposits/withdrawals that are on or before settlement date
+            actualDeposit = rawRows
+                .filter(r => {
+                    if (!r.date) return false;
+                    const d = parseDate(r.date);
+                    if (!d) return false;
+                    return d.getTime() >= yd.startDate.getTime() &&
+                           d.getTime() <= yd.endDate.getTime() &&
+                           d.getTime() <= settleDate.getTime() &&
+                           r.deposit > 0;
+                })
+                .reduce((sum, r) => sum + r.deposit, 0);
+
+            actualWithdrawal = rawRows
+                .filter(r => {
+                    if (!r.date) return false;
+                    const d = parseDate(r.date);
+                    if (!d) return false;
+                    return d.getTime() >= yd.startDate.getTime() &&
+                           d.getTime() <= yd.endDate.getTime() &&
+                           d.getTime() <= settleDate.getTime() &&
+                           r.withdrawal > 0;
+                })
+                .reduce((sum, r) => sum + r.withdrawal, 0);
+        }
+
+        // Row class
+        if (yd.yr === settleYrIdx) {
+            tr.className = 'settle-yr';
+        } else if (yd.yr >= 16) {
+            const block = Math.floor((yd.yr - 16) / 5);
+            tr.className = block % 2 === 0 ? 'ext-a' : 'ext-b';
+        }
+
+        const adjVal = (intAdjustments[yd.yr] !== undefined && showData) ? fmt(intAdjustments[yd.yr]) : '';
+
+        tr.innerHTML =
+            `<td style="text-align:center;font-weight:700;font-size:13px;padding:1px 3px">${yd.yr}</td>` +
+            `<td style="text-align:center;font-size:12px;padding:1px 3px;white-space:nowrap">${fmtDate(yd.startDate)}</td>` +
+            `<td style="text-align:center;font-size:12px;padding:1px 3px;white-space:nowrap">${fmtDate(yd.endDate)}</td>` +
+            `<td><input type="text" class="g r" readonly value="${showData ? fmtZ(actualDeposit) : ''}"></td>` +
+            `<td><input type="text" class="g r" readonly value="${showData ? fmt(actualWithdrawal) : ''}"></td>` +
+            `<td><input type="text" class="g r" readonly value="${showData ? fmtZ(yd.calcInterest) : ''}"></td>` +
+            `<td><input type="text" class="y r adj-inp" data-yr="${yd.yr}" value="${adjVal}" onchange="onAdjBlur(this)" ${showData ? '' : 'readonly'}></td>` +
+            `<td><input type="text" class="g r" readonly value="${showData ? fmtZ(yd.intReceived) : ''}"></td>` +
+            `<td><input type="text" class="g r" readonly value="${showData ? fmtZ(yd.balance) : ''}"></td>` +
+            `<td><input type="text" class="g r" readonly value="${showData ? fmt(yd.loanElig) : ''}"></td>` +
+            `<td><input type="text" class="g r" readonly value="${showData ? fmt(yd.wdElig) : ''}"  ></td>`;
+        tbody.appendChild(tr);
+    });
+
+    // Add Total row - only sum data up to settlement date
+    if (yearData.length > 0) {
+        const firstYear = yearData[0];
+        const yearsUpToSettle = yearData.filter(y => y.yr <= settleYrIdx);
+        const lastShownYear = yearsUpToSettle[yearsUpToSettle.length - 1] || yearData[yearData.length - 1];
+
+        // Calculate totals considering only deposits/withdrawals before settlement date
+        let totDep = 0;
+        let totWth = 0;
+
+        yearsUpToSettle.forEach(y => {
+            if (y.yr === settleYrIdx && rawRows && rawRows.length > 0 && settleDate) {
+                // For settlement year, only count deposits/withdrawals before settlement date
+                totDep += rawRows
+                    .filter(r => {
+                        if (!r.date) return false;
+                        const d = parseDate(r.date);
+                        if (!d) return false;
+                        return d.getTime() >= y.startDate.getTime() &&
+                               d.getTime() <= y.endDate.getTime() &&
+                               d.getTime() <= settleDate.getTime() &&
+                               r.deposit > 0;
+                    })
+                    .reduce((sum, r) => sum + r.deposit, 0);
+
+                totWth += rawRows
+                    .filter(r => {
+                        if (!r.date) return false;
+                        const d = parseDate(r.date);
+                        if (!d) return false;
+                        return d.getTime() >= y.startDate.getTime() &&
+                               d.getTime() <= y.endDate.getTime() &&
+                               d.getTime() <= settleDate.getTime() &&
+                               r.withdrawal > 0;
+                    })
+                    .reduce((sum, r) => sum + r.withdrawal, 0);
+            } else {
+                totDep += y.deposit;
+                totWth += y.withdrawal;
+            }
+        });
+
+        const totCalcInt = yearsUpToSettle.reduce((s, y) => s + y.calcInterest, 0);
+        const totAdj = yearsUpToSettle.reduce((s, y) => s + y.adj, 0);
+        const totIntRecv = yearsUpToSettle.reduce((s, y) => s + y.intReceived, 0);
+        const finalBal = lastShownYear.balance;
+
+        const trTotal = document.createElement('tr');
+        trTotal.style.background = '#e8f5e9';
+        trTotal.style.fontWeight = '700';
+        trTotal.innerHTML =
+            `<td style="text-align:center;font-size:13px;padding:2px 3px"></td>` +
+            `<td style="text-align:center;font-size:12px;padding:2px 3px;white-space:nowrap">${fmtDate(firstYear.startDate)}</td>` +
+            `<td style="text-align:center;font-size:12px;padding:2px 3px;white-space:nowrap">${fmtDate(settleDate)}</td>` +
+            `<td><input type="text" class="g r" readonly value="${fmtZ(totDep)}"></td>` +
+            `<td><input type="text" class="g r" readonly value="${fmt(totWth)}"></td>` +
+            `<td><input type="text" class="g r" readonly value="${fmtZ(totCalcInt)}"></td>` +
+            `<td><input type="text" class="g r" readonly value="${totAdj ? fmt(totAdj) : ''}"></td>` +
+            `<td><input type="text" class="g r" readonly value="${fmtZ(totIntRecv)}"></td>` +
+            `<td><input type="text" class="g r" readonly value="${fmtZ(finalBal)}"></td>` +
+            `<td><input type="text" class="g r" readonly value=""></td>` +
+            `<td><input type="text" class="g r" readonly value=""></td>`;
+        tbody.appendChild(trTotal);
+    }
+}
+
+function onAdjBlur(inp) {
+    const yr = parseInt(inp.dataset.yr);
+    const v = parseNum(inp.value);
+    if (v !== 0) {
+        intAdjustments[yr] = v;
+        inp.value = fmt(v);
+    } else {
+        delete intAdjustments[yr];
+        inp.value = '';
+    }
+
+    // Recalculate WITHOUT re-rendering the year table - just update values in place
+    updateYearTableValues();
+}
+
+// ─── Update Year Table Values (without re-rendering) ────────
+function updateYearTableValues() {
+    // Just call calc() but it will update the values properly
+    calc();
+}
+
+// ─── Render Rate Table ─────────────────────────────────────
+
+// ─── Date Validation ──────────────────────────────────────
+function validatePPFDate(dateInput) {
+    const dateStr = dateInput.value;
+    if (!dateStr) return true;
+
+    const enteredDate = parseDate(dateStr);
+    if (!enteredDate) return true;
+
+    if (enteredDate < EARLIEST_PPF_DATE) {
+        alert('PPF scheme started on 1st April 1968.\nPlease enter a date on or after 01-04-1968.');
+        dateInput.value = '';
+        dateInput.focus();
+        return false;
+    }
+    return true;
+}
+
+function renderRateTable(needUntilDate) {
+    // Get earliest deposit date from input table
+    const rawRows = getInputRows();
+    const datesWithDeposits = rawRows
+        .filter(r => r.date && r.deposit > 0)
+        .map(r => parseDate(r.date))
+        .filter(d => d !== null);
+    const earliestDepositDate = datesWithDeposits.length > 0
+        ? new Date(Math.min(...datesWithDeposits))
+        : null;
+
+    const tbody = document.getElementById('rateTbody');
+    tbody.innerHTML = '';
+
+    // Historical (read-only) - all except the last one
+    const histCutoff = HIST_RATES.length - 1;
+    HIST_RATES.forEach((r, idx) => {
+        // Skip rows that end before earliest deposit date
+        if (earliestDepositDate && parseDate(r.end) < earliestDepositDate) {
+            return; // Skip this row
+        }
+
+        if (idx < histCutoff) {
+            // Fully historical - all readonly
+            const tr = document.createElement('tr');
+            tr.className = 'hist-rate';
+            tr.innerHTML =
+                `<td><input type="text" class="g c" readonly value="${fmtDate(r.start)}"></td>` +
+                `<td><input type="text" class="g c" readonly value="${fmtDate(r.end)}"  ></td>` +
+                `<td><input type="text" class="g r" readonly value="${r.rate.toFixed(2)}"></td>`;
+            tbody.appendChild(tr);
+        } else {
+            // Last historical row - editable end date, readonly rate (since start is in past)
+            const tr = document.createElement('tr');
+            tr.className = 'transition-rate';
+            const qs = r.start;
+            const endVal = rateOverrides[qs]?.endDate || r.end;
+
+            tr.innerHTML =
+                `<td><input type="text" class="g c" readonly value="${fmtDate(r.start)}"></td>` +
+                `<td><input type="date" class="y rate-end" data-qs="${qs}" value="${endVal}" onblur="onRateEndBlur(this)"></td>` +
+                `<td><input type="text" class="g r" readonly value="${r.rate.toFixed(2)}"></td>`;
+            tbody.appendChild(tr);
+        }
+    });
+
+    // Future: single row ending at PPF tenure (passed as parameter)
+    const ppfEndDate = needUntilDate;
+
+    // Start date is the day after last historical/transition row end date
+    const lastHistRow = HIST_RATES[HIST_RATES.length - 1];
+    const lastHistQS = lastHistRow.start;
+
+    // Check if user has changed the transition row end date
+    const transitionEndDate = rateOverrides[lastHistQS]?.endDate || lastHistRow.end;
+    const transitionEndDateObj = parseDate(transitionEndDate);
+
+    // Only show future row if PPF end date is after transition end date
+    if (ppfEndDate > transitionEndDateObj) {
+        const futureStartDate = new Date(transitionEndDateObj);
+        futureStartDate.setDate(futureStartDate.getDate() + 1);
+        const futureStartQS = ymd(futureStartDate);
+
+        // Check if we have a stored end date override for future row
+        const storedEndDate = rateOverrides[futureStartQS]?.endDate;
+    const futureEndDate = storedEndDate || ymd(ppfEndDate);
+
+    // Get rate (default to last historical rate)
+    let futureRate = rateOverrides[futureStartQS]?.rate !== undefined ?
+                     rateOverrides[futureStartQS].rate : LAST_RATE;
+
+    // Create single future row
+    const tr = document.createElement('tr');
+    tr.className = 'future-rate';
+    tr.innerHTML =
+        `<td><input type="text" class="g c" readonly value="${fmtDate(futureStartDate)}"></td>` +
+        `<td><input type="date" class="y rate-end" data-qs="${futureStartQS}" data-ppf-end="${ymd(ppfEndDate)}" value="${futureEndDate}" onblur="onRateEndBlur(this)"></td>` +
+        `<td><input type="number" step="0.01" class="y rate-val" data-qs="${futureStartQS}" value="${futureRate.toFixed(2)}" onchange="onRateBlur(this)"></td>`;
+    tbody.appendChild(tr);
+
+    // If user has split the period, show additional row(s)
+    if (storedEndDate && parseDate(storedEndDate) < ppfEndDate) {
+        // User created a split - add row from split end + 1 to PPF end
+        const splitEndDate = parseDate(storedEndDate);
+        const nextStartDate = new Date(splitEndDate);
+        nextStartDate.setDate(nextStartDate.getDate() + 1);
+        const nextStartQS = ymd(nextStartDate);
+
+        const nextRate = rateOverrides[nextStartQS]?.rate !== undefined ?
+                        rateOverrides[nextStartQS].rate : futureRate;
+
+        const tr2 = document.createElement('tr');
+        tr2.className = 'future-rate';
+        tr2.innerHTML =
+            `<td><input type="text" class="g c" readonly value="${fmtDate(nextStartDate)}"></td>` +
+            `<td><input type="date" class="y rate-end" data-qs="${nextStartQS}" data-ppf-end="${ymd(ppfEndDate)}" value="${ymd(ppfEndDate)}" onblur="onRateEndBlur(this)"></td>` +
+            `<td><input type="number" step="0.01" class="y rate-val" data-qs="${nextStartQS}" value="${nextRate.toFixed(2)}" onchange="onRateBlur(this)"></td>`;
+        tbody.appendChild(tr2);
+    }
+    }
+}
+
+// ─── Save / Load / Clear ──────────────────────────────────
+async function saveData() {
+    const data = {
+        settlementDate: document.getElementById('settlementDate').value,
+        rows: getInputRows(),
+        intAdjustments,
+        rateOverrides
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+    if (window.showSaveFilePicker) {
+        try {
+            const h = await window.showSaveFilePicker({ suggestedName:'ppf-data.json', types:[{ description:'JSON', accept:{'application/json':['.json']} }] });
+            const w = await h.createWritable();
+            await w.write(blob); await w.close();
+            alert('Saved successfully!'); return;
+        } catch(e) { if (e.name === 'AbortError') return; }
+    }
+    const url = URL.createObjectURL(blob);
+    const a = Object.assign(document.createElement('a'), { href:url, download:'ppf-data.json' });
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+function loadData() { document.getElementById('fileInput').click(); }
+
+function handleFileLoad(e) {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+        try {
+            const data = JSON.parse(ev.target.result);
+            if (data.settlementDate) document.getElementById('settlementDate').value = data.settlementDate;
+            intAdjustments = data.intAdjustments || {};
+            rateOverrides  = data.rateOverrides  || {};
+            document.getElementById('inputTbody').innerHTML = '';
+            (data.rows || []).forEach(r => {
+                const depFormatted = r.deposit ? fmt(parseNum(r.deposit)) : '';
+                const wthFormatted = r.withdrawal ? fmt(parseNum(r.withdrawal)) : '';
+                addInputRow(r.date, depFormatted, wthFormatted);
+            });
+            renumber(); calc();
+        } catch(err) { alert('Error loading file: ' + err.message); }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+}
+
+function clearData() {
+    if (!confirm('Clear all data? This cannot be undone.')) return;
+    intAdjustments = {}; rateOverrides = {};
+    document.getElementById('inputTbody').innerHTML = '';
+    document.getElementById('settlementDate').value = lastDayOfCurrentMonth();
+    for (let i = 0; i < 16; i++) addInputRow(i === 0 ? todayYMD() : '');
+    calc();
+}
+
+// ─── Initialise ───────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('settlementDate').value = lastDayOfCurrentMonth();
+    for (let i = 0; i < 16; i++) addInputRow(i === 0 ? todayYMD() : '');
+    calc();
+
+});
+</script>
+
+<div id="footer-placeholder"></div>
+<script src="site.js"></script>
+
+    <script>
+    // ═══════════════════════════════════════════════════════════
+// CLIENT-SIDE CODE PROTECTION
+// Prevents casual viewing of calculator source code
+// ═══════════════════════════════════════════════════════════
+
+(function() {
+    'use strict';
+
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    }, false);
+
+    // Disable text selection
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+        return false;
+    }, false);
+
+    // Disable copy
+    document.addEventListener('copy', function(e) {
+        e.preventDefault();
+        return false;
+    }, false);
+
+    // Disable cut
+    document.addEventListener('cut', function(e) {
+        e.preventDefault();
+        return false;
+    }, false);
+
+    // Disable common keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // F12 (DevTools)
+        if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+Shift+I (DevTools)
+        if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+Shift+J (Console)
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+U (View Source)
+        if (e.ctrlKey && e.key === 'u') {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+S (Save Page)
+        if (e.ctrlKey && e.key === 's') {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+Shift+C (Inspect Element)
+        if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+C (Copy)
+        if (e.ctrlKey && e.key === 'c') {
+            e.preventDefault();
+            return false;
+        }
+    }, false);
+
+    // Detect DevTools opening by checking window size changes
+    let devtoolsOpen = false;
+    const threshold = 160;
+
+    setInterval(function() {
+        if (window.outerWidth - window.innerWidth > threshold ||
+            window.outerHeight - window.innerHeight > threshold) {
+            if (!devtoolsOpen) {
+                devtoolsOpen = true;
+                // Redirect or show warning
+                document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;font-size:18px;color:#666;text-align:center;padding:20px;">Developer tools detected. Please close them to continue using this calculator.</div>';
+            }
+        }
+    }, 1000);
+
+    // Console protection - override console methods
+    const noop = function() {};
+    const consoleProtection = function() {
+        if (window.console) {
+            console.log = noop;
+            console.warn = noop;
+            console.error = noop;
+            console.info = noop;
+            console.debug = noop;
+            console.dir = noop;
+            console.dirxml = noop;
+            console.trace = noop;
+            console.table = noop;
+        }
+    };
+
+    consoleProtection();
+
+    // Prevent debugger
+    setInterval(function() {
+        debugger;
+    }, 100);
+
+    // Detect if running in iframe (possible scraping attempt)
+    if (window.top !== window.self) {
+        window.top.location = window.self.location;
+    }
+
+    // Additional CSS to prevent selection
+    const style = document.createElement('style');
+    style.textContent = `
+        * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+        input, textarea {
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+        }
+    `;
+    document.head.appendChild(style);
+
+})();
+
+    </script>
+</body>
+</html>

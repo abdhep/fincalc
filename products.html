@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GFXVPNLB74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GFXVPNLB74');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2303770276201584"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products – ArthaStambh.com</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="ArthaStambh financial calculators — Personal Finance Calculator, Loan Calculator, PPF Calculator. Sophisticated tools for Indian financial planning.">
+    <meta name="keywords" content="financial calculator India, personal finance calculator, retirement planning calculator India, loan calculator India, EMI calculator, PPF calculator India, public provident fund calculator, home loan calculator, car loan calculator, term insurance calculator, investment calculator India, retirement corpus calculator, financial planning tools India, wealth management calculator, portfolio calculator, ArthaStambh, financial independence calculator, FIRE calculator India, sophisticated financial calculators, Indian financial planning, retirement planner India, loan EMI calculator India, PPF interest calculator, debt management calculator, goal planning calculator India, free financial calculators India">
+    <meta name="author" content="ArthaStambh">
+    <meta property="og:title" content="Products – Financial Calculators for India | ArthaStambh">
+    <meta property="og:description" content="Sophisticated financial calculators for retirement planning, loans, and PPF. Designed for Indian investors. One-time purchase, yours for life.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Financial Calculators for India – ArthaStambh Products">
+    <meta name="twitter:description" content="Personal Finance, Loan, and PPF calculators. No subscriptions, complete privacy, yours for life.">
+    <link rel="stylesheet" href="site.css">
+    <style>
+        .products-intro {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin-bottom: 48px;
+            border-left: 4px solid var(--teal);
+        }
+        .products-intro ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px 24px;
+            margin-top: 14px;
+        }
+        .products-intro ul li {
+            font-size: 14px;
+            color: var(--ink-mid);
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8f8f8;
+            border-radius: 8px;
+            border: 1px solid #e8e8e8;
+            transition: all 0.2s;
+        }
+        .products-intro ul li:hover {
+            background: #f0f7f7;
+            border-color: var(--teal-light);
+            transform: translateY(-1px);
+        }
+        .products-intro ul li .bullet-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .products-intro ul li span:last-child {
+            line-height: 1.4;
+        }
+
+        /* ── FAQ SECTION ──────────────────────────────── */
+        .faq-section {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+            border-left: 4px solid var(--teal);
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .faq-item {
+            background: #f8f8f8;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+        .faq-item:hover {
+            background: #f0f7f7;
+            border-color: var(--teal-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .faq-item h3 {
+            font-size: 16px;
+            color: var(--teal-dark);
+            margin-bottom: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-toggle {
+            font-size: 12px;
+            transition: transform 0.3s;
+            color: var(--teal);
+        }
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        .faq-answer p {
+            font-size: 14px;
+            color: var(--ink-mid);
+            line-height: 1.6;
+            margin: 10px 0 0 0;
+        }
+        @media (max-width: 900px) {
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 900px) {
+            .products-intro ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ── PRODUCT CARD ──────────────────────────────── */
+        .product-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow .2s, transform .2s;
+        }
+        .product-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .product-card-inner {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            min-height: 200px;
+        }
+        .pc-visual {
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 200px;
+        }
+        .pc-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .pc-body {
+            padding: 32px 36px;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+        }
+        .pc-body h2 {
+            font-family: Calibri, 'Gill Sans MT', sans-serif;
+            font-size: 22px;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+        .pc-body h2 a {
+            color: var(--teal-dark);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: color 0.2s;
+        }
+        .pc-body h2 a:hover {
+            color: var(--teal);
+        }
+        .pc-body p {
+            font-size: 14px;
+            color: var(--ink-mid);
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+        .pc-body ul {
+            list-style: none;
+            margin-bottom: 0;
+        }
+        .pc-body ul li {
+            font-size: 14px;
+            color: var(--ink-mid);
+            padding: 3px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.55;
+        }
+        .pc-body ul li::before {
+            content: '✦';
+            color: var(--teal);
+            font-size: 10px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        .pc-action {
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            background: var(--surface);
+        }
+        .pc-action a.btn-teal {
+            width: 100%;
+            justify-content: center;
+            font-size: 15px;
+            padding: 14px 20px;
+        }
+        .pc-action a.btn-outline {
+            width: 100%;
+            justify-content: center;
+            font-size: 13px;
+        }
+        .pc-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--teal-light);
+            color: var(--teal-dark);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--teal);
+        }
+
+
+        /* ── FAQ SECTION ──────────────────────────────── */
+        .faq-section {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+            border-left: 4px solid var(--teal);
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .faq-item {
+            background: #f8f8f8;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+        .faq-item:hover {
+            background: #f0f7f7;
+            border-color: var(--teal-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .faq-item h3 {
+            font-size: 16px;
+            color: var(--teal-dark);
+            margin-bottom: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-toggle {
+            font-size: 12px;
+            transition: transform 0.3s;
+            color: var(--teal);
+        }
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        .faq-answer p {
+            font-size: 14px;
+            color: var(--ink-mid);
+            line-height: 1.6;
+            margin: 10px 0 0 0;
+        }
+        @media (max-width: 900px) {
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 900px) {
+            .product-card-inner { grid-template-columns: 1fr; }
+            .pc-visual { min-height: 120px; }
+            .pc-body { border: none; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        }
+
+        /* Pricing Badge */
+        .pricing-badge{display:inline-block;background:linear-gradient(135deg,#E8F9F1,#D4F4E4);border:2px solid #00875A;color:#00875A;font-weight:600;font-size:13px;padding:10px 18px;border-radius:8px;margin-bottom:16px;letter-spacing:0.3px}
+        
+        /* Product CTA Button */
+        .product-cta-btn{display:inline-block;width:100%;text-align:center;background:#D4A017;color:#1A2533;font-weight:600;font-size:15px;padding:14px 28px;border-radius:6px;text-decoration:none;margin-top:20px;transition:all .2s;box-shadow:0 2px 8px rgba(212,160,23,.2)}
+        .product-cta-btn:hover{background:#E6B020;transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,160,23,.3)}
+        
+        /* Product Title Link Styling */
+        .product-title-link{color:#006E7A;text-decoration:none;transition:color .2s}
+        .product-title-link:hover{color:#00909E}
+        
+        @media(max-width:900px){
+            .product-card-inner{grid-template-columns:1fr}
+            .pc-visual{min-height:180px}
+        }
+
+        
+        /* ═══════════════════════════════════════ */
+        /* MOBILE RESPONSIVE                       */
+        /* ═══════════════════════════════════════ */
+        
+        @media(max-width:900px){
+            /* Product cards stack on mobile */
+            .product-card-inner{grid-template-columns:1fr}
+            .pc-visual{min-height:200px;max-height:200px}
+            .pc-body{padding:28px 24px}
+            
+            /* Products intro */
+            .products-intro{padding:24px 20px}
+            .products-intro ul{grid-template-columns:1fr;gap:10px}
+            
+            /* FAQ grid */
+            .faq-grid{grid-template-columns:1fr}
+            .faq-section{padding:32px 24px}
+        }
+        
+        @media(max-width:640px){
+            .product-card-inner{grid-template-columns:1fr}
+            .pc-visual{min-height:150px;max-height:150px}
+            .pc-body h2{font-size:20px}
+            .pc-body p{font-size:14px}
+            .pc-body ul{font-size:13px}
+            .pricing-badge{font-size:12px;padding:8px 14px}
+            .product-cta-btn{font-size:14px;padding:12px 20px}
+        }
+    </style>
+
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<div class="page-banner">
+    <div class="page-banner-inner">
+        <div>
+            <h1>Our Products</h1>
+            <p>Sophisticated financial calculators built for India — accurate, private, and yours for life.</p>
+        </div>
+        <div class="banner-icon">🧮</div>
+    </div>
+</div>
+
+<div id="page-body-wrap" class="page-body-wrap"><main class="page-content">
+
+    <div class="products-intro fade-in">
+        <div class="section-label">Why ArthaStambh</div>
+        <p style="color:var(--ink-mid);font-size:15px">Be your own personal finance advisor. Our calculators are sophisticated, accurate, reliable, and user-friendly — designed so that everybody can plan their finances independently.</p>
+        <ul>
+            <li><span class="bullet-icon">🎯</span><span>Sophisticated, accurate, and reliable calculations</span></li>
+            <li><span class="bullet-icon">💰</span><span>No recurring annual charges, subscriptions, or renewals</span></li>
+            <li><span class="bullet-icon">🔓</span><span>No registration or account required to use</span></li>
+            <li><span class="bullet-icon">📱</span><span>Works on any browser, any device</span></li>
+            <li><span class="bullet-icon">♾️</span><span>Use for multiple instances (e.g., multiple loans)</span></li>
+            <li><span class="bullet-icon">🔒</span><span>Your data never leaves your device — complete privacy</span></li>
+        </ul>
+    </div>
+
+    <!-- PERSONAL FINANCE CALCULATOR — FIRST -->
+    <div class="product-card fade-in">
+        <div class="product-card-inner">
+            <div class="pc-visual"><img src="images/couple.png" alt="Personal Finance Calculator"></div>
+            <div class="pc-body">
+                <h2><a href="personal-finance-calculator.html" class="product-title-link">Personal Finance Calculator <span class="pc-badge">⭐ Flagship Product</span></a></h2>
+                <div class="pricing-badge free-forever">🎁 Always Free • No Registration Required</div>
+                <p>Achieve retirement confidence and financial clarity. Our flagship Personal Finance Calculator is the only tool you need for complete long-term financial planning — from retirement corpus to insurance needs to goal planning, all in one place.</p>
+                <ul>
+                    <li>Comprehensive retirement corpus planning for couples</li>
+                    <li>Investment portfolio tracking with percentage distribution</li>
+                    <li>Life (term) insurance planning for both partners</li>
+                    <li>Accounts for annual income growth and lifestyle inflation</li>
+                    <li>Handles fixed expenses like EMIs and insurance premiums</li>
+                    <li>Plans for large one-time goals — education, marriage, property, travel</li>
+                    <li>Visual corpus analysis chart: created vs. required over time</li>
+                    <li>Save and load your plan as a local file — complete privacy</li>
+                </ul>
+                <a href="personal-finance-calculator.html" class="product-cta-btn">Start Planning Your Retirement →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOAN CALCULATOR -->
+    <div class="product-card fade-in">
+        <div class="product-card-inner">
+            <div class="pc-visual"><img src="images/home.png" alt="Loan Calculator"></div>
+            <div class="pc-body">
+                <h2><a href="loan-calculator.html" class="product-title-link">Loan Calculator <span class="pc-badge">🏠 Loan & EMI</span></a></h2>
+                <div class="pricing-badge free-forever">🎁 Always Free • No Registration Required</div>
+                <p>Save thousands in interest payments. Get a complete picture of your loan with detailed amortization schedules, prepayment scenarios, and support for any loan type with tenure up to 30 years.</p>
+                <ul>
+                    <li>Applicable to all loan types — Home, Car, Personal, and more</li>
+                    <li>Supports loan tenure of up to 30 years</li>
+                    <li>Handles variable interest rates over the loan period</li>
+                    <li>Accounts for changes in EMI amount</li>
+                    <li>Supports construction-linked disbursements</li>
+                    <li>Handles partial pre-payments at any point</li>
+                    <li>Calculated amortisation schedule matches output of leading loan finance institutions</li>
+                    <li>Supports Annual, Quarterly, and Monthly reducing balance methods</li>
+                </ul>
+                <a href="loan-calculator.html" class="product-cta-btn">Optimize Your Loan Today →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PPF CALCULATOR -->
+    <div class="product-card fade-in">
+        <div class="product-card-inner">
+            <div class="pc-visual"><img src="images/fund.png" alt="PPF Calculator"></div>
+            <div class="pc-body">
+                <h2><a href="ppf-calculator.html" class="product-title-link">Public Provident Fund (India) Calculator <span class="pc-badge">📅 PPF (India)</span></a></h2>
+                <div class="pricing-badge free-forever">🎁 Always Free • No Registration Required</div>
+                <p>Maximize your PPF returns. Track your exact account balance, calculate interest accurately, plan loan and withdrawal eligibility, and project your balance throughout the complete PPF tenure.</p>
+                <ul>
+                    <li>Calculates PPF interest accumulated and balance based on actual deposits</li>
+                    <li>Provision for adjustment of interest amount when calculated and received interest differ</li>
+                    <li>Future PPF interest rates can be specified for projection planning</li>
+                    <li>Gives the overall Rate of Return for the entire period</li>
+                </ul>
+                <a href="ppf-calculator.html" class="product-cta-btn">Calculate Your PPF Returns →</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- QUICK CALCULATORS -->
+    <div class="product-card fade-in">
+        <div class="product-card-inner">
+            <div class="pc-visual"><img src="images/calculator.png" alt="Quick Calculators"></div>
+            <div class="pc-body">
+                <h2><a href="quick-calculators.html">Quick Calculators <span class="pc-badge">⚡ 17 Quick Tools</span></a></h2>
+                <p>17 specialized financial calculators for quick, focused calculations. Perfect for when you need a specific answer without setting up a comprehensive plan.</p>
+                <ul>
+                    <li>CAGR Calculator – Measure investment returns</li>
+                    <li>SIP Calculators – Maturity value and required SIP</li>
+                    <li>Fixed Deposit & Recurring Deposit Maturity</li>
+                    <li>Loan EMI and Home Loan Refinance calculators</li>
+                    <li>Retirement Corpus and Withdrawal Rate calculators</li>
+                    <li>Gratuity, Annuity, and Goal Planning tools</li>
+                    <li>Inflation and Purchasing Power calculators</li>
+                    <li>All calculators use instant calculations — no buttons needed</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FAQ SECTION -->
+    <div class="faq-section fade-in" style="margin-top: 64px;">
+        <h2 style="font-size: 24px; color: var(--teal-dark); margin-bottom: 24px; text-align: center;">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <h3>💰 Are the calculators free? <span class="faq-toggle">▼</span></h3>
+                <div class="faq-answer">
+                    <p>Yes! All our calculators are completely free to use. No subscriptions, no payments, no hidden charges. Use them as much as you want, forever.</p>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <h3>🔒 Is my data stored on your servers? <span class="faq-toggle">▼</span></h3>
+                <div class="faq-answer">
+                    <p>No. All calculations happen in your browser. Your financial data never leaves your device. We have no access to your information — complete privacy guaranteed.</p>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <h3>📱 Can I use them offline? <span class="faq-toggle">▼</span></h3>
+                <div class="faq-answer">
+                    <p>Yes. Once the calculator page is loaded in your browser, it works offline. You can save the HTML file locally and use it without internet access.</p>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <h3>💾 Can I save my calculations? <span class="faq-toggle">▼</span></h3>
+                <div class="faq-answer">
+                    <p>Yes. Personal Finance, Loan, and PPF calculators allow you to save and load your data as local files. Your files stay on your device for complete privacy.</p>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <h3>🆘 What if I need help? <span class="faq-toggle">▼</span></h3>
+                <div class="faq-answer">
+                    <p>We provide email support for all our calculators. Contact us with any questions, and we'll help you get the most out of your calculator.</p>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <h3>📊 Do the Quick Calculators save data? <span class="faq-toggle">▼</span></h3>
+                <div class="faq-answer">
+                    <p>Quick Calculators are designed for instant calculations and don't have save/load functionality. They're perfect for one-time calculations without the need for data persistence.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</div>
+<div id="footer-placeholder"></div>
+<script src="site.js"></script>
+
+<script>
+function toggleFAQ(element) {
+    // Close all other FAQ items
+    const allItems = document.querySelectorAll('.faq-item');
+    allItems.forEach(item => {
+        if (item !== element && item.classList.contains('active')) {
+            item.classList.remove('active');
+        }
+    });
+    
+    // Toggle current item
+    element.classList.toggle('active');
+}
+</script>
+</body>
+</html>

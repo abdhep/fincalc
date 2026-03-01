@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GFXVPNLB74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GFXVPNLB74');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2303770276201584"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Calculators – Free Financial Tools for India | ArthaStambh</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <meta name="description" content="17 free financial calculators for India - CAGR, SIP, EMI, FD, Retirement Planning, Gratuity and more. Instant calculations, no registration required.">
+    <meta name="keywords" content="financial calculator India, retirement planning calculator, SIP calculator, EMI calculator, CAGR calculator, mutual fund calculator, home loan calculator, FD calculator, RD calculator, investment calculator, tax calculator India, retirement corpus calculator, SIP maturity calculator, loan EMI calculator, fixed deposit calculator, recurring deposit calculator, annuity calculator, gratuity calculator India, inflation calculator, purchasing power calculator, withdrawal rate calculator, retirement planning India, financial planning tools, online calculator India, free financial calculators, Indian rupee calculator, wealth calculator, savings calculator, goal planning calculator, compound interest calculator">
+    <meta name="author" content="ArthaStambh">
+    <meta property="og:title" content="Quick Calculators – Free Financial Tools for India | ArthaStambh">
+    <meta property="og:description" content="17 free financial calculators including SIP, EMI, CAGR, FD, retirement planning, and more. Instant calculations for Indian investors.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Quick Calculators – Free Financial Tools for India">
+    <meta name="twitter:description" content="17 free financial calculators for smart money management in India.">
+    <link rel="stylesheet" href="site.css">
+    <style>
+        .calc-page {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px;
+            overflow-x: hidden;
+        }
+        
+        .calc-layout {
+            display: grid;
+            grid-template-columns: 240px minmax(0, 1fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        /* ═══ SIDEBAR ═══ */
+        .calc-sidebar {
+            position: sticky;
+            top: 100px;
+            width: 240px;
+            background: white;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-title {
+            background: #2c5f2d;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        
+        .calc-groups {
+            padding: 4px 0;
+        }
+        
+        .calc-group {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .calc-group:last-child {
+            border-bottom: none;
+        }
+        
+        .group-header {
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            user-select: none;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .group-header:hover {
+            background: #e8e8e8;
+        }
+        
+        .group-header .icon {
+            font-size: 14px;
+            width: 16px;
+            text-align: center;
+        }
+        
+        .group-header .toggle {
+            margin-left: auto;
+            font-size: 10px;
+            transition: transform 0.2s;
+        }
+        
+        .calc-group.collapsed .toggle {
+            transform: rotate(-90deg);
+        }
+        
+        .calc-group.collapsed .calc-list {
+            display: none;
+        }
+        
+        .calc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .calc-list li {
+            margin: 0;
+        }
+        
+        .calc-list li a {
+            display: block;
+            padding: 5px 12px 5px 34px;
+            font-size: 14px;
+            line-height: 1.2;
+            color: #555;
+            text-decoration: none;
+            transition: all .1s;
+            border-left: 3px solid transparent;
+        }
+        
+        .calc-list li a:hover {
+            background: #f0f0f0;
+            color: #2c5f2d;
+            padding-left: 36px;
+        }
+        
+        .calc-list li a.active {
+            background: #2c5f2d;
+            color: white;
+            font-weight: 600;
+            border-left-color: #97bc62;
+        }
+
+        /* ═══ CALCULATOR DISPLAY - Match Personal Finance Calculator ═══ */
+        .calc-display {
+            background: white;
+            border: 1px solid #d0d0d0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            width: 100%;
+            min-width: 0;
+        }
+        
+        .calc-section {
+            display: none;
+        }
+        
+        .calc-section.active {
+            display: block;
+            overflow: hidden;
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+        }        
+        .calc-section * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        
+        .calc-title {
+            text-align: left;
+            font-size: 22px;
+            margin: 0;
+            padding: 20px 24px 16px;
+            color: #1A2533;
+            background: #fff;
+            font-weight: 600;
+            border-bottom: 1px solid #E0E0E0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+        }
+        
+        .calc-content {
+            padding: 16px 20px;
+            max-width: 668px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 12px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .section-title {
+            background: #e8f0e8;
+            padding: 6px 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c5f2d;
+            border-left: 3px solid #2c5f2d;
+            margin-bottom: 6px;
+        }
+        
+        .row {
+            display: grid;
+            grid-template-columns: 400px 220px;
+            gap: 8px;
+            margin-bottom: 3px;
+            align-items: center;
+        }
+        
+        label {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.3;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            padding: 0;
+            margin: 0;
+        }
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 4px 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: Calibri, 'Segoe UI', sans-serif;
+            text-align: right;
+            line-height: 1.3;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #2c5f2d;
+            background: #fffef0;
+        }
+        
+        input[readonly] {
+            background: #f9f9f9;
+            font-weight: 600;
+            color: #2c5f2d;
+        }
+        
+        .output-section {
+            margin-top: 16px;
+            padding: 0;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .output-row {
+            display: grid;
+            grid-template-columns: 400px 220px;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 3px;
+            padding: 0;
+        }
+        
+        .output-label {
+            font-weight: 500;
+            color: #2c3e50;
+            font-size: 14px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .output-value {
+            font-weight: 600;
+            font-size: 15px;
+            color: #2c5f2d;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* ═══ RESPONSIVE ═══ */
+        @media (max-width: 768px) {
+            .calc-layout {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .calc-sidebar {
+                position: static;
+            }
+        }
+
+        /* Calculator Icon in Title */
+        .calc-icon{font-size:28px;margin-right:10px;vertical-align:middle}
+        
+        /* Improved Calc Section */
+        .calc-section{background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);transition:box-shadow .2s}
+        .calc-section:hover{box-shadow:0 4px 16px rgba(0,144,158,0.12)}
+        
+        /* Result Highlighting */
+        .output-group{background:#F0F7F7;border:1px solid #9FD9DF;border-radius:6px;padding:12px 16px;margin-top:8px}
+        .output-row{padding:8px 0}
+        .output-value{color:#006E7A;font-weight:700}
+        
+        /* Popular Badge */
+        .popular-badge{display:inline-block;background:linear-gradient(135deg,#FFD700,#FFC700);color:#8B4513;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;margin-left:10px;letter-spacing:0.5px;text-transform:uppercase;box-shadow:0 2px 4px rgba(255,215,0,0.3)}
+
+            /* Enhanced mobile for calculator inputs */
+            .input-group{flex-direction:column;gap:8px}
+            .input-label{width:100%;text-align:left;font-size:13px}
+            input[type="number"],input[type="text"]{width:100%;font-size:16px;padding:10px}
+            .output-group{padding:10px 12px}
+            .output-value{font-size:16px}
+            .calc-section{margin-bottom:20px}
+            button{font-size:16px;padding:12px 20px;width:100%}
+            
+            /* Sidebar becomes horizontal on mobile */
+            .calc-sidebar{position:static;width:100%;margin-bottom:20px}
+            .calc-list{max-height:none !important}
+            .calc-group.collapsed .calc-list{display:none}
+        }
+        
+        @media(max-width:480px){
+            .calc-icon{font-size:22px}
+            .calc-title{font-size:18px;padding:16px}
+        }
+    </style>
+
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    
+    <div class="page-banner">
+        <div class="page-banner-inner">
+            <div>
+                <h1>Quick Financial Calculators</h1>
+                <p>Fast, focused tools for instant calculations. Choose from EMI calculator, SIP calculator, compound interest, and more. No data storage — all calculations happen in your browser.</p>
+            </div>
+            <div class="banner-icon">🧮</div>
+        </div>
+    </div>
+    
+    <div id="page-body-wrap" class="page-body-wrap">
+        <main class="calc-page">
+            <div class="calc-layout">
+            <!-- SIDEBAR -->
+            <aside class="calc-sidebar">
+                <div class="sidebar-title">Quick Calculators</div>
+                
+                <div class="calc-groups">
+                    <div class="calc-group collapsed">
+                        <div class="group-header" onclick="toggleGroup(this)">
+                            <span class="icon">📈</span>
+                            <span>GENERAL</span>
+                            <span class="toggle">▶</span>
+                        </div>
+                        <ul class="calc-list">
+                            <li><a href="#cagr" data-calc="cagr">CAGR Calculator</a></li>
+                            <li><a href="#double-money" data-calc="double_money">Double Your Money</a></li>
+                            <li><a href="#gratuity" data-calc="gratuity">Gratuity (India)</a></li>
+                            <li><a href="#annuity" data-calc="annuity">Annuity</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="calc-group collapsed">
+                        <div class="group-header" onclick="toggleGroup(this)">
+                            <span class="icon">📊</span>
+                            <span>INFLATION</span>
+                            <span class="toggle">▶</span>
+                        </div>
+                        <ul class="calc-list">
+                            <li><a href="#future-expense" data-calc="future_expense">Future Expense Value</a></li>
+                            <li><a href="#purchasing-power" data-calc="purchasing_power">Purchasing Power</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="calc-group collapsed">
+                        <div class="group-header" onclick="toggleGroup(this)">
+                            <span class="icon">💰</span>
+                            <span>INVESTMENT</span>
+                            <span class="toggle">▶</span>
+                        </div>
+                        <ul class="calc-list">
+                            <li><a href="#sip-maturity" data-calc="sip_maturity">SIP Maturity Value</a></li>
+                            <li><a href="#sip-required" data-calc="sip_required">SIP Required</a></li>
+                            <li><a href="#fd-maturity" data-calc="fd_maturity">Fixed Deposit Maturity</a></li>
+                            <li><a href="#rd-maturity" data-calc="rd_maturity">Recurring Deposit Maturity</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="calc-group collapsed">
+                        <div class="group-header" onclick="toggleGroup(this)">
+                            <span class="icon">🏡</span>
+                            <span>LOAN</span>
+                            <span class="toggle">▶</span>
+                        </div>
+                        <ul class="calc-list">
+                            <li><a href="#loan-emi" data-calc="loan_emi">Loan EMI</a></li>
+                            <li><a href="#home-refinance" data-calc="home_refinance">Home Loan Refinance</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="calc-group collapsed">
+                        <div class="group-header" onclick="toggleGroup(this)">
+                            <span class="icon">📋</span>
+                            <span>PLANNING</span>
+                            <span class="toggle">▶</span>
+                        </div>
+                        <ul class="calc-list">
+                            <li><a href="#saving-goal" data-calc="saving_goal">Monthly Saving for Goal</a></li>
+                            <li><a href="#period-goal" data-calc="period_goal">Period of Saving for Goal</a></li>
+                            <li><a href="#retirement-corpus" data-calc="retirement_corpus">Retirement Corpus Required</a></li>
+                            <li><a href="#withdrawal-1" data-calc="withdrawal_1">Constant Withdrawal Rate 1</a></li>
+                            <li><a href="#withdrawal-2" data-calc="withdrawal_2">Constant Withdrawal Rate 2</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- CALCULATOR DISPLAY -->
+            <div class="calc-display" id="calc-container">
+                <!-- Calculators will be inserted here -->
+            </div>
+        </div>
+    </main>
+    </div>
+    
+    <div id="footer-placeholder"></div>
+    <script src="site.js"></script>
+    
+    <script>
+        // ═══════════════════════════════════════════════════════════
+        // UTILITY FUNCTIONS - Match Personal Finance Calculator
+        // ═══════════════════════════════════════════════════════════
+        
+        function parseNum(str) {
+            if (!str || str === '') return null;
+            const cleaned = String(str).replace(/,/g, '').replace(/%/g, '');
+            const num = parseFloat(cleaned);
+            return isNaN(num) ? null : num;
+        }
+        
+        function fmt(value, decimals = 0) {
+            if (isNaN(value)) return '';
+            return value.toLocaleString('en-IN', {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals
+            });
+        }
+        
+        function fmtInputOnChange(element, decimals = 0) {
+            const num = parseNum(element.value);
+            if (num !== null && num !== 0) {
+                element.value = fmt(num, decimals);
+            }
+        }
+        
+        function fmtPct(element) {
+            const cleaned = element.value.replace(/%/g, '');
+            const value = parseFloat(cleaned);
+            if (!isNaN(value) && value !== 0) {
+                element.value = value.toFixed(2) + '%';
+            }
+        }
+        
+        function fmtPct4(element) {
+            const cleaned = element.value.replace(/%/g, '');
+            const value = parseFloat(cleaned);
+            if (!isNaN(value) && value !== 0) {
+                element.value = value.toFixed(4) + '%';
+            }
+        }
+        
+        function fmtInteger(element) {
+            const cleaned = element.value.replace(/,/g, '');
+            const value = parseFloat(cleaned);
+            if (!isNaN(value) && value !== 0) {
+                element.value = Math.round(value).toString();
+            }
+        }
+        
+        function fmtDecimal(element, decimals = 2) {
+            const cleaned = element.value.replace(/,/g, '');
+            const value = parseFloat(cleaned);
+            if (!isNaN(value) && value !== 0) {
+                element.value = value.toFixed(decimals);
+            }
+        }
+        
+        // Excel-compatible financial functions
+        function PMT(rate, nper, pv, fv = 0, type = 0) {
+            if (rate === 0) return -(pv + fv) / nper;
+            const pvif = Math.pow(1 + rate, nper);
+            let pmt = (rate / (pvif - 1)) * -(pv * pvif + fv);
+            if (type === 1) pmt /= (1 + rate);
+            return pmt;
+        }
+        
+        function FV(rate, nper, pmt, pv = 0, type = 0) {
+            if (rate === 0) return -(pv + pmt * nper);
+            const pvif = Math.pow(1 + rate, nper);
+            return -(pv * pvif + pmt * (1 + rate * type) * ((pvif - 1) / rate));
+        }
+        
+        function NOMINAL(effect_rate, npery) {
+            return npery * (Math.pow(1 + effect_rate, 1 / npery) - 1);
+        }
+        
+        function NPER(rate, pmt, pv, fv = 0, type = 0) {
+            if (rate === 0) {
+                return -(pv + fv) / pmt;
+            }
+            
+            const pmt_adj = pmt * (1 + rate * type);
+            const num = pmt_adj - fv * rate;
+            const den = pmt_adj + pv * rate;
+            
+            if (den === 0) {
+                return NaN;
+            }
+            
+            const ratio = num / den;
+            
+            if (ratio <= 0) {
+                return NaN;
+            }
+            
+            const result = Math.log(ratio) / Math.log(1 + rate);
+            return result;
+        }
+        
+        // ═══════════════════════════════════════════════════════════
+        // CALCULATOR MANAGEMENT
+        // ═══════════════════════════════════════════════════════════
+        
+        function toggleGroup(header) {
+            const group = header.parentElement;
+            const wasCollapsed = group.classList.contains('collapsed');
+            
+            // Collapse all groups
+            document.querySelectorAll('.calc-group').forEach(g => {
+                g.classList.add('collapsed');
+            });
+            
+            // Expand clicked group if it was collapsed
+            if (wasCollapsed) {
+                group.classList.remove('collapsed');
+            }
+        }
+        
+        function switchCalculator(calcId) {
+            document.querySelectorAll('.calc-section').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById('calc-' + calcId);
+            if (target) target.classList.add('active');
+            
+            document.querySelectorAll('.calc-list a').forEach(l => l.classList.remove('active'));
+            const activeLink = document.querySelector(`[data-calc="${calcId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+                // Expand parent group
+                const group = activeLink.closest('.calc-group');
+                if (group) group.classList.remove('collapsed');
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // ═══════════════════════════════════════════════════════════
+        // CALCULATOR DEFINITIONS
+        // ═══════════════════════════════════════════════════════════
+        
+        const calculators = {
+            cagr: {
+                title: 'CAGR Calculator',
+                inputs: [
+                    { label: 'Amount Invested (₹)', id: 'invested', type: 'number' },
+                    { label: 'Amount Received at maturity (₹)', id: 'maturity', type: 'number' },
+                    { label: 'Period (months)', id: 'months', type: 'integer' }
+                ],
+                outputs: [
+                    { label: 'CAGR p.a. (%)', id: 'result' }
+                ],
+                calculate: function() {
+                    const invested = parseNum(document.getElementById('cagr_invested').value);
+                    const maturity = parseNum(document.getElementById('cagr_maturity').value);
+                    const months = parseNum(document.getElementById('cagr_months').value);
+                    if (invested === null || maturity === null || months === null || invested <= 0 || maturity <= 0 || months <= 0) {
+                        document.getElementById('cagr_result').value = '';
+                        return;
+                    }
+                    const years = months / 12;
+                    const cagr = (Math.pow(maturity / invested, 1 / years) - 1) * 100;
+                    document.getElementById('cagr_result').value = cagr.toFixed(2) + '%';
+                }
+            },
+            
+            double_money: {
+                title: 'Double Your Money',
+                inputs: [
+                    { label: 'Rate of Return p.a. (%)', id: 'rate', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'Number of Years', id: 'result_years' }
+                ],
+                inputs2: [
+                    { label: 'Number of Years', id: 'years', type: 'decimal' }
+                ],
+                outputs2: [
+                    { label: 'Rate of Return p.a. (%)', id: 'result_rate' }
+                ],
+                calculate: function() {
+                    const rate = parseNum(document.getElementById('double_money_rate').value);
+                    const years = parseNum(document.getElementById('double_money_years').value);
+                    if (rate !== null && rate > 0) {
+                        const yearsNeeded = Math.log(2) / Math.log(1 + rate / 100);
+                        document.getElementById('double_money_result_years').value = yearsNeeded.toFixed(2);
+                    } else {
+                        document.getElementById('double_money_result_years').value = '';
+                    }
+                    if (years !== null && years > 0) {
+                        const rateNeeded = (Math.pow(2, 1 / years) - 1) * 100;
+                        document.getElementById('double_money_result_rate').value = rateNeeded.toFixed(2) + '%';
+                    } else {
+                        document.getElementById('double_money_result_rate').value = '';
+                    }
+                }
+            },
+            
+            gratuity: {
+                title: 'Gratuity (India)',
+                inputs: [
+                    { label: 'Last Monthly Basic Salary (₹)', id: 'salary', type: 'number' },
+                    { label: 'Last Monthly Dearness Allowance (₹)', id: 'da', type: 'number' },
+                    { label: 'Period of Service (years)', id: 'years', type: 'integer' }
+                ],
+                outputs: [
+                    { label: 'Gratuity Amount (₹)', id: 'result' }
+                ],
+                calculate: function() {
+                    const salary = parseNum(document.getElementById('gratuity_salary').value);
+                    const da = parseNum(document.getElementById('gratuity_da').value) || 0;
+                    const years = parseNum(document.getElementById('gratuity_years').value);
+                    if (salary === null || years === null || salary <= 0 || years <= 0) {
+                        document.getElementById('gratuity_result').value = '';
+                        return;
+                    }
+                    const gratuity = (15/26) * (salary + da) * years;
+                    document.getElementById('gratuity_result').value = fmt(gratuity, 2);
+                }
+            },
+            
+            annuity: {
+                title: 'Annuity',
+                inputs: [
+                    { label: 'Principal Amount (₹)', id: 'principal', type: 'number' },
+                    { label: 'Growth rate p.a. (%)', id: 'rate', type: 'percent' },
+                    { label: 'Years to Payout', id: 'years', type: 'integer' },
+                    { label: 'Payout time', id: 'payout', type: 'dropdown', options: ['Ordinary / Immediate Annuity (end of each year)', 'Annuity Due (beginning of each year)'] }
+                ],
+                outputs: [
+                    { label: 'Annual Payout Amount (₹)', id: 'result' }
+                ],
+                calculate: function() {
+                    const principal = parseNum(document.getElementById('annuity_principal').value);
+                    const rate = parseNum(document.getElementById('annuity_rate').value);
+                    const years = parseNum(document.getElementById('annuity_years').value);
+                    const payout = document.getElementById('annuity_payout').value;
+                    if (principal === null || rate === null || years === null || principal <= 0 || years <= 0) {
+                        document.getElementById('annuity_result').value = '';
+                        return;
+                    }
+                    const type = payout.includes('beginning') ? 1 : 0;
+                    const annualPayout = Math.abs(PMT(rate / 100, years, -principal, 0, type));
+                    document.getElementById('annuity_result').value = fmt(annualPayout, 2);
+                }
+            },
+            
+            future_expense: {
+                title: 'Future Expense Value',
+                inputs: [
+                    { label: 'Current Monthly Expenses (₹)', id: 'current', type: 'number' },
+                    { label: 'Period (years)', id: 'years', type: 'integer' },
+                    { label: 'Inflation Rate p.a. (%)', id: 'inflation', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'Future Value of Monthly Expenses (₹)', id: 'result' }
+                ],
+                calculate: function() {
+                    const current = parseNum(document.getElementById('future_expense_current').value);
+                    const years = parseNum(document.getElementById('future_expense_years').value);
+                    const inflation = parseNum(document.getElementById('future_expense_inflation').value);
+                    if (current === null || years === null || inflation === null || current <= 0 || years <= 0) {
+                        document.getElementById('future_expense_result').value = '';
+                        return;
+                    }
+                    const future = current * Math.pow(1 + inflation / 100, years);
+                    document.getElementById('future_expense_result').value = fmt(future, 2);
+                }
+            },
+            
+            purchasing_power: {
+                title: 'Purchasing Power',
+                inputs: [
+                    { label: 'Current Value (₹)', id: 'current', type: 'number' },
+                    { label: 'Period (years)', id: 'years', type: 'integer' },
+                    { label: 'Inflation Rate p.a. (%)', id: 'inflation', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'Future Purchasing Power (₹)', id: 'result' }
+                ],
+                note: 'A certain amount of money today will be able to purchase a lesser amount of goods/services in the future due to inflation. This calculator tells you what will be the purchasing power of the given amount in the future.',
+                calculate: function() {
+                    const current = parseNum(document.getElementById('purchasing_power_current').value);
+                    const years = parseNum(document.getElementById('purchasing_power_years').value);
+                    const inflation = parseNum(document.getElementById('purchasing_power_inflation').value);
+                    if (current === null || years === null || inflation === null || current <= 0 || years <= 0) {
+                        document.getElementById('purchasing_power_result').value = '';
+                        return;
+                    }
+                    const purchasingPower = current / Math.pow(1 + inflation / 100, years);
+                    document.getElementById('purchasing_power_result').value = fmt(purchasingPower, 2);
+                }
+            },
+            
+            fd_maturity: {
+                title: 'Fixed Deposit Maturity',
+                inputs: [
+                    { label: 'Amount Invested (₹)', id: 'principal', type: 'number' },
+                    { label: 'Interest Rate p.a. (%)', id: 'rate', type: 'percent' },
+                    { label: 'Period (months)', id: 'months', type: 'integer' },
+                    { label: 'Interest Compounding', id: 'compound', type: 'dropdown', options: ['Monthly', 'Quarterly', 'Half-Yearly', 'Yearly'] }
+                ],
+                outputs: [
+                    { label: 'Maturity Value (₹)', id: 'maturity' },
+                    { label: 'Total Invested (₹)', id: 'invested' },
+                    { label: 'Amount Earned (₹)', id: 'earned' }
+                ],
+                calculate: function() {
+                    const principal = parseNum(document.getElementById('fd_maturity_principal').value);
+                    const rate = parseNum(document.getElementById('fd_maturity_rate').value);
+                    const months = parseNum(document.getElementById('fd_maturity_months').value);
+                    const compound = document.getElementById('fd_maturity_compound').value;
+                    if (principal === null || rate === null || months === null || principal <= 0 || months <= 0) {
+                        document.getElementById('fd_maturity_maturity').value = '';
+                        document.getElementById('fd_maturity_invested').value = '';
+                        document.getElementById('fd_maturity_earned').value = '';
+                        return;
+                    }
+                    const freq = compound === 'Monthly' ? 12 : compound === 'Quarterly' ? 4 : compound === 'Half-Yearly' ? 2 : 1;
+                    const periods = (months / 12) * freq;
+                    const ratePerPeriod = (rate / 100) / freq;
+                    const maturity = principal * Math.pow(1 + ratePerPeriod, periods);
+                    const earned = maturity - principal;
+                    document.getElementById('fd_maturity_maturity').value = fmt(maturity, 2);
+                    document.getElementById('fd_maturity_invested').value = fmt(principal, 2);
+                    document.getElementById('fd_maturity_earned').value = fmt(earned, 2);
+                }
+            },
+            
+            sip_maturity: {
+                title: 'SIP Maturity Value',
+                inputs: [
+                    { label: 'Initial Investment (if any) (₹)', id: 'initial', type: 'number' },
+                    { label: 'Monthly SIP (₹)', id: 'sip', type: 'number' },
+                    { label: 'Period (months)', id: 'months', type: 'integer' },
+                    { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'Maturity Value (₹)', id: 'maturity' },
+                    { label: 'Total Invested (₹)', id: 'invested' },
+                    { label: 'Amount Earned (₹)', id: 'earned' }
+                ],
+                calculate: function() {
+                    const initial = parseNum(document.getElementById('sip_maturity_initial').value) || 0;
+                    const sip = parseNum(document.getElementById('sip_maturity_sip').value);
+                    const months = parseNum(document.getElementById('sip_maturity_months').value);
+                    const returnRate = parseNum(document.getElementById('sip_maturity_return').value);
+                    if (sip === null || months === null || returnRate === null || months <= 0) {
+                        document.getElementById('sip_maturity_maturity').value = '';
+                        document.getElementById('sip_maturity_invested').value = '';
+                        document.getElementById('sip_maturity_earned').value = '';
+                        return;
+                    }
+                    const monthlyRate = NOMINAL(returnRate / 100, 12) / 12;
+                    const sipFV = FV(monthlyRate, months, -sip, 0, 1);
+                    const initialFV = initial * Math.pow(1 + monthlyRate, months);
+                    const maturity = sipFV + initialFV;
+                    const totalInvested = initial + (sip * months);
+                    const earned = maturity - totalInvested;
+                    document.getElementById('sip_maturity_maturity').value = fmt(maturity, 2);
+                    document.getElementById('sip_maturity_invested').value = fmt(totalInvested, 2);
+                    document.getElementById('sip_maturity_earned').value = fmt(earned, 2);
+                }
+            },
+            
+            sip_required: {
+                title: 'Monthly SIP Required',
+                inputs: [
+                    { label: 'Future Value (₹)', id: 'target', type: 'number' },
+                    { label: 'Period (months)', id: 'months', type: 'integer' },
+                    { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'Monthly SIP required (₹)', id: 'result' }
+                ],
+                calculate: function() {
+                    const target = parseNum(document.getElementById('sip_required_target').value);
+                    const months = parseNum(document.getElementById('sip_required_months').value);
+                    const returnRate = parseNum(document.getElementById('sip_required_return').value);
+                    if (target === null || months === null || returnRate === null || target <= 0 || months <= 0) {
+                        document.getElementById('sip_required_result').value = '';
+                        return;
+                    }
+                    const monthlyRate = NOMINAL(returnRate / 100, 12) / 12;
+                    const sip = Math.abs(PMT(monthlyRate, months, 0, -target, 1));
+                    document.getElementById('sip_required_result').value = fmt(sip, 2);
+                }
+            },
+            
+            rd_maturity: {
+                title: 'Recurring Deposit Maturity',
+                inputs: [
+                    { label: 'Monthly Installment (₹)', id: 'installment', type: 'number' },
+                    { label: 'Interest Rate p.a. (%)', id: 'rate', type: 'percent' },
+                    { label: 'Period (months)', id: 'months', type: 'integer' },
+                    { label: 'Interest Compounding', id: 'compound', type: 'dropdown', options: ['Monthly', 'Quarterly', 'Half-Yearly', 'Yearly'] }
+                ],
+                outputs: [
+                    { label: 'Maturity Value (₹)', id: 'maturity' },
+                    { label: 'Total Invested (₹)', id: 'invested' },
+                    { label: 'Amount Earned (₹)', id: 'earned' }
+                ],
+                calculate: function() {
+                    const installment = parseNum(document.getElementById('rd_maturity_installment').value);
+                    const rate = parseNum(document.getElementById('rd_maturity_rate').value);
+                    const months = parseNum(document.getElementById('rd_maturity_months').value);
+                    const compound = document.getElementById('rd_maturity_compound').value;
+                    if (installment === null || rate === null || months === null || installment <= 0 || months <= 0) {
+                        document.getElementById('rd_maturity_maturity').value = '';
+                        document.getElementById('rd_maturity_invested').value = '';
+                        document.getElementById('rd_maturity_earned').value = '';
+                        return;
+                    }
+                    const freq = compound === 'Monthly' ? 12 : compound === 'Quarterly' ? 4 : compound === 'Half-Yearly' ? 2 : 1;
+                    const ratePerPeriod = (rate / 100) / freq;
+                    const installmentPeriod = 12 / freq;
+                    const maturity = installment * ((Math.pow(1 + ratePerPeriod, months / installmentPeriod) - 1) / (1 - Math.pow(1 + ratePerPeriod, -1 / installmentPeriod)));
+                    const totalInvested = installment * months;
+                    const earned = maturity - totalInvested;
+                    document.getElementById('rd_maturity_maturity').value = fmt(maturity, 2);
+                    document.getElementById('rd_maturity_invested').value = fmt(totalInvested, 2);
+                    document.getElementById('rd_maturity_earned').value = fmt(earned, 2);
+                }
+            },
+            
+            loan_emi: {
+                title: 'Loan EMI',
+                inputs: [
+                    { label: 'Loan Amount (₹)', id: 'principal', type: 'number' },
+                    { label: 'Period (months)', id: 'months', type: 'integer' },
+                    { label: 'Interest rate (%)', id: 'rate', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'EMI (₹)', id: 'result' }
+                ],
+                calculate: function() {
+                    const principal = parseNum(document.getElementById('loan_emi_principal').value);
+                    const months = parseNum(document.getElementById('loan_emi_months').value);
+                    const rate = parseNum(document.getElementById('loan_emi_rate').value);
+                    if (principal === null || months === null || rate === null || principal <= 0 || months <= 0) {
+                        document.getElementById('loan_emi_result').value = '';
+                        return;
+                    }
+                    const monthlyRate = rate / 100 / 12;
+                    const emi = Math.abs(PMT(monthlyRate, months, -principal, 0, 0));
+                    document.getElementById('loan_emi_result').value = fmt(emi, 2);
+                }
+            },
+            
+            home_refinance: {
+                title: 'Home Loan Refinance',
+                inputs: [
+                    { label: 'Outstanding Loan Amount (₹)', id: 'outstanding', type: 'number' },
+                    { label: 'Current EMI (₹)', id: 'current_emi', type: 'number' },
+                    { label: 'Number of EMIs left', id: 'emis_left', type: 'integer' },
+                    { label: 'New Interest Rate (%)', id: 'new_rate', type: 'percent' },
+                    { label: 'New Loan Tenure (months)', id: 'new_tenure', type: 'integer' },
+                    { label: 'Prepayment + Processing Fees (₹)', id: 'fees', type: 'number' }
+                ],
+                outputs: [
+                    { label: 'New EMI (₹)', id: 'new_emi' },
+                    { label: 'Savings (₹)', id: 'savings' }
+                ],
+                calculate: function() {
+                    const outstanding = parseNum(document.getElementById('home_refinance_outstanding').value);
+                    const currentEMI = parseNum(document.getElementById('home_refinance_current_emi').value);
+                    const emisLeft = parseNum(document.getElementById('home_refinance_emis_left').value);
+                    const newRate = parseNum(document.getElementById('home_refinance_new_rate').value);
+                    const newTenure = parseNum(document.getElementById('home_refinance_new_tenure').value);
+                    const fees = parseNum(document.getElementById('home_refinance_fees').value) || 0;
+                    if (outstanding === null || newRate === null || newTenure === null || outstanding <= 0 || newTenure <= 0) {
+                        document.getElementById('home_refinance_new_emi').value = '';
+                        document.getElementById('home_refinance_savings').value = '';
+                        return;
+                    }
+                    const monthlyRate = newRate / 100 / 12;
+                    const newEMI = Math.abs(PMT(monthlyRate, newTenure, -outstanding, 0, 0));
+                    const savings = (currentEMI * emisLeft) - (Math.ceil(newEMI) * newTenure) - fees;
+                    document.getElementById('home_refinance_new_emi').value = fmt(newEMI, 2);
+                    document.getElementById('home_refinance_savings').value = fmt(savings, 2);
+                }
+            },
+            
+            retirement_corpus: {
+                title: 'Retirement Corpus Required',
+                inputs: [
+                    { label: 'Years to retire', id: 'years_to_retire', type: 'integer' },
+                    { label: 'Years in retirement', id: 'years_retirement', type: 'integer' },
+                    { label: 'Current value of Annual expenses during retirement (₹)', id: 'expenses', type: 'number' },
+                    { label: 'Inflation rate p.a. (%)', id: 'inflation', type: 'percent' },
+                    { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'Present value of required corpus (₹)', id: 'present_corpus' },
+                    { label: 'Corpus required at retirement (₹)', id: 'corpus' },
+                    { label: 'Annual expenses in 1st year of retirement (₹)', id: 'first_year_expenses' },
+                    { label: 'Withdrawal Rate in 1st year (%)', id: 'withdrawal_rate' }
+                ],
+                calculate: function() {
+                    const yearsToRetire = parseNum(document.getElementById('retirement_corpus_years_to_retire').value);
+                    const yearsRetirement = parseNum(document.getElementById('retirement_corpus_years_retirement').value);
+                    const expenses = parseNum(document.getElementById('retirement_corpus_expenses').value);
+                    const inflation = parseNum(document.getElementById('retirement_corpus_inflation').value);
+                    const returnRate = parseNum(document.getElementById('retirement_corpus_return').value);
+                    if (yearsToRetire === null || yearsRetirement === null || expenses === null || 
+                        inflation === null || returnRate === null || expenses <= 0) {
+                        document.getElementById('retirement_corpus_present_corpus').value = '';
+                        document.getElementById('retirement_corpus_corpus').value = '';
+                        document.getElementById('retirement_corpus_first_year_expenses').value = '';
+                        document.getElementById('retirement_corpus_withdrawal_rate').value = '';
+                        return;
+                    }
+                    const realReturn = ((1 + returnRate / 100) / (1 + inflation / 100)) - 1;
+                    const presentCorpus = (expenses / realReturn) * (1 - Math.pow(1 + realReturn, 1 - yearsRetirement)) + expenses;
+                    const corpusAtRetirement = presentCorpus * Math.pow(1 + inflation / 100, yearsToRetire);
+                    const firstYearExpenses = expenses * Math.pow(1 + inflation / 100, yearsToRetire);
+                    const withdrawalRate = (firstYearExpenses / corpusAtRetirement) * 100;
+                    document.getElementById('retirement_corpus_present_corpus').value = fmt(presentCorpus, 2);
+                    document.getElementById('retirement_corpus_corpus').value = fmt(corpusAtRetirement, 2);
+                    document.getElementById('retirement_corpus_first_year_expenses').value = fmt(firstYearExpenses, 2);
+                    document.getElementById('retirement_corpus_withdrawal_rate').value = withdrawalRate.toFixed(4) + '%';
+                }
+            },
+            
+            saving_goal: {
+                title: 'Monthly Saving for Goal',
+                inputs: [
+                    { label: 'Goal Amount (₹)', id: 'goal', type: 'number' },
+                    { label: 'Currently Invested (₹)', id: 'invested', type: 'number' },
+                    { label: 'Period (months)', id: 'months', type: 'integer' },
+                    { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'Monthly Amount to Invest (₹)', id: 'result' }
+                ],
+                calculate: function() {
+                    const goal = parseNum(document.getElementById('saving_goal_goal').value);
+                    const invested = parseNum(document.getElementById('saving_goal_invested').value) || 0;
+                    const months = parseNum(document.getElementById('saving_goal_months').value);
+                    const returnRate = parseNum(document.getElementById('saving_goal_return').value);
+                    if (goal === null || months === null || returnRate === null || goal <= 0 || months <= 0) {
+                        document.getElementById('saving_goal_result').value = '';
+                        return;
+                    }
+                    const monthlyRate = NOMINAL(returnRate / 100, 12) / 12;
+                    const monthlySaving = Math.abs(PMT(monthlyRate, months, -invested, goal, 1));
+                    document.getElementById('saving_goal_result').value = fmt(monthlySaving, 2);
+                }
+            },
+            
+            period_goal: {
+                title: 'Period of Saving for Goal',
+                inputs: [
+                    { label: 'Goal Amount (₹)', id: 'goal', type: 'number' },
+                    { label: 'Currently Invested (₹)', id: 'invested', type: 'number' },
+                    { label: 'Monthly Investment (₹)', id: 'monthly', type: 'number' },
+                    { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'Period required (months)', id: 'result' }
+                ],
+                calculate: function() {
+                    const goal = parseNum(document.getElementById('period_goal_goal').value);
+                    const invested = parseNum(document.getElementById('period_goal_invested').value) || 0;
+                    const monthly = parseNum(document.getElementById('period_goal_monthly').value);
+                    const returnRate = parseNum(document.getElementById('period_goal_return').value);
+                    if (goal === null || monthly === null || returnRate === null || goal <= 0 || monthly <= 0) {
+                        document.getElementById('period_goal_result').value = '';
+                        return;
+                    }
+                    const monthlyRate = NOMINAL(returnRate / 100, 12) / 12;
+                    const periods = NPER(monthlyRate, -monthly, -invested, goal, 1);
+                    
+                    if (!isNaN(periods) && isFinite(periods) && periods > 0) {
+                        document.getElementById('period_goal_result').value = periods.toFixed(2);
+                    } else {
+                        document.getElementById('period_goal_result').value = '';
+                    }
+                }
+            },
+            
+            withdrawal_1: {
+                title: 'Constant Withdrawal Rate 1',
+                inputs: [
+                    { label: 'Your Withdrawal Rate in 1st year of retirement (%)', id: 'rate', type: 'percent4' },
+                    { label: 'Annual expenses in 1st year of retirement (₹)', id: 'expenses', type: 'number' },
+                    { label: 'Inflation rate p.a. (%)', id: 'inflation', type: 'percent' },
+                    { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'Corpus required based on Your Withdrawal Rate (₹)', id: 'corpus' },
+                    { label: 'Years corpus will last', id: 'years' },
+                    { label: 'Constant Withdrawal Rate (%)', id: 'constant_rate' },
+                    { label: 'Corpus required based on Constant Withdrawal Rate (₹)', id: 'constant_corpus' },
+                    { label: 'Corpus remaining after 50 years (₹)', id: 'corpus_50years' }
+                ],
+                note: 'If withdrawal from the corpus is at Constant Withdrawal Rate, the withdrawal rate will be the same every year and the corpus will keep growing forever. At this withdrawal rate, the corpus (after withdrawals) will grow at the rate of inflation every year. This is assuming that the Inflation Rate and Rate of Return are constant every year.',
+                calculate: function() {
+                    const rate = parseNum(document.getElementById('withdrawal_1_rate').value);
+                    const expenses = parseNum(document.getElementById('withdrawal_1_expenses').value);
+                    const inflation = parseNum(document.getElementById('withdrawal_1_inflation').value);
+                    const returnRate = parseNum(document.getElementById('withdrawal_1_return').value);
+                    if (rate === null || expenses === null || inflation === null || returnRate === null || 
+                        rate <= 0 || expenses <= 0) {
+                        document.getElementById('withdrawal_1_corpus').value = '';
+                        document.getElementById('withdrawal_1_years').value = '';
+                        document.getElementById('withdrawal_1_constant_rate').value = '';
+                        document.getElementById('withdrawal_1_constant_corpus').value = '';
+                        document.getElementById('withdrawal_1_corpus_50years').value = '';
+                        return;
+                    }
+                    const corpus = expenses / (rate / 100);
+                    const realReturn = ((1 + returnRate / 100) / (1 + inflation / 100)) - 1;
+                    const years = NPER(realReturn, expenses, -corpus, 0, 1);
+                    const constantRate = (1 - ((1 + inflation / 100) / (1 + returnRate / 100))) * 100;
+                    const constantCorpus = expenses / (constantRate / 100);
+                    const corpus50years = constantCorpus * Math.pow(1 + inflation / 100, 50);
+                    
+                    document.getElementById('withdrawal_1_corpus').value = fmt(corpus, 2);
+                    if (!isNaN(years) && isFinite(years)) {
+                        document.getElementById('withdrawal_1_years').value = years.toFixed(2);
+                    } else {
+                        document.getElementById('withdrawal_1_years').value = 'Infinite';
+                    }
+                    document.getElementById('withdrawal_1_constant_rate').value = constantRate.toFixed(4) + '%';
+                    document.getElementById('withdrawal_1_constant_corpus').value = fmt(constantCorpus, 2);
+                    document.getElementById('withdrawal_1_corpus_50years').value = fmt(corpus50years, 2);
+                }
+            },
+            
+            withdrawal_2: {
+                title: 'Constant Withdrawal Rate 2',
+                inputs: [
+                    { label: 'Your Withdrawal Rate in 1st year of retirement (%)', id: 'rate', type: 'percent4' },
+                    { label: 'Annual expenses in 1st year of retirement (₹)', id: 'expenses', type: 'number' },
+                    { label: 'Equity Percentage in Corpus (%)', id: 'equity', type: 'percent' },
+                    { label: 'Debt Percentage in Corpus (%)', id: 'debt', type: 'calculated' },
+                    { label: 'Inflation rate p.a. (%)', id: 'inflation', type: 'percent' },
+                    { label: 'Rate of Return in Equity p.a. (%)', id: 'equity_return', type: 'percent' },
+                    { label: 'Rate of Return in Debt p.a. (%)', id: 'debt_return', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'Blended Rate of Return p.a. (%)', id: 'blended' },
+                    { label: 'Corpus required based on Your Withdrawal Rate (₹)', id: 'corpus' },
+                    { label: 'Years corpus will last', id: 'years' },
+                    { label: 'Constant Withdrawal Rate (%)', id: 'constant_rate' },
+                    { label: 'Corpus required based on Constant Withdrawal Rate (₹)', id: 'constant_corpus' },
+                    { label: 'Corpus remaining after 50 years (₹)', id: 'corpus_50years' }
+                ],
+                note: 'If withdrawal from the corpus is at Constant Withdrawal Rate, the withdrawal rate will be the same every year and the corpus will keep growing forever. At this withdrawal rate, the corpus (after withdrawals) will grow at the rate of inflation every year. This is assuming that the Inflation Rate and Rate of Return are constant every year.',
+                calculate: function() {
+                    const rate = parseNum(document.getElementById('withdrawal_2_rate').value);
+                    const expenses = parseNum(document.getElementById('withdrawal_2_expenses').value);
+                    const equity = parseNum(document.getElementById('withdrawal_2_equity').value);
+                    
+                    // Auto-calculate debt percentage
+                    if (equity !== null) {
+                        const debt = 100 - equity;
+                        document.getElementById('withdrawal_2_debt').value = debt.toFixed(2) + '%';
+                    }
+                    
+                    const inflation = parseNum(document.getElementById('withdrawal_2_inflation').value);
+                    const equityReturn = parseNum(document.getElementById('withdrawal_2_equity_return').value);
+                    const debtReturn = parseNum(document.getElementById('withdrawal_2_debt_return').value);
+                    if (rate === null || expenses === null || equity === null || inflation === null || 
+                        equityReturn === null || debtReturn === null || rate <= 0 || expenses <= 0) {
+                        document.getElementById('withdrawal_2_blended').value = '';
+                        document.getElementById('withdrawal_2_corpus').value = '';
+                        document.getElementById('withdrawal_2_years').value = '';
+                        document.getElementById('withdrawal_2_constant_rate').value = '';
+                        document.getElementById('withdrawal_2_constant_corpus').value = '';
+                        document.getElementById('withdrawal_2_corpus_50years').value = '';
+                        return;
+                    }
+                    const blendedReturn = (equity / 100 * equityReturn) + ((100 - equity) / 100 * debtReturn);
+                    const corpus = expenses / (rate / 100);
+                    const realReturn = ((1 + blendedReturn / 100) / (1 + inflation / 100)) - 1;
+                    const years = NPER(realReturn, expenses, -corpus, 0, 1);
+                    const constantRate = (1 - ((1 + inflation / 100) / (1 + blendedReturn / 100))) * 100;
+                    const constantCorpus = expenses / (constantRate / 100);
+                    const corpus50years = constantCorpus * Math.pow(1 + inflation / 100, 50);
+                    
+                    document.getElementById('withdrawal_2_blended').value = blendedReturn.toFixed(2) + '%';
+                    document.getElementById('withdrawal_2_corpus').value = fmt(corpus, 2);
+                    if (!isNaN(years) && isFinite(years)) {
+                        document.getElementById('withdrawal_2_years').value = years.toFixed(2);
+                    } else {
+                        document.getElementById('withdrawal_2_years').value = 'Infinite';
+                    }
+                    document.getElementById('withdrawal_2_constant_rate').value = constantRate.toFixed(4) + '%';
+                    document.getElementById('withdrawal_2_constant_corpus').value = fmt(constantCorpus, 2);
+                    document.getElementById('withdrawal_2_corpus_50years').value = fmt(corpus50years, 2);
+                }
+            }
+        };
+
+
+        
+        // ═══════════════════════════════════════════════════════════
+        // BUILD CALCULATOR HTML
+        // ═══════════════════════════════════════════════════════════
+        
+        const calcIcons = {
+        'cagr': '📊',
+        'double_money': '💰',
+        'gratuity': '🎁',
+        'annuity': '💵',
+        'inflation': '📈',
+        'purchasing_power': '💸',
+        'withdrawal_rate': '🔄',
+        'sip': '💰',
+        'fd': '🏦',
+        'rd': '🏦',
+        'mutual_fund_lumpsum': '📈',
+        'emi': '🏠',
+        'loan_tenure': '📅',
+        'loan_eligibility': '🏠',
+        'retirement': '🏖️',
+        'retirement_corpus': '🎯',
+        'retirement_swr': '💵',
+    };
+
+        function buildCalculator(calcId, calc) {
+            let html = `
+                <div id="calc-${calcId}" class="calc-section">
+                    <div class="calc-title"><span class="calc-icon">${calcIcons[calcId] || "🧮"}</span> ${calc.title}</div>
+                    <div class="calc-content">
+                        <div class="section">
+                            <div class="section-title">Input</div>
+            `;
+            
+            calc.inputs.forEach(input => {
+                const inputId = `${calcId}_${input.id}`;
+                let onChange = '';
+                let onBlur = '';
+                let inputHTML = '';
+                
+                if (input.type === 'dropdown') {
+                    inputHTML = `<select id="${inputId}" onchange="calculators.${calcId}.calculate()" style="width:100%; padding:4px 6px; border:1px solid #ccc; border-radius:4px; font-size:14px;">`;
+                    input.options.forEach(opt => {
+                        inputHTML += `<option value="${opt}">${opt}</option>`;
+                    });
+                    inputHTML += `</select>`;
+                } else if (input.type === 'calculated') {
+                    inputHTML = `<input type="text" id="${inputId}" readonly style="background:#f9f9f9; font-weight:600; color:#2c5f2d;">`;
+                } else {
+                    if (input.type === 'percent') {
+                        onBlur = 'onblur="fmtPct(this)"';
+                    } else if (input.type === 'percent4') {
+                        onBlur = 'onblur="fmtPct4(this)"';
+                    } else if (input.type === 'integer') {
+                        onBlur = 'onblur="fmtInteger(this)"';
+                    } else if (input.type === 'decimal') {
+                        onBlur = 'onblur="fmtDecimal(this, 2)"';
+                    } else {
+                        onChange = 'onchange="fmtInputOnChange(this, 0)"';
+                    }
+                    inputHTML = `<input type="text" id="${inputId}" ${onChange} oninput="calculators.${calcId}.calculate()" ${onBlur}>`;
+                }
+                
+                html += `
+                            <div class="row">
+                                <label>${input.label}</label>
+                                ${inputHTML}
+                            </div>
+                `;
+            });
+            
+            html += `
+                        </div>
+                        <div class="output-section">
+                            <div class="section-title">Output</div>
+            `;
+            
+            calc.outputs.forEach((output, index) => {
+                const outputId = `${calcId}_${output.id}`;
+                html += `
+                            <div class="output-row">
+                                <span class="output-label">${output.label}</span>
+                                <input type="text" class="output-value" id="${outputId}" readonly>
+                            </div>
+                `;
+                
+                // Add gap after specific outputs
+                if (calcId === 'withdrawal_1' && index === 1) {
+                    html += `<div style="height: 8px;"></div>`;
+                } else if (calcId === 'withdrawal_2' && index === 2) {
+                    html += `<div style="height: 8px;"></div>`;
+                }
+            });
+            
+            // Handle second set of inputs/outputs for Double Your Money
+            if (calc.inputs2) {
+                html += `
+                        </div>
+                        <div style="text-align: center; padding: 12px 0; font-weight: 600; color: #2c5f2d; max-width: 100%;">
+                            — OR —
+                        </div>
+                        <div class="section">
+                            <div class="section-title">Input</div>
+                `;
+                
+                calc.inputs2.forEach(input => {
+                    const inputId = `${calcId}_${input.id}`;
+                    let onChange = '';
+                    let onBlur = '';
+                    
+                    if (input.type === 'percent') {
+                        onBlur = 'onblur="fmtPct(this)"';
+                    } else if (input.type === 'percent4') {
+                        onBlur = 'onblur="fmtPct4(this)"';
+                    } else if (input.type === 'integer') {
+                        onBlur = 'onblur="fmtInteger(this)"';
+                    } else if (input.type === 'decimal') {
+                        onBlur = 'onblur="fmtDecimal(this, 2)"';
+                    } else {
+                        onChange = 'onchange="fmtInputOnChange(this, 0)"';
+                    }
+                    
+                    html += `
+                                <div class="row">
+                                    <label>${input.label}</label>
+                                    <input type="text" id="${inputId}" ${onChange} oninput="calculators.${calcId}.calculate()" ${onBlur}>
+                                </div>
+                    `;
+                });
+                
+                html += `
+                        </div>
+                        <div class="output-section">
+                            <div class="section-title">Output</div>
+                `;
+                
+                calc.outputs2.forEach(output => {
+                    const outputId = `${calcId}_${output.id}`;
+                    html += `
+                                <div class="output-row">
+                                    <span class="output-label">${output.label}</span>
+                                    <input type="text" class="output-value" id="${outputId}" readonly>
+                                </div>
+                    `;
+                });
+            }
+            
+            // Add note if present
+            html += `
+                        </div>
+            `;
+            
+            if (calc.note) {
+                html += `
+                        <div style="margin-top: 16px; padding: 12px; background: #f9f9f9; border-left: 3px solid #2c5f2d; font-size: 13px; line-height: 1.4; color: #555;">
+                            <strong>Note:</strong> ${calc.note}
+                        </div>
+                `;
+            }
+            
+            html += `
+                    </div>
+                </div>
+            `;
+            
+            return html;
+        }
+        
+        // ═══════════════════════════════════════════════════════════
+        // INITIALIZATION
+        // ═══════════════════════════════════════════════════════════
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('calc-container');
+            
+            // Build all calculators
+            let html = '';
+            Object.keys(calculators).forEach(calcId => {
+                html += buildCalculator(calcId, calculators[calcId]);
+            });
+            
+            // All 17 calculators now implemented above
+            
+            container.innerHTML = html;
+            
+            // Setup navigation
+            document.querySelectorAll('.calc-list a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const calcId = this.getAttribute('data-calc');
+                    switchCalculator(calcId);
+                    window.location.hash = calcId.replace(/_/g, '-');
+                });
+            });
+            
+            // Handle hash on load
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                switchCalculator(hash.replace(/-/g, '_'));
+            } else {
+                switchCalculator('cagr');
+            }
+        });
+    </script>
+
+    <script>
+    // ═══════════════════════════════════════════════════════════
+// CLIENT-SIDE CODE PROTECTION
+// Prevents casual viewing of calculator source code
+// ═══════════════════════════════════════════════════════════
+
+(function() {
+    'use strict';
+    
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    }, false);
+    
+    // Disable text selection
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+        return false;
+    }, false);
+    
+    // Disable copy
+    document.addEventListener('copy', function(e) {
+        e.preventDefault();
+        return false;
+    }, false);
+    
+    // Disable cut
+    document.addEventListener('cut', function(e) {
+        e.preventDefault();
+        return false;
+    }, false);
+    
+    // Disable common keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // F12 (DevTools)
+        if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Ctrl+Shift+I (DevTools)
+        if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Ctrl+Shift+J (Console)
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Ctrl+U (View Source)
+        if (e.ctrlKey && e.key === 'u') {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Ctrl+S (Save Page)
+        if (e.ctrlKey && e.key === 's') {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Ctrl+Shift+C (Inspect Element)
+        if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Ctrl+C (Copy)
+        if (e.ctrlKey && e.key === 'c') {
+            e.preventDefault();
+            return false;
+        }
+    }, false);
+    
+    // Detect DevTools opening by checking window size changes
+    let devtoolsOpen = false;
+    const threshold = 160;
+    
+    setInterval(function() {
+        if (window.outerWidth - window.innerWidth > threshold || 
+            window.outerHeight - window.innerHeight > threshold) {
+            if (!devtoolsOpen) {
+                devtoolsOpen = true;
+                // Redirect or show warning
+                document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;font-size:18px;color:#666;text-align:center;padding:20px;">Developer tools detected. Please close them to continue using this calculator.</div>';
+            }
+        }
+    }, 1000);
+    
+    // Console protection - override console methods
+    const noop = function() {};
+    const consoleProtection = function() {
+        if (window.console) {
+            console.log = noop;
+            console.warn = noop;
+            console.error = noop;
+            console.info = noop;
+            console.debug = noop;
+            console.dir = noop;
+            console.dirxml = noop;
+            console.trace = noop;
+            console.table = noop;
+        }
+    };
+    
+    consoleProtection();
+    
+    // Prevent debugger
+    setInterval(function() {
+        debugger;
+    }, 100);
+    
+    // Detect if running in iframe (possible scraping attempt)
+    if (window.top !== window.self) {
+        window.top.location = window.self.location;
+    }
+    
+    // Additional CSS to prevent selection
+    const style = document.createElement('style');
+    style.textContent = `
+        * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+        input, textarea {
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+        }
+    `;
+    document.head.appendChild(style);
+    
+})();
+
+    </script>
+</body>
+</html>
