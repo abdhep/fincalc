@@ -64,14 +64,8 @@ body {
     max-width: 1280px;
 }
 @media (max-width: 1100px) {
-    .ad-col-left, .ad-col-right { display: none !important; }
-    .page-body-wrap { 
-        display: block !important; 
-        max-width: 100% !important;
-        width: 100% !important;
-        padding: 0 !important;
-        margin: 0 auto !important;
-    }
+    .ad-col-left, .ad-col-right { display: none; }
+    .page-body-wrap { display: block; max-width: 1280px; }
 }
 
 /* ─── TOPBAR ──────────────────────────────────────────── */
@@ -335,63 +329,42 @@ main.page-content {
 
 
 /* ═══════════════════════════════════════════════════════ */
-/* COMPREHENSIVE MOBILE FIXES                               */
+/* MOBILE RESPONSIVE - SAFE IMPLEMENTATION                 */
 /* ═══════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
-    /* Prevent horizontal overflow */
-    html, body {
-        overflow-x: hidden !important;
-        max-width: 100% !important;
-        width: 100% !important;
-    }
-    
-    /* Reset all wrapper widths */
-    .page-body-wrap {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    
-    /* Ensure main content fits */
-    main.page-content,
-    .page-content {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 32px 16px !important;
-    }
-    
-    /* Header adjustments */
+    /* Header */
     .header-inner {
-        padding: 0 16px !important;
-        gap: 16px !important;
-        height: auto !important;
-        min-height: 70px !important;
+        padding: 0 16px;
+        gap: 12px;
+        height: auto;
+        min-height: 70px;
         flex-wrap: wrap;
-        justify-content: center;
     }
     
     .logo-wrap img {
-        height: 60px !important;
+        height: 60px;
     }
     
     /* Navigation */
     nav.main-nav {
-        width: 100%;
-        justify-content: center;
         flex-wrap: wrap;
         gap: 6px;
     }
     
     nav.main-nav a {
-        font-size: 14px !important;
-        padding: 8px 12px !important;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    
+    /* Main content padding */
+    main.page-content {
+        padding: 32px 16px;
     }
     
     /* Page banner */
     .page-banner {
-        padding: 32px 16px !important;
+        padding: 32px 16px;
     }
     
     .page-banner-inner {
@@ -400,48 +373,31 @@ main.page-content {
     }
     
     .banner-icon {
-        font-size: 48px !important;
-    }
-    
-    /* Section elements */
-    .section-title {
-        font-size: 24px !important;
+        font-size: 48px;
     }
     
     /* Footer */
     .site-footer {
-        padding: 24px 16px 20px !important;
+        padding: 24px 16px 20px;
     }
     
     .footer-nav {
-        flex-direction: column;
-        gap: 8px !important;
+        flex-wrap: wrap;
     }
     
-    .footer-nav .sep {
-        display: none;
-    }
-    
-    /* Contact page specific */
-    .contact-wrap {
-        padding: 0 !important;
-        max-width: 100% !important;
-    }
-    
-    /* Legal pages specific */
-    .legal-wrap {
-        padding: 0 !important;
-        max-width: 100% !important;
+    .footer-nav a {
+        font-size: 13px;
+        padding: 6px 10px;
     }
 }
 
 @media (max-width: 480px) {
     nav.main-nav a {
-        font-size: 13px !important;
-        padding: 6px 10px !important;
+        font-size: 13px;
+        padding: 6px 10px;
     }
     
     .page-banner h1 {
-        font-size: 24px !important;
+        font-size: 24px;
     }
 }
