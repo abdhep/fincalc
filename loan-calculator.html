@@ -240,76 +240,7 @@
         }
 
         
-        /* ═══════════════════════════════════════ */
-        /* MOBILE RESPONSIVE - TABLES              */
-        /* ═══════════════════════════════════════ */
-        
-        @media(max-width:768px){
-            /* Make tables horizontally scrollable on mobile */
-            .tbl-wrap{
-                overflow-x:auto;
-                -webkit-overflow-scrolling:touch;
-                margin:0 -16px;
-                padding:0 16px;
-            }
-            
-            /* Add scroll hint */
-            .tbl-wrap::after{
-                content:"← Swipe to see more →";
-                display:block;
-                text-align:center;
-                font-size:11px;
-                color:#999;
-                padding:8px 0;
-                font-style:italic;
-            }
-            
-            /* Adjust table font sizes */
-            table{font-size:12px}
-            th{font-size:11px;padding:6px 4px}
-            td{padding:6px 4px}
-            input{font-size:12px;padding:4px}
-            
-            /* Buttons */
-            button,.btn{
-                font-size:14px;
-                padding:10px 16px;
-                width:100%;
-                margin:4px 0;
-            }
-            
-            /* Panel adjustments */
-            .panel{margin-bottom:16px}
-            .panel-title{font-size:16px;padding:10px}
-            
-            /* Three column layout becomes single column */
-            .three-col{
-                grid-template-columns:1fr !important;
-                gap:16px;
-            }
-            
-            /* Summary section */
-            .summary-grid{
-                grid-template-columns:1fr;
-                gap:12px;
-            }
-            
-            .summary-item{
-                padding:12px;
-            }
-            
-            .summary-label{font-size:12px}
-            .summary-value{font-size:16px}
-        }
-        
-        @media(max-width:480px){
-            table{font-size:11px}
-            th{font-size:10px;padding:4px 2px}
-            td{padding:4px 2px}
-            input{font-size:11px;padding:2px}
-            .panel-title{font-size:14px}
-        }
-    </style>
+        </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
