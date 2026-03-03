@@ -1490,7 +1490,7 @@ async function saveData() {
     const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
     if (window.showSaveFilePicker) {
         try {
-            const h = await window.showSaveFilePicker({ suggestedName:'ppf-data.json', types:[{ description:'JSON', accept:{'application/json':['.json']} }] });
+            const h = await window.showSaveFilePicker({ suggestedName:'ppf-calculator-data.json', types:[{ description:'JSON', accept:{'application/json':['.json']} }] });
             const w = await h.createWritable();
             await w.write(blob); await w.close();
             alert('Saved successfully!'); return;
