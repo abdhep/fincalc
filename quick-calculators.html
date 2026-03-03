@@ -44,7 +44,7 @@
         /* ═══ SIDEBAR ═══ */
         .calc-sidebar {
             position: sticky;
-            top: 100px;
+            top: 80px;
             width: 240px;
             background: white;
             border: 1px solid #d0d0d0;
@@ -379,6 +379,33 @@
             .calc-section input[type="text"],
             .calc-section select {
                 width: 100% !important;
+            }
+        }
+
+        
+        /* Mobile fix for calc-content */
+        @media (max-width: 768px) {
+            .calc-content {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 10px !important;
+            }
+            
+            .row,
+            .output-row {
+                grid-template-columns: 1fr !important;
+                gap: 4px !important;
+            }
+            
+            input[type="text"],
+            input[type="number"],
+            .output-value {
+                width: 100% !important;
+            }
+            
+            label,
+            .output-label {
+                margin-bottom: 4px;
             }
         }
     </style>
