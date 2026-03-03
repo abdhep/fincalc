@@ -251,8 +251,8 @@
     <h1>Loan Calculator</h1>
     
     <div class="toolbar">
+        <button onclick="loadData()">📂 Open</button>
         <button onclick="saveData()">💾 Save</button>
-        <button onclick="loadData()">📂 Load</button>
         <button onclick="clearAll()">🗑️ Clear</button>
     </div>
     
@@ -1560,7 +1560,7 @@ function updateChart() {
     });
 }
 
-// Save/Load/Clear functions
+// Save/Open/Clear functions
 function saveData() {
     const data = {
         loanAmount: document.getElementById('loanAmount').value,
@@ -1661,7 +1661,7 @@ function loadData() {
                 
                 calculate();
             } catch (err) {
-                alert('Error loading file: ' + err.message);
+                alert('Error opening file: ' + err.message);
             }
         };
         reader.readAsText(file);

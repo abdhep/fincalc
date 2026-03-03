@@ -272,9 +272,9 @@
     <h1>PPF Calculator – Public Provident Fund</h1>
 
     <div class="toolbar">
-        <button onclick="saveData()">&#128190; Save</button>
-        <button onclick="loadData()">&#128194; Load</button>
-        <button onclick="clearData()">&#128465; Clear</button>
+        <button onclick="loadData()">📂 Open</button>
+        <button onclick="saveData()">💾 Save</button>
+        <button onclick="clearData()">🗑️ Clear</button>
     </div>
     <input type="file" id="fileInput" style="display:none" accept=".json" onchange="handleFileLoad(event)">
 
@@ -1479,7 +1479,7 @@ function renderRateTable(needUntilDate) {
     }
 }
 
-// ─── Save / Load / Clear ──────────────────────────────────
+// ─── Save / Open / Clear ──────────────────────────────────
 async function saveData() {
     const data = {
         settlementDate: document.getElementById('settlementDate').value,
@@ -1497,7 +1497,7 @@ async function saveData() {
         } catch(e) { if (e.name === 'AbortError') return; }
     }
     const url = URL.createObjectURL(blob);
-    const a = Object.assign(document.createElement('a'), { href:url, download:'ppf-data.json' });
+    const a = Object.assign(document.createElement('a'), { href:url, download:'ppf-calculator-data.json' });
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     URL.revokeObjectURL(url);
 }
@@ -1520,7 +1520,7 @@ function handleFileLoad(e) {
                 addInputRow(r.date, depFormatted, wthFormatted);
             });
             renumber(); calc();
-        } catch(err) { alert('Error loading file: ' + err.message); }
+        } catch(err) { alert('Error opening file: ' + err.message); }
     };
     reader.readAsText(file);
     e.target.value = '';
