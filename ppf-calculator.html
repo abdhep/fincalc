@@ -93,8 +93,8 @@
             font-weight: 400;
             color: #333;
             border: 1px solid #bbb;
-            border-radius: 2px;
-            padding: 3px 5px;
+            border-radius: 4px;
+            padding: 3px 6px;
             background: white;
         }
 
@@ -108,63 +108,54 @@
         /* Three-column layout */
         .three-col {
             display:grid;
-            grid-template-columns: minmax(200px, 22fr) minmax(480px, 55fr) minmax(175px, 23fr);
+            grid-template-columns: minmax(288px, 23fr) minmax(708px, 57fr) minmax(234px, 20fr);
             gap:8px;
             margin-bottom:8px;
             align-items:start;
         }
 
-        .panel { background:white; border:1px solid #d0d0d0; padding:6px; overflow:hidden; }
+        .panel { background:white; border:1px solid #d0d0d0; padding:3px; overflow:hidden; }
         .panel-title { font-weight:600; font-size:15px; margin-bottom:4px; color:#2c5f2d; text-align:center; border-bottom:2px solid #2c5f2d; padding-bottom:2px; }
 
         /* Tables */
-        .tbl-wrap { overflow-x:auto; }
-        table { width:100%; border-collapse:collapse; }
-        th {
-            background:#2c5f2d; color:white; padding:4px 4px;
-            text-align:center; font-weight:600; font-size:12px;
-            vertical-align:middle; line-height:1.2;
-        }
-        td { padding:3px 2px; border-bottom:1px solid #e0e0e0; }
+        .tbl-wrap { max-height:540px; overflow-x:auto; overflow-y:auto; }
 
-        /* Tighter column spacing for Interest Rate table */
-        #rateTable td { padding:3px 1px; }
+        table { width:100%; border-collapse:collapse; }
+
+        th {
+            background:#2c5f2d; color:white; padding:2px 2px;
+            text-align:center; font-weight:600; font-size:14px;
+            vertical-align:middle; line-height:1.2;
+            position:sticky; top:0; z-index:10;
+        }
+
+        td {
+            padding: 2px 2px;
+            border-bottom: 1px solid #e0e0e0;
+        }
 
         /* Input styling - matching loan calculator */
         td input[type="text"],
         td input[type="number"] {
             width: 100%;
-            padding: 4px 6px;
+            padding: 4px 2px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 14px;
             font-family: Calibri, 'Segoe UI', Tahoma, sans-serif;
             box-sizing: border-box;
             text-align: right;
         }
 
         td input[type="date"] {
-            width: 95px;
-            padding: 4px 4px;
+            width: 96px;
+            padding: 4px 2px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 14px;
             font-family: Calibri, 'Segoe UI', Tahoma, sans-serif;
             box-sizing: border-box;
             text-align: right;
-        }
-
-        /* Rate table specific styling */
-        #rateTable td input[type="text"] {
-            width: 95px;
-        }
-
-        #rateTable td input[type="number"] {
-            width: 55px;
-        }
-
-        #rateTable td input[type="text"].g.r {
-            width: 55px;
         }
 
         td input[type="text"]:focus,
@@ -183,7 +174,6 @@
         td input:read-only {
             background: #f9f9f9;
             color: #2c5f2d;
-            font-weight: 600;
             border: 1px solid #ccc;
         }
 
@@ -191,22 +181,20 @@
             text-align: center;
         }
 
-        /* Settlement date input */
-        .settle-inp {
-            padding:3px 6px; border:1px solid #ddd; border-radius:3px;
-            font-size:13px; background:white; font-family:inherit;
+        td input.t {
+            background: #e8f5e9;
+            font-weight: 600;
         }
-        .settle-inp:focus { outline:none; border-color:#2c5f2d; }
 
         /* Buttons */
-        .btn-add { background:#97bc62; color:white; border:none; cursor:pointer; border-radius:4px; padding:4px 12px; font-size:13px; margin-top:4px; }
+        .btn-add { background:#97bc62; color:white; border:none; cursor:pointer; border-radius:4px; padding:4px 12px; font-size:14px; margin-top:4px; }
         .btn-add:hover { background:#2c5f2d; }
-        .btn-del { background:#d32f2f; color:white; border:none; cursor:pointer; border-radius:3px; padding:1px 5px; font-size:13px; line-height:1.4; }
+        .btn-del { background:#d32f2f; color:white; border:none; cursor:pointer; border-radius:3px; padding:1px 5px; font-size:14px; line-height:1.2; }
         .btn-del:hover { background:#b71c1c; }
 
         /* PPF year table row classes */
         tr.settle-yr td { background:#fff3cd !important; }
-        tr.settle-yr td input { background:#fff3cd !important; font-weight:700; }
+        tr.settle-yr td input { background:#fff3cd !important; }
         tr.ext-a td { background:#e3f2fd; }
         tr.ext-a td input.g { background:#d8edfb; }
         tr.ext-b td { background:#e8f5e9; }
@@ -217,14 +205,14 @@
         tr.transition-rate td input.y { background:white; }
         tr.future-rate td input.y { background:white; }
         tr.future-rate input[type=number] {
-            background:white; border:1px solid #bbb; border-radius:2px;
-            text-align:right; width:100%; padding:2px 4px; font-size:12px; font-family:inherit;
+            background:white; border:1px solid #bbb; border-radius:4px;
+            text-align:right; width:100%; padding:4px 2px; font-size:14px; font-family:inherit;
         }
         tr.future-rate input[type=number]:focus { outline:none; border-color:#2c5f2d; background:#fff8e1; }
 
         /* Notes */
-        .legal-notice { margin-top:8px; padding:8px; background:#fff3cd; border:2px solid #ffc107; border-radius:4px; font-size:12px; line-height:1.6; }
-        .legal-notice strong { color:#d32f2f; font-size:13px; }
+        .notes { margin-top:8px; padding:8px; background:#fff3cd; border:2px solid #ffc107; border-radius:4px; font-size:14px; line-height:1.2; }
+        .notes strong { color:#d32f2f; font-size:15px; }
 
         </style>
 
@@ -283,22 +271,22 @@
         <div class="summary-title">PPF Summary</div>
         <div class="sum-container">
             <div class="sum-field">
-                <label>Total Deposited</label>
+                <label>Total Deposits</label>
                 <span class="sv" id="sumDeposited">₹ 0</span>
             </div>
             <div class="sum-sep"></div>
             <div class="sum-field">
-                <label>Total Withdrawal</label>
+                <label>Total Withdrawals</label>
                 <span class="sv" id="sumWithdrawal">₹ 0</span>
             </div>
             <div class="sum-sep"></div>
             <div class="sum-field">
-                <label>Total Interest Accrued</label>
+                <label>Total Interest</label>
                 <span class="sv" id="sumInterest">₹ 0</span>
             </div>
             <div class="sum-sep"></div>
             <div class="sum-field">
-                <label>Total Balance</label>
+                <label>Balance</label>
                 <span class="sv" id="sumBalance">₹ 0</span>
             </div>
             <div class="sum-sep"></div>
@@ -309,7 +297,7 @@
             <div class="sum-sep"></div>
             <div class="sum-field">
                 <label>Settlement Date</label>
-                <input type="month" id="settlementDate" onchange="onSettlementChange()" style="font-size:14px; padding:3px 5px; border:1px solid #ddd; border-radius:2px;">
+                <input type="month" id="settlementDate" onchange="onSettlementChange()" style="font-size:14px; padding:3px 6px; border:1px solid #ddd; border-radius:2px;">
             </div>
         </div>
     </div>
@@ -325,15 +313,15 @@
         <!-- LEFT: Deposits & Withdrawals -->
         <div class="panel">
             <div class="panel-title">Deposits &amp; Withdrawals</div>
-            <div class="tbl-wrap">
+            <div class="tbl-wrap" style="max-height:512px">
                 <table id="inputTable">
                     <thead>
                         <tr>
-                            <th style="width:24px">#</th>
-                            <th style="width:100px;cursor:pointer" onclick="sortInputTable()" title="Click to sort by date">Date &#9660;</th>
-                            <th style="width:90px">Deposit (&#8377;)</th>
-                            <th style="width:90px">Withdrawal (&#8377;)</th>
-                            <th style="width:22px"></th>
+                            <th style="width:18px">#</th>
+                            <th style="width:96px;cursor:pointer" onclick="sortInputTable()" title="Click to sort by date">Date &#9660;</th>
+                            <th style="width:66px">Deposit (₹)</th>
+                            <th style="width:72px">Withdrawal (₹)</th>
+                            <th style="width:24px"></th>
                         </tr>
                     </thead>
                     <tbody id="inputTbody"></tbody>
@@ -349,17 +337,17 @@
                 <table id="ppfYearTable">
                     <thead>
                         <tr>
-                            <th style="width:28px">Yr</th>
-                            <th style="width:82px">Start Date</th>
-                            <th style="width:82px">End Date</th>
-                            <th style="width:94px">Deposit<br>(&#8377;)</th>
-                            <th style="width:94px">Withdrawal<br>(&#8377;)</th>
-                            <th style="width:94px">Calc Interest<br>(&#8377;)</th>
-                            <th style="width:68px;background:#4a7c59">Int Adj<br>(&#8377;)</th>
-                            <th style="width:94px">Int Received<br>(&#8377;)</th>
-                            <th style="width:94px">Balance<br>(&#8377;)</th>
-                            <th style="width:94px">Loan Elig<br>(&#8377;)</th>
-                            <th style="width:94px">Withdr Elig<br>(&#8377;)</th>
+                            <th style="width:18px">Yr</th>
+                            <th style="width:72px">Start Date</th>
+                            <th style="width:72px">End Date</th>
+                            <th style="width:66px">Deposit (₹)</th>
+                            <th style="width:66px">Withdrawal (₹)</th>
+                            <th style="width:78px">Interest (₹)</th>
+                            <th style="width:42px;background:#4a7c59">Intrst Adj (₹)</th>
+                            <th style="width:78px">Interest Received (₹)</th>
+                            <th style="width:78px">Balance (₹)</th>
+                            <th style="width:60px">Loan Elgbl (₹)</th>
+                            <th style="width:66px">Wthdrwl Elgbl (₹)</th>
                         </tr>
                     </thead>
                     <tbody id="ppfYearTbody"></tbody>
@@ -374,9 +362,9 @@
                 <table id="rateTable">
                     <thead>
                         <tr>
-                            <th style="width:95px">Start Date</th>
-                            <th style="width:95px">End Date</th>
-                            <th style="width:55px">Rate (%)</th>
+                            <th style="width:72px">Start Date</th>
+                            <th style="width:96px">End Date</th>
+                            <th style="width:54px">Rate (%)</th>
                         </tr>
                     </thead>
                     <tbody id="rateTbody"></tbody>
@@ -386,11 +374,12 @@
 
     </div><!-- end three-col -->
 
-    <div class="legal-notice">
-        <strong>Notes:</strong>
-        Interest is computed on the minimum balance between the 5th and last day of each month — deposits on or before the 5th earn interest that month; deposits after the 5th earn from the following month.
-        PPF initial period is 15 years (years 0&#8211;15). Loan eligibility applies in years 3&#8211;5 (25% of the balance 2 years prior). Partial withdrawal eligibility begins from year 7 (50% of the balance 4 years prior). The account can be extended in 5-year blocks after year 15.
-        Future interest rates default to the last known rate &#8212; you may edit them.
+    <div class="notes">
+        <strong>Notes:</strong><br>
+            • Interest is computed on the minimum balance between the 5th and last day of each month — deposits on or before the 5th earn interest that month; deposits after the 5th earn interest from the following month.<br>
+            • PPF initial period is 15 years (years 0&#8211;15). Loan eligibility applies in years 3&#8211;5 (25% of the balance 2 years prior). Partial withdrawal eligibility begins from year 7 (50% of the balance 4 years prior). The account can be extended in 5-year blocks after year 15.<br>
+            • In some financial years, there could be rounding differences in calculation of interest between your bank and this calculator. In that case, you can enter the difference in the Interest Adjustment (Intrst Adj) column, so that future estimates are accurate.<br>
+            • Future interest rates default to the last known rate &#8212; you may edit them.
     </div>
 </div>
 
@@ -655,10 +644,10 @@ function addInputRow(date, dep, wth) {
     const seq = tbody.rows.length + 1;
     const tr = document.createElement('tr');
     tr.innerHTML =
-        `<td style="text-align:center;font-size:11px;color:#999;padding:1px 3px">${seq}</td>` +
-        `<td style="padding:1px"><input type="date" class="inp-date y" value="${date||''}" onblur="onInputBlur(this)"></td>` +
-        `<td style="padding:1px"><input type="text" class="inp-dep y r" value="${dep!=null&&dep!==''?dep:''}" onblur="fmtAmtAndCalc(this)"></td>` +
-        `<td style="padding:1px"><input type="text" class="inp-wth y r" value="${wth!=null&&wth!==''?wth:''}" onblur="fmtAmtAndCalc(this)"></td>` +
+        `<td style="text-align:center;font-size:14px;padding:2px 2px">${seq}</td>` +
+        `<td style="padding:2px 2px"><input type="date" class="inp-date y" value="${date||''}" onblur="onInputBlur(this)"></td>` +
+        `<td style="padding:2px 2px"><input type="text" class="inp-dep y r" value="${dep!=null&&dep!==''?dep:''}" onblur="fmtAmtAndCalc(this)"></td>` +
+        `<td style="padding:2px 2px"><input type="text" class="inp-wth y r" value="${wth!=null&&wth!==''?wth:''}" onblur="fmtAmtAndCalc(this)"></td>` +
         `<td style="padding:1px 2px"><button class="btn-del" onclick="delInputRow(this)">&#215;</button></td>`;
     tbody.appendChild(tr);
 }
@@ -1257,9 +1246,9 @@ function renderYearTable(yearData, settleYrIdx, rawRows, settleDate) {
         const adjVal = (intAdjustments[yd.yr] !== undefined && showData) ? fmt(intAdjustments[yd.yr]) : '';
 
         tr.innerHTML =
-            `<td style="text-align:center;font-weight:700;font-size:13px;padding:1px 3px">${yd.yr}</td>` +
-            `<td style="text-align:center;font-size:12px;padding:1px 3px;white-space:nowrap">${fmtDate(yd.startDate)}</td>` +
-            `<td style="text-align:center;font-size:12px;padding:1px 3px;white-space:nowrap">${fmtDate(yd.endDate)}</td>` +
+            `<td style="text-align:center;font-size:14px;padding:2px 2px">${yd.yr}</td>` +
+            `<td><input type="text" class="g r" readonly value="${fmtDate(yd.startDate)}"></td>` +
+            `<td><input type="text" class="g r" readonly value="${fmtDate(yd.endDate)}"></td>` +
             `<td><input type="text" class="g r" readonly value="${showData ? fmtZ(actualDeposit) : ''}"></td>` +
             `<td><input type="text" class="g r" readonly value="${showData ? fmt(actualWithdrawal) : ''}"></td>` +
             `<td><input type="text" class="g r" readonly value="${showData ? fmtZ(yd.calcInterest) : ''}"></td>` +
@@ -1320,19 +1309,19 @@ function renderYearTable(yearData, settleYrIdx, rawRows, settleDate) {
 
         const trTotal = document.createElement('tr');
         trTotal.style.background = '#e8f5e9';
-        trTotal.style.fontWeight = '700';
+        trTotal.style.fontWeight = '600';
         trTotal.innerHTML =
-            `<td style="text-align:center;font-size:13px;padding:2px 3px"></td>` +
-            `<td style="text-align:center;font-size:12px;padding:2px 3px;white-space:nowrap">${fmtDate(firstYear.startDate)}</td>` +
-            `<td style="text-align:center;font-size:12px;padding:2px 3px;white-space:nowrap">${fmtDate(settleDate)}</td>` +
-            `<td><input type="text" class="g r" readonly value="${fmtZ(totDep)}"></td>` +
-            `<td><input type="text" class="g r" readonly value="${fmt(totWth)}"></td>` +
-            `<td><input type="text" class="g r" readonly value="${fmtZ(totCalcInt)}"></td>` +
-            `<td><input type="text" class="g r" readonly value="${totAdj ? fmt(totAdj) : ''}"></td>` +
-            `<td><input type="text" class="g r" readonly value="${fmtZ(totIntRecv)}"></td>` +
-            `<td><input type="text" class="g r" readonly value="${fmtZ(finalBal)}"></td>` +
-            `<td><input type="text" class="g r" readonly value=""></td>` +
-            `<td><input type="text" class="g r" readonly value=""></td>`;
+            `<td style="text-align:center;font-size:14px;padding:2px 2px"></td>` +
+            `<td><input type="text" class="g r t" readonly value="${fmtDate(firstYear.startDate)}"></td>` +
+            `<td><input type="text" class="g r t" readonly value="${fmtDate(settleDate)}"></td>` +
+            `<td><input type="text" class="g r t" readonly value="${fmtZ(totDep)}"></td>` +
+            `<td><input type="text" class="g r t" readonly value="${fmt(totWth)}"></td>` +
+            `<td><input type="text" class="g r t" readonly value="${fmtZ(totCalcInt)}"></td>` +
+            `<td><input type="text" class="y r t" readonly value="${totAdj ? fmt(totAdj) : ''}"></td>` +
+            `<td><input type="text" class="g r t" readonly value="${fmtZ(totIntRecv)}"></td>` +
+            `<td><input type="text" class="g r t" readonly value="${fmtZ(finalBal)}"></td>` +
+            `<td><input type="text" class="g r t" readonly value=""></td>` +
+            `<td><input type="text" class="g r t" readonly value=""></td>`;
         tbody.appendChild(trTotal);
     }
 }
@@ -1406,7 +1395,7 @@ function renderRateTable(needUntilDate) {
             tr.innerHTML =
                 `<td><input type="text" class="g c" readonly value="${fmtDate(r.start)}"></td>` +
                 `<td><input type="text" class="g c" readonly value="${fmtDate(r.end)}"  ></td>` +
-                `<td><input type="text" class="g r" readonly value="${r.rate.toFixed(2)}"></td>`;
+                `<td><input type="text" class="g c" readonly value="${r.rate.toFixed(2)}"></td>`;
             tbody.appendChild(tr);
         } else {
             // Last historical row - editable end date, readonly rate (since start is in past)
@@ -1418,7 +1407,7 @@ function renderRateTable(needUntilDate) {
             tr.innerHTML =
                 `<td><input type="text" class="g c" readonly value="${fmtDate(r.start)}"></td>` +
                 `<td><input type="date" class="y rate-end" data-qs="${qs}" value="${endVal}" onblur="onRateEndBlur(this)"></td>` +
-                `<td><input type="text" class="g r" readonly value="${r.rate.toFixed(2)}"></td>`;
+                `<td><input type="text" class="g c" readonly value="${r.rate.toFixed(2)}"></td>`;
             tbody.appendChild(tr);
         }
     });

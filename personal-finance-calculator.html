@@ -194,6 +194,11 @@
             font-weight: 600;
         }
         
+        input::placeholder {
+            color: #999;
+            opacity: 1;
+        }
+        
         table {
             width: 100%;
             border-collapse: collapse;
@@ -262,11 +267,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2px 6px;
+            padding: 3px 6px;
             margin-bottom: 1px;
             background: #f8f8f8;
             border-left: 3px solid #2c5f2d;
-            line-height: 1.2;
+            line-height: 1.3;
         }
         
         .output-row.positive { background: #a5d6a7; }
@@ -324,7 +329,7 @@
             padding: 8px;
         }
         
-        .chart-container { height: 520px; position: relative; }
+        .chart-container { height: 560px; position: relative; }
         
         .ref-table {
             font-size: 14px;
@@ -345,17 +350,18 @@
         
         /* Table column widths */
         .col-desc-wide { width: 45%; }
-        .col-amount { width: 30%; }
-        .col-pct { width: 15%; }
-        .col-years { width: 15%; }
-        .col-del { width: 35px; }
+        .col-amount { width: 27%; }
+        .col-pct { width: 18%; }
+        .col-years { width: 18%; }
+        .col-del { width: 5%; }
         
-        .col-goal-desc { width: 20%; }
-        .col-goal-value { width: 14%; }
-        .col-goal-age { width: 13%; }
-        .col-goal-time { width: 10%; }
-        .col-goal-infl { width: 10%; }
-        .col-goal-future { width: 15%; }
+        .col-goal-desc { width: 18%; }
+        .col-goal-value { width: 12%; }
+        .col-goal-age { width: 14%; }
+        .col-goal-infl { width: 9%; }
+        .col-goal-time { width: 6%; }
+        .col-goal-current { width: 12%; }
+        .col-goal-future { width: 12%; }
 
         </style>
 
@@ -432,7 +438,7 @@
                     <input type="number" step="0.01" id="incGrowth" onblur="fmtPct(this)" oninput="calc()">
                 </div>
                 <div class="row">
-                    <label>Share in Income of Elder Partner (%)</label>
+                    <label>Share of Elder Partner in Family Income (%)</label>
                     <input type="number" step="0.01" id="elderShare" onblur="fmtPct(this)" oninput="calc()">
                 </div>
                 <div class="row">
@@ -475,11 +481,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><input type="text" class="sc-d desc-input" value="Real Estate"></td><td><input type="text" class="sc-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="sc-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="sc-d desc-input" value="Jewellery"></td><td><input type="text" class="sc-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="sc-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="sc-d desc-input" value="Pension"></td><td><input type="text" class="sc-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="sc-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="sc-d desc-input" value="MIS / SCSS / Bonds"></td><td><input type="text" class="sc-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="sc-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="sc-d desc-input" value="Bank Account / Cash"></td><td><input type="text" class="sc-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="sc-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="sc-d desc-input" placeholder="Real Estate"></td><td><input type="text" class="sc-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="sc-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="sc-d desc-input" placeholder="Jewellery"></td><td><input type="text" class="sc-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="sc-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="sc-d desc-input" placeholder="Pension"></td><td><input type="text" class="sc-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="sc-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="sc-d desc-input" placeholder="MIS / SCSS / Bonds"></td><td><input type="text" class="sc-a" onchange="fmtInputOnChange(this, 0)" oninput="calc()"></td><td><input type="text" class="sc-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="sc-d desc-input" placeholder="Bank Account / Cash"></td><td><input type="text" class="sc-a" onchange="fmtInputOnChange(this, 0)" oninput="calc()"></td><td><input type="text" class="sc-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
                     </tbody>
                 </table>
                 <button class="btn-add" onclick="addRow('sc')">+ Add</button>
@@ -502,12 +508,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="text" class="fe-d desc-input" value="EMI / Premium"></td>
-                            <td><input type="text" class="fe-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td>
-                            <td><input type="number" step="1" class="fe-y center-align" oninput="calc()"></td>
-                            <td><button class="btn-del" onclick="delRow(this)">×</button></td>
-                        </tr>
+                        <tr><td><input type="text" class="fe-d desc-input" placeholder="EMI / Premium"></td><td><input type="text" class="fe-a" onchange="fmtInputOnChange(this, 2)" oninput="calc()"></td><td><input type="number" step="1" class="fe-y center-align" oninput="calc()"></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="fe-d desc-input" placeholder="EMI / Premium"></td><td><input type="text" class="fe-a" onchange="fmtInputOnChange(this, 2)" oninput="calc()"></td><td><input type="number" step="1" class="fe-y center-align" oninput="calc()"></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="fe-d desc-input" placeholder="EMI / Premium"></td><td><input type="text" class="fe-a" onchange="fmtInputOnChange(this, 2)" oninput="calc()"></td><td><input type="number" step="1" class="fe-y center-align" oninput="calc()"></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
                     </tbody>
                 </table>
                 <button class="btn-add" onclick="addRow('fe')">+ Add</button>
@@ -526,12 +529,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><input type="text" class="inv-d desc-input" value="Insurance / ULIP"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="inv-d desc-input" value="FD / RD / PF / PPF / NSC"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="inv-d desc-input" value="Debt Mutual Funds"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="inv-d desc-input" value="Equity Mutual Funds"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="inv-d desc-input" value="Shares / ESOP / RSU"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="inv-d desc-input" value="Gold / Silver"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="inv-d desc-input" placeholder="Insurance / ULIP"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="inv-d desc-input" placeholder="FD / RD / PF / PPF / NSC"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="inv-d desc-input" placeholder="Debt Mutual Funds"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="inv-d desc-input" placeholder="Equity Mutual Funds"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="inv-d desc-input" placeholder="Shares / ESOP / RSU"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="inv-d desc-input" placeholder="Gold / Silver"></td><td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="inv-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
                     </tbody>
                 </table>
                 <button class="btn-add" onclick="addRow('inv')">+ Add</button>
@@ -554,11 +557,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><input type="text" class="liab-d desc-input" value="Home Loan"></td><td><input type="text" class="liab-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="liab-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="liab-d desc-input" value="Car Loan"></td><td><input type="text" class="liab-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="liab-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="liab-d desc-input" value="Personal Loan"></td><td><input type="text" class="liab-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="liab-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="liab-d desc-input" value="Education Loan"></td><td><input type="text" class="liab-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="liab-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="liab-d desc-input" value="Others"></td><td><input type="text" class="liab-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="liab-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="liab-d desc-input" placeholder="Home Loan"></td><td><input type="text" class="liab-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="liab-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="liab-d desc-input" placeholder="Car Loan"></td><td><input type="text" class="liab-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="liab-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="liab-d desc-input" placeholder="Personal Loan"></td><td><input type="text" class="liab-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="liab-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="liab-d desc-input" placeholder="Education Loan"></td><td><input type="text" class="liab-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="liab-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="liab-d desc-input" placeholder="Others"></td><td><input type="text" class="liab-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td><td><input type="text" class="liab-p center-align" readonly></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
                     </tbody>
                 </table>
                 <button class="btn-add" onclick="addRow('liab')">+ Add</button>
@@ -571,8 +574,9 @@
             <!-- Notes Section -->
             <div class="section notes-section">
                 <div class="section-title">Notes</div>
-                    • The calculator is forward-looking and expects current values to estimate future values (up to next 100 years). If you have already retired, you should enter Retirement Age as Present Age.<br>
-                    • The calculator does not consider any taxes and expects all values to be net of taxes. So enter all income, returns, etc after accounting for taxes.<br>
+                    • The calculator is designed to be used for couples. If you are single or want to plan individually, enter your details as Younger Partner.<br>
+                    • The calculator is forward-looking and expects current values as inputs to estimate future values (up to next 100 years). If you have already retired, then enter Retirement Age as Present Age.<br>
+                    • The calculator does not consider any taxes and expects all values to be net of taxes. Enter all income, returns, etc after accounting for taxes.<br>
                     • The calculator assumes that the entire Monthly Savings (Income - Expenses) are invested every month and added to the Investment Corpus. If this is not the case, then enter Monthly Income equal to Monthly Expenses + Monthly Investments.<br>
                     • If the Savings are negative, it means that this amount is the current Monthly Withdrawal amount from the Investment Corpus.<br>
                     • The calculator assumes that Monthly Income after retirement is Nil. Any value entered for Income after retirement is ignored. If you expect any post-retirement income, then enter the Retirement Age as the age till which you expect to receive this income.
@@ -586,22 +590,46 @@
                         <tr>
                             <th class="left-align col-goal-desc">Description</th>
                             <th class="col-goal-value">Estimate Value (₹)</th>
-                            <th class="col-goal-age">Estimate at Age of Younger Partner</th>
+                            <th class="col-goal-age">Estimated at Age of Younger Partner</th>
                             <th class="col-goal-age">Required at Age of Younger Partner</th>
-                            <th class="col-goal-time highlight-header">Time (years)</th>
                             <th class="col-goal-infl">Inflation (%)</th>
+                            <th class="col-goal-time highlight-header">Years left</th>
+                            <th class="col-goal-current highlight-header">Current Value (₹)</th>
                             <th class="col-goal-future highlight-header">Future Value (₹)</th>
                             <th class="col-del"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="text" class="g-d desc-input" value="Goal"></td>
+                            <td><input type="text" class="g-d desc-input" placeholder="Child's Graduation"></td>
                             <td><input type="text" class="g-ev" onchange="fmtInputOnChange(this)" oninput="calc()"></td>
                             <td><input type="number" step="1" class="g-ea center-align" oninput="calc()"></td>
                             <td><input type="number" step="1" class="g-ra center-align" oninput="calc()" onblur="validateGoalAge(this)"></td>
-                            <td><input type="text" class="g-y center-align" readonly></td>
                             <td><input type="number" step="0.01" class="g-i center-align" onblur="fmtPct(this)" oninput="calc()"></td>
+                            <td><input type="text" class="g-y center-align" readonly></td>
+                            <td><input type="text" class="g-cv" readonly></td>
+                            <td><input type="text" class="g-fv" readonly></td>
+                            <td><button class="btn-del" onclick="delRow(this)">×</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="g-d desc-input" placeholder="Child's Post-graduation"></td>
+                            <td><input type="text" class="g-ev" onchange="fmtInputOnChange(this)" oninput="calc()"></td>
+                            <td><input type="number" step="1" class="g-ea center-align" oninput="calc()"></td>
+                            <td><input type="number" step="1" class="g-ra center-align" oninput="calc()" onblur="validateGoalAge(this)"></td>
+                            <td><input type="number" step="0.01" class="g-i center-align" onblur="fmtPct(this)" oninput="calc()"></td>
+                            <td><input type="text" class="g-y center-align" readonly></td>
+                            <td><input type="text" class="g-cv" readonly></td>
+                            <td><input type="text" class="g-fv" readonly></td>
+                            <td><button class="btn-del" onclick="delRow(this)">×</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="g-d desc-input" placeholder="Child's Marriage"></td>
+                            <td><input type="text" class="g-ev" onchange="fmtInputOnChange(this)" oninput="calc()"></td>
+                            <td><input type="number" step="1" class="g-ea center-align" oninput="calc()"></td>
+                            <td><input type="number" step="1" class="g-ra center-align" oninput="calc()" onblur="validateGoalAge(this)"></td>
+                            <td><input type="number" step="0.01" class="g-i center-align" onblur="fmtPct(this)" oninput="calc()"></td>
+                            <td><input type="text" class="g-y center-align" readonly></td>
+                            <td><input type="text" class="g-cv" readonly></td>
                             <td><input type="text" class="g-fv" readonly></td>
                             <td><button class="btn-del" onclick="delRow(this)">×</button></td>
                         </tr>
@@ -694,7 +722,7 @@ function parseNum(str) {
 /**
  * Format number with Indian locale
  */
-function fmt(value, decimals = 2) {
+function fmt(value, decimals = 0) {
     return value.toLocaleString('en-IN', {
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals
@@ -704,9 +732,9 @@ function fmt(value, decimals = 2) {
 /**
  * Format input field value on change
  */
-function fmtInputOnChange(element) {
+function fmtInputOnChange(element, dec = 0) {
     const num = parseNum(element.value);
-    element.value = fmt(num);
+    element.value = fmt(num, dec);
 }
 
 /**
@@ -983,10 +1011,12 @@ function calc() {
         const goalInflation = parseNum(iInput.value) / 100;
         
         const years = Math.max(requiredAge - yAge, 0);
+        const currentValue = estimateValue * Math.pow(1 + goalInflation, yAge - estimateAge);
         const futureValue = estimateValue * Math.pow(1 + goalInflation, requiredAge - estimateAge);
         
         row.querySelector('.g-y').value = fmt(years, 0);
-        row.querySelector('.g-fv').value = fmt(Math.round(futureValue));
+        row.querySelector('.g-cv').value = fmt(Math.round(currentValue), 0);
+        row.querySelector('.g-fv').value = fmt(Math.round(futureValue), 0);
         
         if (futureValue > 0) {
             goals.push({ fv: futureValue, yrs: years });
@@ -1341,40 +1371,39 @@ function addRow(tableType) {
     const row = tbody.insertRow();
     
     if (tableType === 'sc') {
-        row.innerHTML = '<td><input type="text" class="sc-d desc-input"></td>' +
+        row.innerHTML = '<td><input type="text" class="sc-d desc-input" placeholder="Asset Type"></td>' +
             '<td><input type="text" class="sc-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td>' +
-            '<td><input type="text" class="sc-p center-align" readonly></td>' +
+            '<td><input type="text" class="sc-p center-align" value="0.00%" readonly></td>' +
             '<td><button class="btn-del" onclick="delRow(this)">×</button></td>';
     } else if (tableType === 'inv') {
-        row.innerHTML = '<td><input type="text" class="inv-d desc-input"></td>' +
+        row.innerHTML = '<td><input type="text" class="inv-d desc-input" placeholder="Asset Type"></td>' +
             '<td><input type="text" class="inv-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td>' +
-            '<td><input type="text" class="inv-p center-align" readonly></td>' +
+            '<td><input type="text" class="inv-p center-align" value="0.00%" readonly></td>' +
             '<td><button class="btn-del" onclick="delRow(this)">×</button></td>';
     } else if (tableType === 'liab') {
-        row.innerHTML = '<td><input type="text" class="liab-d desc-input"></td>' +
+        row.innerHTML = '<td><input type="text" class="liab-d desc-input" placeholder="Debt Type"></td>' +
             '<td><input type="text" class="liab-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td>' +
-            '<td><input type="text" class="liab-p center-align" readonly></td>' +
+            '<td><input type="text" class="liab-p center-align" value="0.00%" readonly></td>' +
             '<td><button class="btn-del" onclick="delRow(this)">×</button></td>';
     } else if (tableType === 'fe') {
-        row.innerHTML = '<td><input type="text" class="fe-d desc-input" value="EMI / Premium"></td>' +
-            '<td><input type="text" class="fe-a" onchange="fmtInputOnChange(this)" oninput="calc()"></td>' +
+        row.innerHTML = '<td><input type="text" class="fe-d desc-input" placeholder="EMI / Premium"></td>' +
+            '<td><input type="text" class="fe-a" onchange="fmtInputOnChange(this, 2)" oninput="calc()"></td>' +
             '<td><input type="number" step="1" class="fe-y center-align" oninput="calc()"></td>' +
             '<td><button class="btn-del" onclick="delRow(this)">×</button></td>';
     } else if (tableType === 'goal') {
-        const yAge = parseNum(document.getElementById('yAge').value);
-        const inflation = (parseNum(document.getElementById('inflation').value) || 0).toFixed(2);
-        
-        row.innerHTML = '<td><input type="text" class="g-d desc-input"></td>' +
+        const yAge = parseFloat(document.getElementById('yAge').value) || '';
+        const inflation = parseFloat(document.getElementById('inflation').value).toFixed(2) || '';
+
+        row.innerHTML = '<td><input type="text" class="g-d desc-input" placeholder="Goal"></td>' +
             '<td><input type="text" class="g-ev" onchange="fmtInputOnChange(this)" oninput="calc()"></td>' +
-            '<td><input type="number" step="1" class="g-ea center-align" value="' + (yAge || '') + '" oninput="calc()"></td>' +
+            '<td><input type="number" step="1" class="g-ea center-align" value="' + yAge + '" oninput="calc()"></td>' +
             '<td><input type="number" step="1" class="g-ra center-align" oninput="calc()" onblur="validateGoalAge(this)"></td>' +
-            '<td><input type="text" class="g-y center-align" readonly></td>' +
             '<td><input type="number" step="0.01" class="g-i center-align" value="' + inflation + '" onblur="fmtPct(this)" oninput="calc()"></td>' +
-            '<td><input type="text" class="g-fv" readonly></td>' +
+            '<td><input type="text" class="g-y center-align" value="0" readonly></td>' +
+            '<td><input type="text" class="g-cv" value="0" readonly></td>' +
+            '<td><input type="text" class="g-fv" value="0" readonly></td>' +
             '<td><button class="btn-del" onclick="delRow(this)">×</button></td>';
     }
-    
-    calc();
 }
 
 function delRow(button) {
@@ -1522,6 +1551,7 @@ function handleFileLoad(event) {
         }
     };
     reader.readAsText(file);
+    event.target.value = '';
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1532,7 +1562,7 @@ function clearData() {
     if (!confirm('Clear all data? This cannot be undone.')) {
         return;
     }
-    
+
     // Clear all input fields
     document.querySelectorAll('input[type="number"], input[type="text"]').forEach(el => {
         if (!el.readOnly) {
@@ -1540,30 +1570,58 @@ function clearData() {
         }
     });
     
+    // Reset Self-consumption table
+    const scTbody = document.querySelector('#scTable tbody');
+    scTbody.innerHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        addRow('sc');
+    }
+    
+    // Reset Investments table
+    const invTbody = document.querySelector('#invTable tbody');
+    invTbody.innerHTML = '';
+    for (let i = 1; i <= 6; i++) {
+        addRow('inv');
+    }
+    
+    // Reset Liabilities table
+    const liabTbody = document.querySelector('#liabTable tbody');
+    liabTbody.innerHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        addRow('liab');
+    }
+    
+    // Reset Fixed Expenses table
+    const feTbody = document.querySelector('#feTable tbody');
+    feTbody.innerHTML = '';
+    for (let i = 1; i <= 3; i++) {
+        addRow('fe');
+    }
+
+    // Reset Goals table
+    const goalTbody = document.querySelector('#goalTable tbody');
+    goalTbody.innerHTML = '';
+    for (let i = 1; i <= 3; i++) {
+        addRow('goal');
+    }
+
     // Reset default descriptions
-    document.querySelectorAll('.sc-d, .inv-d, .liab-d').forEach((el, idx) => {
+    document.querySelectorAll('.sc-d, .inv-d, .liab-d, .fe-d, .g-d').forEach((el, idx) => {
         const defaults = {
             sc: ['Real Estate', 'Jewellery', 'Pension', 'MIS / SCSS / Bonds', 'Bank Account / Cash'],
             inv: ['Insurance / ULIP', 'FD / RD / PF / PPF / NSC', 'Debt Mutual Funds', 'Equity Mutual Funds', 'Shares / ESOP / RSU', 'Gold / Silver'],
-            liab: ['Home Loan', 'Car Loan', 'Personal Loan', 'Education Loan', 'Others']
+            liab: ['Home Loan', 'Car Loan', 'Personal Loan', 'Education Loan', 'Others'],
+            fe: ['EMI / Premium', 'EMI / Premium', 'EMI / Premium'],
+            g: ['Child\'s Graduation', 'Child\'s Post-graduation', 'Child\'s Marriage']
         };
         
         const tableType = el.classList.contains('sc-d') ? 'sc' : 
-                         el.classList.contains('inv-d') ? 'inv' : 'liab';
+                          el.classList.contains('inv-d') ? 'inv' :
+                          el.classList.contains('liab-d') ? 'liab' :
+                          el.classList.contains('fe-d') ? 'fe' : 'g';
         const rowIndex = Array.from(el.closest('tbody').querySelectorAll(`.${tableType}-d`)).indexOf(el);
-        el.value = defaults[tableType][rowIndex] || '';
+        el.placeholder = defaults[tableType][rowIndex] || '';
     });
-    
-    // Reset goal table
-    const goalTbody = document.querySelector('#goalTable tbody');
-    goalTbody.innerHTML = '';
-    addRow('goal');
-    goalTbody.querySelector('.g-d').value = 'Goal';
-    
-    // Reset fixed expenses table
-    const feTbody = document.querySelector('#feTable tbody');
-    feTbody.innerHTML = '';
-    addRow('fe');
     
     calc();
 }
