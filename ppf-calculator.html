@@ -108,7 +108,7 @@
         /* Three-column layout */
         .three-col {
             display:grid;
-            grid-template-columns: minmax(288px, 23fr) minmax(708px, 57fr) minmax(234px, 20fr);
+            grid-template-columns: minmax(288px, 23.3fr) minmax(708px, 57.4fr) minmax(234px, 19.3fr);
             gap:8px;
             margin-bottom:8px;
             align-items:start;
@@ -148,14 +148,15 @@
         }
 
         td input[type="date"] {
-            width: 96px;
+            width: 100%;
             padding: 4px 2px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
             font-family: Calibri, 'Segoe UI', Tahoma, sans-serif;
             box-sizing: border-box;
-            text-align: right;
+            text-align: center;
+            margin-right: -2em;
         }
 
         td input[type="text"]:focus,
