@@ -161,6 +161,14 @@
             margin-top: 8px;
         }
 
+        .fy-notes {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 8px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        
         .fytable-container {
             max-height: 540px;
             overflow-x: auto;
@@ -232,6 +240,13 @@
             max-height: 540px;
         }
         
+        /* Notes */
+        .notes {
+            background:#fff3cd;
+            font-size:14px;
+            line-height:1.2;
+        }
+
         .error { border-color: #d32f2f !important; }
         
         @media (max-width: 1200px) {
@@ -385,8 +400,9 @@
         </div>
     </div>
     
+    <div class="fy-notes">
     <!-- Financial Year Breakdown Table -->
-    <div class="section" style="margin-top: 15px;">
+    <div class="section">
         <div class="section-title">Financial Year-wise Loan Payment Details</div>
         <div class="fytable-container">
             <table style="width: auto; margin: 0 auto">
@@ -408,8 +424,20 @@
         </div>
     </div>
     
+    <div class="section notes">
+        <div class="section-title">Notes</div>
+            • This calculator is designed for a maximum loan tenure of 30 years or 360 months.<br>
+            • Each row in the Amortization Schedule represents information for a specific month only.<br>
+            • Whenever there is a change in the Interest Rate, enter the new Rate in the month when it changes.<br>
+            • Whenever there is a change in the remaining tenure, enter the remaining tenure in the Proposed Tenure in the month when it changes.<br>
+            • Whenever there is a change in the EMI, enter the new Proposed EMI in the month when it changes.<br>
+            • If there is an EMI moratorium, enter 0 in the Proposed EMI in the month moratorium starts. When the EMI restarts, enter the EMI value in the Proposed EMI in the month when it restarts.<br>
+            • Always prepay the loan before the last EMI to save on any extra interest paid in the last EMI.
+    </div>
+    </div>
+
     <!-- Chart Section -->
-    <div class="section" style="margin-top: 15px;">
+    <div class="section" style="margin-top: 8px;">
         <div class="section-title">Loan Payment Trend</div>
         <div style="height: 540px; position: relative;">
             <canvas id="fyChart"></canvas>
@@ -1201,6 +1229,7 @@ function buildSchedule() {
                 // Hide all remaining month rows
                 for (let clearMonth = month + 1; clearMonth <= 360; clearMonth++) {
                     const row = document.getElementById('scheduleBody').rows[clearMonth];
+                    document.getElementById(`prepayment_${clearMonth}`).value = '';
                     if (row) row.style.display = 'none';
                 }
                 break;

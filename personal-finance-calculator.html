@@ -20,13 +20,13 @@
     <meta name="twitter:description" content="Comprehensive retirement planning calculator with asset allocation, expense tracking, and goal planning for Indian investors.">
     <meta name="keywords" content="personal finance calculator India, retirement planning calculator, retirement corpus calculator, financial planning tool India, investment portfolio calculator, asset allocation calculator, expense tracking calculator, income planning tool, debt management calculator, emergency fund calculator, retirement age calculator, life expectancy calculator India, FIRE calculator India, financial independence calculator, pension planning India, retirement savings calculator, corpus required calculator, wealth calculator India, financial goal planner, tax planning calculator, SWR calculator, withdrawal rate calculator, safe withdrawal rate India, post-retirement planning, retirement income planner, net worth calculator India, debt to asset ratio, insurance needs calculator India, term insurance calculator, health insurance calculator, mutual fund calculator, equity allocation calculator, debt allocation calculator, inflation adjusted returns, real rate of return calculator, financial freedom calculator, early retirement calculator India, retirement readiness calculator, retirement gap analysis, monthly income after retirement, pension corpus calculator, gratuity calculator, PF calculator, EPF calculator, NPS calculator, retirement planning online India, free financial calculator, ArthaStambh calculator">
     <meta name="robots" content="index, follow">
-    <!-- link rel="canonical" href="https://yourwebsite.com/personal-finance-calculator" -->
+    <link rel="canonical" href="https://arthastambh.com/personal-finance-calculator">
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Personal Finance Calculator - Plan Your Retirement & Financial Goals">
     <meta property="og:description" content="Calculate your retirement corpus, plan financial goals, and analyze your investment portfolio with our comprehensive personal finance calculator.">
-    <!-- meta property="og:url" content="https://yourwebsite.com/personal-finance-calculator" -->
+    <meta property="og:url" content="https://arthastambh.com/personal-finance-calculator">
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -199,6 +199,12 @@
             opacity: 1;
         }
         
+        .tbl-wrap {
+            max-height:512px;
+            overflow-x:auto; 
+            overflow-y:auto;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -213,6 +219,9 @@
             text-align: center;
             font-weight: 600;
             font-size: 14px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         
         th.left-align {
@@ -308,6 +317,7 @@
         .notes-section {
             grid-column: 3;
             grid-row: 4;
+            background: #fff3cd;
             font-size: 14px;
             line-height: 1.2;
         }
@@ -320,6 +330,7 @@
         .reference-section {
             grid-column: 3;
             grid-row: 5;
+            background: #fff3cd;
         }
         
         .chart-section {
@@ -359,7 +370,7 @@
         .col-goal-value { width: 12%; }
         .col-goal-age { width: 14%; }
         .col-goal-infl { width: 9%; }
-        .col-goal-time { width: 6%; }
+        .col-goal-time { width: 6%; cursor: pointer; }
         .col-goal-current { width: 12%; }
         .col-goal-future { width: 12%; }
 
@@ -585,6 +596,7 @@
             <!-- Goals (Spanning 2 Columns) -->
             <div class="section goals">
                 <div class="section-title">Financial Goals</div>
+                <div class="tbl-wrap">
                 <table id="goalTable">
                     <thead>
                         <tr>
@@ -593,7 +605,7 @@
                             <th class="col-goal-age">Estimated at Age of Younger Partner</th>
                             <th class="col-goal-age">Required at Age of Younger Partner</th>
                             <th class="col-goal-infl">Inflation (%)</th>
-                            <th class="col-goal-time highlight-header">Years left</th>
+                            <th class="col-goal-time highlight-header" onclick="sortGoalTable()" title="Click to sort">Years left &#8645;</th>
                             <th class="col-goal-current highlight-header">Current Value (₹)</th>
                             <th class="col-goal-future highlight-header">Future Value (₹)</th>
                             <th class="col-del"></th>
@@ -635,6 +647,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
                 <button class="btn-add" onclick="addRow('goal')">+ Add</button>
             </div>
             
@@ -668,6 +681,7 @@
  * Comprehensive retirement and financial planning tool for India
  */
 
+let currDir = "desc";
 // ═══════════════════════════════════════════════════════════
 // FINANCIAL CALCULATION FUNCTIONS
 // ═══════════════════════════════════════════════════════════
@@ -755,7 +769,7 @@ function fmtPct(element) {
 function initGoalDefaults() {
     const yAge = parseNum(document.getElementById('yAge').value);
     const inflation = parseNum(document.getElementById('inflation').value);
-    
+
     document.querySelectorAll('#goalTable tbody tr').forEach(row => {
         const eaInput = row.querySelector('.g-ea');
         const iInput = row.querySelector('.g-i');
@@ -797,6 +811,30 @@ function validateGoalAge(input) {
     }
     
     return true;
+}
+
+function sortGoalTable() {
+    // Sort by Years Left
+    const tbody = document.querySelector('#goalTable tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    const newDir = currDir === "asc" ? "desc" : "asc";
+    const dirMod = newDir === "asc" ? 1 : -1;
+
+    rows.sort((a,b) => {
+        const ya = parseNum(a.querySelector('.g-y').value);
+        const yb = parseNum(b.querySelector('.g-y').value);
+
+        if (ya !== yb) {
+            return dirMod * (ya - yb);
+        } else {
+            const fva = parseNum(a.querySelector('.g-fv').value);
+            const fvb = parseNum(b.querySelector('.g-fv').value);
+            return dirMod * (fva - fvb);
+        }
+    });
+    rows.forEach(r => tbody.appendChild(r));
+    currDir = newDir;
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1007,7 +1045,7 @@ function calc() {
         
         const estimateValue = parseNum(row.querySelector('.g-ev').value);
         const estimateAge = parseNum(eaInput.value) || yAge;
-        const requiredAge = parseNum(row.querySelector('.g-ra').value) || 0;
+        const requiredAge = parseNum(row.querySelector('.g-ra').value) || yAge;
         const goalInflation = parseNum(iInput.value) / 100;
         
         const years = Math.max(requiredAge - yAge, 0);
@@ -1040,7 +1078,7 @@ function calc() {
         
         // Project expenses with lifestyle inflation
         if (year > 0) {
-            expenses = data[year - 1].exp * (1 + lifestyleInflation + inflation);
+            expenses = data[year - 1].exp * (1 + lifestyleInflation) * (1 + inflation);
         }
         
         // Calculate income for this year
@@ -1157,10 +1195,10 @@ function calc() {
     
     const totalAssets = corpusAtDeath + totalSC;
     
-    const insuranceElder = data[0].corpusReq > netWorth ? 
-        (data[0].corpusReq - netWorth) * (elderShare * timeToERetirement / ((1 - elderShare) * timeToYRetirement + elderShare * timeToERetirement)) : 0;
-    const insuranceYounger = data[0].corpusReq > netWorth ? 
-        (data[0].corpusReq - netWorth) * ((1 - elderShare) * timeToYRetirement / ((1 - elderShare) * timeToYRetirement + elderShare * timeToERetirement)) : 0;
+    const insuranceElder = data[0].corpusReq > (totalInv - totalLiab) ? 
+        (data[0].corpusReq - (totalInv - totalLiab)) * (elderShare * timeToERetirement / ((1 - elderShare) * timeToYRetirement + elderShare * timeToERetirement)) : 0;
+    const insuranceYounger = data[0].corpusReq > (totalInv - totalLiab) ? 
+        (data[0].corpusReq - (totalInv - totalLiab)) * ((1 - elderShare) * timeToYRetirement / ((1 - elderShare) * timeToYRetirement + elderShare * timeToERetirement)) : 0;
     
     // Build output display
     const outputs = [

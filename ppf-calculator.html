@@ -319,7 +319,7 @@
                     <thead>
                         <tr>
                             <th style="width:18px">#</th>
-                            <th style="width:96px;cursor:pointer" onclick="sortInputTable()" title="Click to sort by date">Date &#9660;</th>
+                            <th style="width:96px;cursor:pointer" onclick="sortInputTable()" title="Click to sort by date">Date &#9650;</th>
                             <th style="width:66px">Deposit (₹)</th>
                             <th style="width:72px">Withdrawal (₹)</th>
                             <th style="width:24px"></th>
@@ -763,7 +763,6 @@ function sortInputTable() {
     });
     rows.forEach(r => tbody.appendChild(r));
     renumber();
-    calc();
 }
 
 function getInputRows() {
