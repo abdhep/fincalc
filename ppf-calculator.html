@@ -159,12 +159,13 @@
             margin-right: -2em;
         }
 
+        input[type="month"]:focus,
         td input[type="text"]:focus,
         td input[type="number"]:focus,
         td input[type="date"]:focus {
             outline: none;
-            border-color: #2c5f2d !important;
-
+            border-color: #2c5f2d;
+            background: #fffef0;
         }
 
         input[type="month"] {
@@ -207,9 +208,9 @@
         tr.future-rate td input.y { background:white; }
         tr.future-rate input[type=number] {
             background:white; border:1px solid #bbb; border-radius:4px;
-            text-align:right; width:100%; padding:4px 2px; font-size:14px; font-family:inherit;
+            text-align:center; width:100%; padding:4px 2px; font-size:14px; font-family:inherit;
         }
-        tr.future-rate input[type=number]:focus { outline:none; border-color:#2c5f2d; background:#fff8e1; }
+        tr.future-rate input[type=number]:focus { outline:none; border-color:#2c5f2d; background:#fffef0; }
 
         /* Notes */
         .notes { margin-top:8px; padding:8px; background:#fff3cd; border:2px solid #ffc107; border-radius:4px; font-size:14px; line-height:1.2; }
@@ -298,7 +299,7 @@
             <div class="sum-sep"></div>
             <div class="sum-field">
                 <label>Settlement Date</label>
-                <input type="month" id="settlementDate" onchange="onSettlementChange()" style="font-size:14px; padding:3px 6px; border:1px solid #ddd; border-radius:2px;">
+                <input type="month" id="settlementDate" onchange="onSettlementChange()">
             </div>
         </div>
     </div>
