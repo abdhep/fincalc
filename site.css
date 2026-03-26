@@ -40,13 +40,12 @@ body {
 .ad-col-right {
     width: 160px;
     flex-shrink: 0;
+    position: sticky;
+    top: 10px;
+    background: transparent;
 }
 .ad-slot {
-    position: sticky;
-    top: 100px;
-    width: 160px;
-    min-height: 100vh;
-    background: transparent;
+    min-height: 300px;
 }
 .page-body-wrap {
     display: flex;
