@@ -60,10 +60,6 @@
     var AD_LEFT  = `
 <div class="ad-col-left">
     <div class="ad-slot">
-        <script async="async" data-cfasync="false" src="https://pl28949375.profitablecpmratenetwork.com/e238f8c2bd596b837590bf0a237b2774/invoke.js"></script>
-        <div id="container-e238f8c2bd596b837590bf0a237b2774"></div>
-    </div>
-    <div class="ad-slot">
         <script>
           atOptions = {
             'key' : 'a0786f8d29a961f408b8ce76d47e389d',
@@ -74,26 +70,26 @@
           };
         </script>
         <script src="https://www.highperformanceformat.com/a0786f8d29a961f408b8ce76d47e389d/invoke.js"></script>
+    </div>
+    <div class="ad-slot">
+        <script async="async" data-cfasync="false" src="https://pl28949375.profitablecpmratenetwork.com/e238f8c2bd596b837590bf0a237b2774/invoke.js"></script>
+        <div id="container-e238f8c2bd596b837590bf0a237b2774"></div>
     </div>
 </div>`;
 
     var AD_RIGHT = `
 <div class="ad-col-right">
     <div class="ad-slot">
-        <script async="async" data-cfasync="false" src="https://pl28949375.profitablecpmratenetwork.com/e238f8c2bd596b837590bf0a237b2774/invoke.js"></script>
-        <div id="container-e238f8c2bd596b837590bf0a237b2774"></div>
-    </div>
-    <div class="ad-slot">
         <script>
           atOptions = {
-            'key' : 'a0786f8d29a961f408b8ce76d47e389d',
+            'key' : 'add9795dda13cd521a60e91fce82d442',
             'format' : 'iframe',
-            'height' : 300,
+            'height' : 600,
             'width' : 160,
             'params' : {}
           };
         </script>
-        <script src="https://www.highperformanceformat.com/a0786f8d29a961f408b8ce76d47e389d/invoke.js"></script>
+        <script src="https://www.highperformanceformat.com/add9795dda13cd521a60e91fce82d442/invoke.js"></script>
     </div>
 </div>`;
 
