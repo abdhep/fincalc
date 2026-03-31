@@ -42,8 +42,8 @@
         }
 
         .summary-title {
-            font-weight: 700;
-            font-size: 15px;
+            font-weight: 600;
+            font-size: 16px;
             color: #2c5f2d;
             text-align: center;
             border-bottom: 2px solid #2c5f2d;
@@ -105,8 +105,22 @@
             align-items:start;
         }
 
-        .panel { background:white; border:1px solid #d0d0d0; padding:3px; overflow:hidden; }
-        .panel-title { font-weight:600; font-size:15px; margin-bottom:4px; color:#2c5f2d; text-align:center; border-bottom:2px solid #2c5f2d; padding-bottom:2px; }
+        .panel {
+            background:white;
+            border:1px solid #d0d0d0;
+            padding:3px;
+            overflow:hidden;
+        }
+
+        .panel-title {
+            font-weight:600;
+            font-size:16px;
+            margin-bottom:4px;
+            color:#2c5f2d;
+            text-align:center;
+            border-bottom:2px solid #2c5f2d;
+            padding-bottom:2px;
+        }
 
         /* Tables */
         .tbl-wrap { max-height:540px; overflow-x:auto; overflow-y:auto; }
@@ -204,8 +218,27 @@
         tr.future-rate input[type=number]:focus { outline:none; border-color:#2c5f2d; background:#fffef0; }
 
         /* Notes */
-        .notes { margin-top:8px; padding:8px; background:#fff3cd; border:2px solid #ffc107; border-radius:4px; font-size:14px; line-height:1.2; }
-        .notes strong { color:#d32f2f; font-size:15px; }
+        .notes {
+            margin-top:8px;
+            padding:8px;
+            background:#fff3cd;
+/*            border:2px solid #ffc107; */
+            border:1px solid #d0d0d0;
+            border-radius:4px;
+            font-size:14px;
+            line-height:1.2;
+        }
+
+        .notes-title {
+            font-weight:600;
+            font-size:16px;
+            margin-bottom:4px;
+/*            color:#d32f2f; */
+            color:#2c5f2d;
+            text-align:center;
+            border-bottom:2px solid #2c5f2d;
+            padding-bottom:2px;
+        }
 
         </style>
 
@@ -368,7 +401,7 @@
     </div><!-- end three-col -->
 
     <div class="notes">
-        <strong>Notes:</strong><br>
+        <div class="notes-title">Notes</div>
             • Interest is computed on the minimum balance between the 5th and last day of each month — deposits on or before the 5th earn interest that month; deposits after the 5th earn interest from the following month.<br>
             • PPF initial period is 15 years (years 0&#8211;15). Loan eligibility applies in years 3&#8211;5 (25% of the balance 2 years prior). Partial withdrawal eligibility begins from year 7 (50% of the balance 4 years prior). The account can be extended in 5-year blocks after year 15.<br>
             • In some financial years, there could be rounding differences in calculation of interest between your bank and this calculator. In that case, you can enter the difference in the Interest Adjustment (Intrst Adj) column, so that future estimates are accurate.<br>
