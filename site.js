@@ -43,17 +43,6 @@
     </div>
 </footer>`;
 
-    var GTAG = `
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GFXVPNLB74"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-GFXVPNLB74');
-</script>`;
-
     var AD_HEAD = `
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2303770276201584" crossorigin="anonymous"></script>`;
 
@@ -100,8 +89,6 @@
         <script src="https://www.highperformanceformat.com/add9795dda13cd521a60e91fce82d442/invoke.js"></script>
     </div>
 </div>`;
-
-    document.head.insertAdjacentHTML('afterbegin', GTAG);
 
     // Inject header
     var hp = document.getElementById('header-placeholder');
