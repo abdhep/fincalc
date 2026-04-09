@@ -14,15 +14,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quick Calculators – Free Financial Tools for India | ArthaStambh</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <meta name="description" content="17 free financial calculators for India - CAGR, SIP, EMI, FD, Retirement Planning, Gratuity and more. Instant calculations, no registration required.">
-    <meta name="keywords" content="financial calculator India, retirement planning calculator, SIP calculator, EMI calculator, CAGR calculator, mutual fund calculator, home loan calculator, FD calculator, RD calculator, investment calculator, tax calculator India, retirement corpus calculator, SIP maturity calculator, loan EMI calculator, fixed deposit calculator, recurring deposit calculator, annuity calculator, gratuity calculator India, inflation calculator, purchasing power calculator, withdrawal rate calculator, retirement planning India, financial planning tools, online calculator India, free financial calculators, Indian rupee calculator, wealth calculator, savings calculator, goal planning calculator, compound interest calculator">
+    <meta name="description" content="16 free financial calculators for India - CAGR, SIP, EMI, FD, Retirement Planning, Gratuity and more. Instant calculations, no registration required.">
+    <meta name="keywords" content="financial calculator India, retirement planning calculator, SIP calculator, EMI calculator, CAGR calculator, home loan calculator, FD calculator, RD calculator, investment calculator, retirement corpus calculator, SIP maturity calculator, Step up SIP calculator, loan EMI calculator, fixed deposit calculator, recurring deposit calculator, annuity calculator, gratuity calculator India, purchasing power calculator, withdrawal rate calculator, retirement planning India, financial planning tools, online calculator India, free financial calculators, wealth calculator, savings calculator, goal planning calculator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://arthastambh.com/quick-calculatos">
+
     <meta name="author" content="ArthaStambh">
     <meta property="og:title" content="Quick Calculators – Free Financial Tools for India | ArthaStambh">
-    <meta property="og:description" content="17 free financial calculators including SIP, EMI, CAGR, FD, retirement planning, and more. Instant calculations for Indian investors.">
+    <meta property="og:description" content="16 free financial calculators including SIP, EMI, CAGR, FD, retirement planning, and more. Instant calculations for Indian investors.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arthastambh.com/quick-calculators">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Quick Calculators – Free Financial Tools for India">
-    <meta name="twitter:description" content="17 free financial calculators for smart money management in India.">
+    <meta name="twitter:description" content="16 free financial calculators for smart money management in India.">
     <link rel="stylesheet" href="site.css">
     <style>
         .calc-page {
@@ -458,20 +462,6 @@
                     
                     <div class="calc-group collapsed">
                         <div class="group-header" onclick="toggleGroup(this)">
-                            <span class="icon">💰</span>
-                            <span>INVESTMENT</span>
-                            <span class="toggle">▶</span>
-                        </div>
-                        <ul class="calc-list">
-                            <li><a href="#sip-maturity" data-calc="sip_maturity">SIP Maturity Value</a></li>
-                            <li><a href="#sip-required" data-calc="sip_required">SIP Required</a></li>
-                            <li><a href="#fd-maturity" data-calc="fd_maturity">Fixed Deposit Maturity</a></li>
-                            <li><a href="#rd-maturity" data-calc="rd_maturity">Recurring Deposit Maturity</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="calc-group collapsed">
-                        <div class="group-header" onclick="toggleGroup(this)">
                             <span class="icon">🏡</span>
                             <span>LOAN</span>
                             <span class="toggle">▶</span>
@@ -479,6 +469,19 @@
                         <ul class="calc-list">
                             <li><a href="#loan-emi" data-calc="loan_emi">Loan EMI</a></li>
                             <li><a href="#home-refinance" data-calc="home_refinance">Home Loan Refinance</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="calc-group collapsed">
+                        <div class="group-header" onclick="toggleGroup(this)">
+                            <span class="icon">💰</span>
+                            <span>INVESTMENT</span>
+                            <span class="toggle">▶</span>
+                        </div>
+                        <ul class="calc-list">
+                            <li><a href="#sip-maturity" data-calc="sip_maturity">Lumpsum & SIP Maturity</a></li>
+                            <li><a href="#fd-maturity" data-calc="fd_maturity">Fixed Deposit Maturity</a></li>
+                            <li><a href="#rd-maturity" data-calc="rd_maturity">Recurring Deposit Maturity</a></li>
                         </ul>
                     </div>
                     
@@ -804,137 +807,6 @@
                 }
             },
             
-            fd_maturity: {
-                title: 'Fixed Deposit Maturity',
-                inputs: [
-                    { label: 'Amount Invested (₹)', id: 'principal', type: 'number' },
-                    { label: 'Interest Rate p.a. (%)', id: 'rate', type: 'percent' },
-                    { label: 'Period (months)', id: 'months', type: 'integer' },
-                    { label: 'Interest Compounding', id: 'compound', type: 'dropdown', options: ['Monthly', 'Quarterly', 'Half-Yearly', 'Yearly'] }
-                ],
-                outputs: [
-                    { label: 'Maturity Value (₹)', id: 'maturity' },
-                    { label: 'Total Invested (₹)', id: 'invested' },
-                    { label: 'Amount Earned (₹)', id: 'earned' }
-                ],
-                calculate: function() {
-                    const principal = parseNum(document.getElementById('fd_maturity_principal').value);
-                    const rate = parseNum(document.getElementById('fd_maturity_rate').value);
-                    const months = parseNum(document.getElementById('fd_maturity_months').value);
-                    const compound = document.getElementById('fd_maturity_compound').value;
-                    if (principal === null || rate === null || months === null || principal <= 0 || months <= 0) {
-                        document.getElementById('fd_maturity_maturity').value = '';
-                        document.getElementById('fd_maturity_invested').value = '';
-                        document.getElementById('fd_maturity_earned').value = '';
-                        return;
-                    }
-                    const freq = compound === 'Monthly' ? 12 : compound === 'Quarterly' ? 4 : compound === 'Half-Yearly' ? 2 : 1;
-                    const periods = (months / 12) * freq;
-                    const ratePerPeriod = (rate / 100) / freq;
-                    const maturity = principal * Math.pow(1 + ratePerPeriod, periods);
-                    const earned = maturity - principal;
-                    document.getElementById('fd_maturity_maturity').value = fmt(maturity, 2);
-                    document.getElementById('fd_maturity_invested').value = fmt(principal, 2);
-                    document.getElementById('fd_maturity_earned').value = fmt(earned, 2);
-                }
-            },
-            
-            sip_maturity: {
-                title: 'SIP Maturity Value',
-                inputs: [
-                    { label: 'Initial Investment (if any) (₹)', id: 'initial', type: 'number' },
-                    { label: 'Monthly SIP (₹)', id: 'sip', type: 'number' },
-                    { label: 'Period (months)', id: 'months', type: 'integer' },
-                    { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' }
-                ],
-                outputs: [
-                    { label: 'Maturity Value (₹)', id: 'maturity' },
-                    { label: 'Total Invested (₹)', id: 'invested' },
-                    { label: 'Amount Earned (₹)', id: 'earned' }
-                ],
-                calculate: function() {
-                    const initial = parseNum(document.getElementById('sip_maturity_initial').value) || 0;
-                    const sip = parseNum(document.getElementById('sip_maturity_sip').value);
-                    const months = parseNum(document.getElementById('sip_maturity_months').value);
-                    const returnRate = parseNum(document.getElementById('sip_maturity_return').value);
-                    if (sip === null || months === null || returnRate === null || months <= 0) {
-                        document.getElementById('sip_maturity_maturity').value = '';
-                        document.getElementById('sip_maturity_invested').value = '';
-                        document.getElementById('sip_maturity_earned').value = '';
-                        return;
-                    }
-                    const monthlyRate = NOMINAL(returnRate / 100, 12) / 12;
-                    const sipFV = FV(monthlyRate, months, -sip, 0, 1);
-                    const initialFV = initial * Math.pow(1 + monthlyRate, months);
-                    const maturity = sipFV + initialFV;
-                    const totalInvested = initial + (sip * months);
-                    const earned = maturity - totalInvested;
-                    document.getElementById('sip_maturity_maturity').value = fmt(maturity, 2);
-                    document.getElementById('sip_maturity_invested').value = fmt(totalInvested, 2);
-                    document.getElementById('sip_maturity_earned').value = fmt(earned, 2);
-                }
-            },
-            
-            sip_required: {
-                title: 'Monthly SIP Required',
-                inputs: [
-                    { label: 'Future Value (₹)', id: 'target', type: 'number' },
-                    { label: 'Period (months)', id: 'months', type: 'integer' },
-                    { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' }
-                ],
-                outputs: [
-                    { label: 'Monthly SIP required (₹)', id: 'result' }
-                ],
-                calculate: function() {
-                    const target = parseNum(document.getElementById('sip_required_target').value);
-                    const months = parseNum(document.getElementById('sip_required_months').value);
-                    const returnRate = parseNum(document.getElementById('sip_required_return').value);
-                    if (target === null || months === null || returnRate === null || target <= 0 || months <= 0) {
-                        document.getElementById('sip_required_result').value = '';
-                        return;
-                    }
-                    const monthlyRate = NOMINAL(returnRate / 100, 12) / 12;
-                    const sip = Math.abs(PMT(monthlyRate, months, 0, -target, 1));
-                    document.getElementById('sip_required_result').value = fmt(sip, 2);
-                }
-            },
-            
-            rd_maturity: {
-                title: 'Recurring Deposit Maturity',
-                inputs: [
-                    { label: 'Monthly Installment (₹)', id: 'installment', type: 'number' },
-                    { label: 'Interest Rate p.a. (%)', id: 'rate', type: 'percent' },
-                    { label: 'Period (months)', id: 'months', type: 'integer' },
-                    { label: 'Interest Compounding', id: 'compound', type: 'dropdown', options: ['Monthly', 'Quarterly', 'Half-Yearly', 'Yearly'] }
-                ],
-                outputs: [
-                    { label: 'Maturity Value (₹)', id: 'maturity' },
-                    { label: 'Total Invested (₹)', id: 'invested' },
-                    { label: 'Amount Earned (₹)', id: 'earned' }
-                ],
-                calculate: function() {
-                    const installment = parseNum(document.getElementById('rd_maturity_installment').value);
-                    const rate = parseNum(document.getElementById('rd_maturity_rate').value);
-                    const months = parseNum(document.getElementById('rd_maturity_months').value);
-                    const compound = document.getElementById('rd_maturity_compound').value;
-                    if (installment === null || rate === null || months === null || installment <= 0 || months <= 0) {
-                        document.getElementById('rd_maturity_maturity').value = '';
-                        document.getElementById('rd_maturity_invested').value = '';
-                        document.getElementById('rd_maturity_earned').value = '';
-                        return;
-                    }
-                    const freq = compound === 'Monthly' ? 12 : compound === 'Quarterly' ? 4 : compound === 'Half-Yearly' ? 2 : 1;
-                    const ratePerPeriod = (rate / 100) / freq;
-                    const installmentPeriod = 12 / freq;
-                    const maturity = installment * ((Math.pow(1 + ratePerPeriod, months / installmentPeriod) - 1) / (1 - Math.pow(1 + ratePerPeriod, -1 / installmentPeriod)));
-                    const totalInvested = installment * months;
-                    const earned = maturity - totalInvested;
-                    document.getElementById('rd_maturity_maturity').value = fmt(maturity, 2);
-                    document.getElementById('rd_maturity_invested').value = fmt(totalInvested, 2);
-                    document.getElementById('rd_maturity_earned').value = fmt(earned, 2);
-                }
-            },
-            
             loan_emi: {
                 title: 'Loan EMI',
                 inputs: [
@@ -993,44 +865,159 @@
                 }
             },
             
-            retirement_corpus: {
-                title: 'Retirement Corpus Required',
+            sip_maturity: {
+                title: 'Lumpsum & SIP Maturity',
                 inputs: [
-                    { label: 'Years to retire', id: 'years_to_retire', type: 'integer' },
-                    { label: 'Years in retirement', id: 'years_retirement', type: 'integer' },
-                    { label: 'Current value of Annual expenses during retirement (₹)', id: 'expenses', type: 'number' },
-                    { label: 'Inflation rate p.a. (%)', id: 'inflation', type: 'percent' },
-                    { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' }
+                    { label: 'Initial Investment (if any) (₹)', id: 'initial', type: 'number' },
+                    { label: 'Monthly SIP (₹)', id: 'sip', type: 'number' },
+                    { label: 'Period (months)', id: 'months', type: 'integer' },
+                    { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' },
+                    { label: 'SIP Step-up p.a. (%)', id: 'stepsip', type: 'percent' },
+                    { label: 'Step-up Period (if less than SIP period) (years)', id: 'stepyrs', type: 'integer' }
                 ],
                 outputs: [
-                    { label: 'Present value of required corpus (₹)', id: 'present_corpus' },
-                    { label: 'Corpus required at retirement (₹)', id: 'corpus' },
-                    { label: 'Annual expenses in 1st year of retirement (₹)', id: 'first_year_expenses' },
-                    { label: 'Withdrawal Rate in 1st year (%)', id: 'withdrawal_rate' }
+                    { label: 'Maturity Value without Step-up (₹)', id: 'maturity' },
+                    { label: 'Total Invested without Step-up (₹)', id: 'invested' },
+                    { label: 'Amount Earned without Step-up (₹)', id: 'earned' },
+                    { label: 'Maturity Value with Step-up (₹)', id: 'stepmaturity' },
+                    { label: 'Total Invested with Step-up (₹)', id: 'stepinvested' },
+                    { label: 'Amount Earned with Step-up (₹)', id: 'stepearned' },
+                    { label: 'Additional Returns (₹)', id: 'maturitydiff' },
+                    { label: 'Additional Investments (₹)', id: 'investeddiff' },
+                    { label: 'Additional Earnings (₹)', id: 'earneddiff' }
                 ],
                 calculate: function() {
-                    const yearsToRetire = parseNum(document.getElementById('retirement_corpus_years_to_retire').value);
-                    const yearsRetirement = parseNum(document.getElementById('retirement_corpus_years_retirement').value);
-                    const expenses = parseNum(document.getElementById('retirement_corpus_expenses').value);
-                    const inflation = parseNum(document.getElementById('retirement_corpus_inflation').value);
-                    const returnRate = parseNum(document.getElementById('retirement_corpus_return').value);
-                    if (yearsToRetire === null || yearsRetirement === null || expenses === null || 
-                        inflation === null || returnRate === null || expenses <= 0) {
-                        document.getElementById('retirement_corpus_present_corpus').value = '';
-                        document.getElementById('retirement_corpus_corpus').value = '';
-                        document.getElementById('retirement_corpus_first_year_expenses').value = '';
-                        document.getElementById('retirement_corpus_withdrawal_rate').value = '';
+                    const initial = parseNum(document.getElementById('sip_maturity_initial').value) || 0;
+                    const sip = parseNum(document.getElementById('sip_maturity_sip').value);
+                    const months = parseNum(document.getElementById('sip_maturity_months').value);
+                    const returnRate = parseNum(document.getElementById('sip_maturity_return').value);
+                    const stepSip = parseNum(document.getElementById('sip_maturity_stepsip').value) || 0;
+                    const stepYrs = parseNum(document.getElementById('sip_maturity_stepyrs').value) || Math.ceil(months / 12 - 1);
+                    if (sip === null || months === null || returnRate === null || months <= 0) {
+                        document.getElementById('sip_maturity_maturity').value = '';
+                        document.getElementById('sip_maturity_invested').value = '';
+                        document.getElementById('sip_maturity_earned').value = '';
+                        document.getElementById('sip_maturity_stepmaturity').value = '';
+                        document.getElementById('sip_maturity_stepinvested').value = '';
+                        document.getElementById('sip_maturity_stepearned').value = '';
+                        document.getElementById('sip_maturity_maturitydiff').value = '';
+                        document.getElementById('sip_maturity_investeddiff').value = '';
+                        document.getElementById('sip_maturity_earneddiff').value = '';
                         return;
                     }
-                    const realReturn = ((1 + returnRate / 100) / (1 + inflation / 100)) - 1;
-                    const presentCorpus = (expenses / realReturn) * (1 - Math.pow(1 + realReturn, 1 - yearsRetirement)) + expenses;
-                    const corpusAtRetirement = presentCorpus * Math.pow(1 + inflation / 100, yearsToRetire);
-                    const firstYearExpenses = expenses * Math.pow(1 + inflation / 100, yearsToRetire);
-                    const withdrawalRate = (firstYearExpenses / corpusAtRetirement) * 100;
-                    document.getElementById('retirement_corpus_present_corpus').value = fmt(presentCorpus, 2);
-                    document.getElementById('retirement_corpus_corpus').value = fmt(corpusAtRetirement, 2);
-                    document.getElementById('retirement_corpus_first_year_expenses').value = fmt(firstYearExpenses, 2);
-                    document.getElementById('retirement_corpus_withdrawal_rate').value = withdrawalRate.toFixed(4) + '%';
+                    const monthlyRate = NOMINAL(returnRate / 100, 12) / 12;
+                    const sipFV = FV(monthlyRate, months, -sip, 0, 1);
+                    const initialFV = initial * Math.pow(1 + monthlyRate, months);
+                    const maturity = sipFV + initialFV;
+                    const totalInvested = initial + (sip * months);
+                    const earned = maturity - totalInvested;
+
+                    let stepMaturity = 0;
+                    let stepInvested = 0;
+                    let stepEarned = 0;
+                    let maturityDiff = 0;
+                    let investedDiff = 0;
+                    let earnedDiff = 0;
+                    if (stepSip > 0) {
+                        const maxStepYrs = Math.ceil(months / 12 - 1);
+                        let prevSip = sip;
+                        let newMonths = months;
+                        let diffSip = 0;
+                        let stepFV = 0;
+                        for (let i = 1; i <= Math.min(stepYrs, maxStepYrs); i++) {
+                            diffSip = stepSip / 100 * prevSip;
+                            newMonths -= 12;
+                            stepFV = FV(monthlyRate, newMonths, -diffSip, 0, 1);
+                            maturityDiff += stepFV;
+                            investedDiff += diffSip * newMonths;
+                            prevSip += diffSip;
+                        }
+                        stepMaturity = maturity + maturityDiff;
+                        stepInvested = totalInvested + investedDiff;
+                        stepEarned = stepMaturity - stepInvested;
+                        earnedDiff = maturityDiff - investedDiff;
+                    }
+
+                    document.getElementById('sip_maturity_maturity').value = fmt(maturity, 2);
+                    document.getElementById('sip_maturity_invested').value = fmt(totalInvested, 2);
+                    document.getElementById('sip_maturity_earned').value = fmt(earned, 2);
+                    document.getElementById('sip_maturity_stepmaturity').value = fmt(stepMaturity, 2);
+                    document.getElementById('sip_maturity_stepinvested').value = fmt(stepInvested, 2);
+                    document.getElementById('sip_maturity_stepearned').value = fmt(stepEarned, 2);
+                    document.getElementById('sip_maturity_maturitydiff').value = fmt(maturityDiff, 2);
+                    document.getElementById('sip_maturity_investeddiff').value = fmt(investedDiff, 2);
+                    document.getElementById('sip_maturity_earneddiff').value = fmt(earnedDiff, 2);
+                }
+            },
+            
+            fd_maturity: {
+                title: 'Fixed Deposit Maturity',
+                inputs: [
+                    { label: 'Amount Invested (₹)', id: 'principal', type: 'number' },
+                    { label: 'Interest Rate p.a. (%)', id: 'rate', type: 'percent' },
+                    { label: 'Period (months)', id: 'months', type: 'integer' },
+                    { label: 'Interest Compounding', id: 'compound', type: 'dropdown', options: ['Monthly', 'Quarterly', 'Half-Yearly', 'Yearly'] }
+                ],
+                outputs: [
+                    { label: 'Maturity Value (₹)', id: 'maturity' },
+                    { label: 'Total Invested (₹)', id: 'invested' },
+                    { label: 'Amount Earned (₹)', id: 'earned' }
+                ],
+                calculate: function() {
+                    const principal = parseNum(document.getElementById('fd_maturity_principal').value);
+                    const rate = parseNum(document.getElementById('fd_maturity_rate').value);
+                    const months = parseNum(document.getElementById('fd_maturity_months').value);
+                    const compound = document.getElementById('fd_maturity_compound').value;
+                    if (principal === null || rate === null || months === null || principal <= 0 || months <= 0) {
+                        document.getElementById('fd_maturity_maturity').value = '';
+                        document.getElementById('fd_maturity_invested').value = '';
+                        document.getElementById('fd_maturity_earned').value = '';
+                        return;
+                    }
+                    const freq = compound === 'Monthly' ? 12 : compound === 'Quarterly' ? 4 : compound === 'Half-Yearly' ? 2 : 1;
+                    const periods = (months / 12) * freq;
+                    const ratePerPeriod = (rate / 100) / freq;
+                    const maturity = principal * Math.pow(1 + ratePerPeriod, periods);
+                    const earned = maturity - principal;
+                    document.getElementById('fd_maturity_maturity').value = fmt(maturity, 2);
+                    document.getElementById('fd_maturity_invested').value = fmt(principal, 2);
+                    document.getElementById('fd_maturity_earned').value = fmt(earned, 2);
+                }
+            },
+            
+            rd_maturity: {
+                title: 'Recurring Deposit Maturity',
+                inputs: [
+                    { label: 'Monthly Installment (₹)', id: 'installment', type: 'number' },
+                    { label: 'Interest Rate p.a. (%)', id: 'rate', type: 'percent' },
+                    { label: 'Period (months)', id: 'months', type: 'integer' },
+                    { label: 'Interest Compounding', id: 'compound', type: 'dropdown', options: ['Monthly', 'Quarterly', 'Half-Yearly', 'Yearly'] }
+                ],
+                outputs: [
+                    { label: 'Maturity Value (₹)', id: 'maturity' },
+                    { label: 'Total Invested (₹)', id: 'invested' },
+                    { label: 'Amount Earned (₹)', id: 'earned' }
+                ],
+                calculate: function() {
+                    const installment = parseNum(document.getElementById('rd_maturity_installment').value);
+                    const rate = parseNum(document.getElementById('rd_maturity_rate').value);
+                    const months = parseNum(document.getElementById('rd_maturity_months').value);
+                    const compound = document.getElementById('rd_maturity_compound').value;
+                    if (installment === null || rate === null || months === null || installment <= 0 || months <= 0) {
+                        document.getElementById('rd_maturity_maturity').value = '';
+                        document.getElementById('rd_maturity_invested').value = '';
+                        document.getElementById('rd_maturity_earned').value = '';
+                        return;
+                    }
+                    const freq = compound === 'Monthly' ? 12 : compound === 'Quarterly' ? 4 : compound === 'Half-Yearly' ? 2 : 1;
+                    const ratePerPeriod = (rate / 100) / freq;
+                    const installmentPeriod = 12 / freq;
+                    const maturity = installment * ((Math.pow(1 + ratePerPeriod, months / installmentPeriod) - 1) / (1 - Math.pow(1 + ratePerPeriod, -1 / installmentPeriod)));
+                    const totalInvested = installment * months;
+                    const earned = maturity - totalInvested;
+                    document.getElementById('rd_maturity_maturity').value = fmt(maturity, 2);
+                    document.getElementById('rd_maturity_invested').value = fmt(totalInvested, 2);
+                    document.getElementById('rd_maturity_earned').value = fmt(earned, 2);
                 }
             },
             
@@ -1088,6 +1075,47 @@
                     } else {
                         document.getElementById('period_goal_result').value = '';
                     }
+                }
+            },
+            
+            retirement_corpus: {
+                title: 'Retirement Corpus Required',
+                inputs: [
+                    { label: 'Years to retire', id: 'years_to_retire', type: 'integer' },
+                    { label: 'Years in retirement', id: 'years_retirement', type: 'integer' },
+                    { label: 'Current value of Annual expenses during retirement (₹)', id: 'expenses', type: 'number' },
+                    { label: 'Inflation rate p.a. (%)', id: 'inflation', type: 'percent' },
+                    { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' }
+                ],
+                outputs: [
+                    { label: 'Present value of required corpus (₹)', id: 'present_corpus' },
+                    { label: 'Corpus required at retirement (₹)', id: 'corpus' },
+                    { label: 'Annual expenses in 1st year of retirement (₹)', id: 'first_year_expenses' },
+                    { label: 'Withdrawal Rate in 1st year (%)', id: 'withdrawal_rate' }
+                ],
+                calculate: function() {
+                    const yearsToRetire = parseNum(document.getElementById('retirement_corpus_years_to_retire').value);
+                    const yearsRetirement = parseNum(document.getElementById('retirement_corpus_years_retirement').value);
+                    const expenses = parseNum(document.getElementById('retirement_corpus_expenses').value);
+                    const inflation = parseNum(document.getElementById('retirement_corpus_inflation').value);
+                    const returnRate = parseNum(document.getElementById('retirement_corpus_return').value);
+                    if (yearsToRetire === null || yearsRetirement === null || expenses === null || 
+                        inflation === null || returnRate === null || expenses <= 0) {
+                        document.getElementById('retirement_corpus_present_corpus').value = '';
+                        document.getElementById('retirement_corpus_corpus').value = '';
+                        document.getElementById('retirement_corpus_first_year_expenses').value = '';
+                        document.getElementById('retirement_corpus_withdrawal_rate').value = '';
+                        return;
+                    }
+                    const realReturn = ((1 + returnRate / 100) / (1 + inflation / 100)) - 1;
+                    const firstYearExpenses = expenses * Math.pow(1 + inflation / 100, yearsToRetire);
+                    const corpusAtRetirement = (firstYearExpenses / realReturn) * (1 - Math.pow(1 + realReturn, 1 - yearsRetirement)) + firstYearExpenses;
+                    const presentCorpus = corpusAtRetirement / Math.pow(1 + returnRate / 100, yearsToRetire);
+                    const withdrawalRate = (firstYearExpenses / corpusAtRetirement) * 100;
+                    document.getElementById('retirement_corpus_present_corpus').value = fmt(presentCorpus, 2);
+                    document.getElementById('retirement_corpus_corpus').value = fmt(corpusAtRetirement, 2);
+                    document.getElementById('retirement_corpus_first_year_expenses').value = fmt(firstYearExpenses, 2);
+                    document.getElementById('retirement_corpus_withdrawal_rate').value = withdrawalRate.toFixed(4) + '%';
                 }
             },
             
@@ -1217,19 +1245,20 @@
         'double_money': '💰',
         'gratuity': '🎁',
         'annuity': '💵',
-        'inflation': '📈',
+        'future_expense': '📈',
         'purchasing_power': '💸',
-        'withdrawal_rate': '🔄',
-        'sip': '💰',
-        'fd': '🏦',
-        'rd': '🏦',
-        'mutual_fund_lumpsum': '📈',
-        'emi': '🏠',
-        'loan_tenure': '📅',
-        'loan_eligibility': '🏠',
-        'retirement': '🏖️',
+        'loan_emi': '🏠',
+        'home_refinance': '📅',
+        'sip_maturity': '💰',
+        'fd_maturity': '🏦',
+        'rd_maturity': '🏦',
+        'saving_goal': '📈',
+        'period_goal': '📅',
+        'saving_goal': '📈',
         'retirement_corpus': '🎯',
-        'retirement_swr': '💵',
+        'withdrawal_1': '🏖️',
+        'withdrawal_2': '💵',
+        'extra': '🔄',
     };
 
         function buildCalculator(calcId, calc) {
@@ -1294,7 +1323,9 @@
                 `;
                 
                 // Add gap after specific outputs
-                if (calcId === 'withdrawal_1' && index === 1) {
+                if (calcId === 'sip_maturity' && (index === 2 || index === 5)) {
+                    html += `<div style="height: 8px;"></div>`;
+                } else if (calcId === 'withdrawal_1' && index === 1) {
                     html += `<div style="height: 8px;"></div>`;
                 } else if (calcId === 'withdrawal_2' && index === 2) {
                     html += `<div style="height: 8px;"></div>`;
@@ -1388,7 +1419,7 @@
                 html += buildCalculator(calcId, calculators[calcId]);
             });
             
-            // All 17 calculators now implemented above
+            // All 16 calculators now implemented above
             
             container.innerHTML = html;
             
