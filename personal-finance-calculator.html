@@ -451,8 +451,9 @@
                 </div>
                 <div class="row">
                     <label>Share of Elder Partner in Family Income (%)</label>
-                    <input type="number" step="0.01" id="elderShare" onblur="fmtPct(this)" oninput="calc()">
+                    <input type="number" step="0.01" id="elderShare" onblur="fmtPct(this)" oninput="validateIncShare(); calc()">
                 </div>
+                <div class="error-msg" id="eIncSharePctErr"></div>
                 <div class="row">
                     <label>Average Annual Returns pre-retirement (%)</label>
                     <input type="number" step="0.01" id="preRet" onblur="fmtPct(this)" oninput="calc()">
@@ -943,6 +944,30 @@ function validateAges() {
     return valid;
 }
 
+/**
+ * Validate elder income share percentage
+ * Returns true if validations pass
+ */
+function validateIncShare() {
+    const elderShare = parseNum(document.getElementById('elderShare').value);
+
+    let valid = true;
+    
+    // Clear errors
+    hideError('eIncSharePctErr');
+    
+    // Income share must be between 0 and 100 percent
+    if (elderShare && (elderShare < 0 || elderShare > 100)) {
+        document.getElementById('elderShare').classList.add('error');
+        showError('eIncSharePctErr', 'Income share must be between 0 and 100 percent');
+        valid = false;
+    } else {
+        document.getElementById('elderShare').classList.remove('error');
+    }
+    
+    return valid;
+}
+
 // ═══════════════════════════════════════════════════════════
 // CHART VARIABLE
 // ═══════════════════════════════════════════════════════════
@@ -957,8 +982,8 @@ let chart;
  * Main calculation function - computes all financial projections
  */
 function calc() {
-    // Validate ages first
-    if (!validateAges()) {
+    // Validate ages and Income share first
+    if (!validateAges() || !validateIncShare()) {
         return;
     }
     
