@@ -818,11 +818,13 @@ function calculateXIRR(deposits, finalValue, settleDate) {
     // Build cash flow array: deposits are negative (outflow), withdrawals are positive (inflow), final value is positive
     const cashFlows = [];
     deposits.forEach(d => {
-        if (d.deposit > 0) {
-            cashFlows.push({ date: parseDate(d.date), amount: -d.deposit });
-        }
-        if (d.withdrawal > 0) {
-            cashFlows.push({ date: parseDate(d.date), amount: d.withdrawal });
+        if (parseDate(d.date) <= settleDate) {
+            if (d.deposit > 0) {
+                cashFlows.push({ date: parseDate(d.date), amount: -d.deposit });
+            }
+            if (d.withdrawal > 0) {
+                cashFlows.push({ date: parseDate(d.date), amount: d.withdrawal });
+            }
         }
     });
 
