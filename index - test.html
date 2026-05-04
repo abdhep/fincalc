@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GFXVPNLB74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GFXVPNLB74');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArthaStambh.com – Personal Finance & Retirement Planning</title>
+    <meta name="description" content="India's most comprehensive personal finance and retirement planning calculators. No registration, no data collection.">
+    <meta name="keywords" content="financial planning tool India, free financial calculator, ArthaStambh calculator, personal finance calculator India, retirement planning calculator, retirement corpus calculator, loan calculator, ppf calculator">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ArthaStambh.com – Personal Finance & Retirement Planning">
+    <meta property="og:description" content="India's most comprehensive personal finance and retirement planning calculators. No registration, no data collection.">
+    <meta property="og:url" content="https://arthastambh.com">
+    
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="site.css">
+    <style>
+        .hero{background:linear-gradient(135deg,#006E7A 0%,#00909E 55%,#00B4C5 100%);color:#fff;padding:48px 32px 40px;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+        .hero-inner{max-width:1280px;margin:0 auto;position:relative}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;margin-bottom:20px;backdrop-filter:blur(6px)}
+        .hero-badge .dot{width:7px;height:7px;background:#D4A017;border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.35)}}
+        .hero h1{font-family:Calibri,'Gill Sans MT',sans-serif;font-size:clamp(32px,4vw,52px);line-height:1.15;font-weight:700;margin-bottom:20px;text-align:center}
+        .hero h1 em{font-style:italic;color:#FEF3D0}
+        .hero-copy{max-width:720px;margin:0 auto;text-align:center}
+        .hero > .hero-inner > .hero-copy > p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.88);margin-bottom:32px;max-width:100%}
+        .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+        .btn-hp{display:inline-flex;align-items:center;gap:8px;background:#D4A017;color:#1A2533;font-weight:600;font-size:15px;padding:14px 28px;border-radius:6px;text-decoration:none;transition:background .15s,transform .15s;box-shadow:0 4px 16px rgba(212,160,23,.4)}
+        .btn-hp:hover{background:#E6B020;transform:translateY(-2px)}
+        .btn-ho{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;font-weight:500;font-size:15px;padding:14px 28px;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,.55);transition:background .15s}
+        .btn-ho:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.9)}
+        .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .stat-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:24px;backdrop-filter:blur(8px);transition:background .2s,transform .2s}
+        .stat-card:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+        .stat-card .icon{font-size:28px;margin-bottom:10px;display:block}
+        .stat-card .number{font-family:Calibri,'Gill Sans MT',sans-serif;font-size:28px;font-weight:700;line-height:1;margin-bottom:4px}
+        .stat-card .label{font-size:12px;color:rgba(255,255,255,.7)}
+        .trust-bar{background:#fff;border-bottom:1px solid #D6E4EC;padding:14px 32px}
+        .trust-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap}
+        .trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#3D5066;font-weight:500}
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-bottom:64px}
+        .about-text p{color:#3D5066;margin-bottom:16px;line-height:1.8}
+        .about-text p strong{color:#1A2533}
+        .priv-call{background:linear-gradient(135deg,#E0F5F7,#CCF0F3);border:1.5px solid #00909E;border-radius:12px;padding:22px 26px;display:flex;gap:14px;align-items:flex-start;margin-top:24px}
+        .priv-call .sh{font-size:30px;flex-shrink:0}
+        .priv-call h4{font-size:14px;font-weight:600;color:#006E7A;margin-bottom:4px}
+        .priv-call p{font-size:13px;color:#3D5066;line-height:1.6;margin:0}
+        .features-list{display:flex;flex-direction:column;gap:13px}
+        .fi{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;background:#fff;border:1px solid #D6E4EC;border-radius:12px;transition:box-shadow .2s,border-color .2s,transform .2s}
+        .fi:hover{box-shadow:0 6px 24px rgba(0,144,158,.15);border-color:#00909E;transform:translateX(4px)}
+        .fi-icon{width:42px;height:42px;border-radius:10px;background:#E0F5F7;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+        .fi h4{font-size:14px;font-weight:600;color:#1A2533;margin-bottom:2px}
+        .fi p{font-size:13px;color:#607899;line-height:1.55;margin:0}
+        .offerings-section{margin-bottom:64px}
+        .og{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .oc{background:#fff;border:1px solid #D6E4EC;border-radius:12px;padding:28px 24px;transition:box-shadow .2s,transform .2s,border-color .2s;position:relative;overflow:hidden}
+        .oc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00909E,#006E7A);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+        .oc:hover{box-shadow:0 6px 24px rgba(0,144,158,.15);transform:translateY(-4px);border-color:#00909E}
+        .oc:hover::before{transform:scaleX(1)}
+        .oc .oi{font-size:34px;margin-bottom:14px;display:block}
+        .oc h3{font-size:16px;font-weight:600;color:#1A2533;margin-bottom:8px}
+        .oc p{font-size:13px;color:#607899;line-height:1.65;margin:0}
+        .priv-strip{background:linear-gradient(135deg,#1A2533 0%,#243447 100%);color:#fff;padding:56px 32px;border-radius:12px;margin-bottom:64px;position:relative;overflow:hidden}
+        .priv-strip::after{content:'🔒';position:absolute;right:40px;bottom:-20px;font-size:130px;opacity:.06;pointer-events:none}
+        .psi{max-width:860px;margin:0 auto;text-align:center}
+        .psi h2{font-family:Calibri,'Gill Sans MT',sans-serif;font-size:clamp(22px,3vw,34px);margin-bottom:14px}
+        .psi p{font-size:15px;color:rgba(255,255,255,.78);line-height:1.75;margin-bottom:6px}
+        .pp{display:flex;justify-content:center;gap:26px;margin-top:28px;flex-wrap:wrap}
+        .pp-item{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:rgba(255,255,255,.9)}
+        .pp-item .tk{width:22px;height:22px;background:#00909E;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+        .cta-banner{background:linear-gradient(135deg,#FEF3D0,#FFF8E7);border:2px solid #D4A017;border-radius:12px;padding:40px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;margin-bottom:64px;flex-wrap:wrap}
+        .cta-banner h3{font-family:Calibri,'Gill Sans MT',sans-serif;font-size:26px;color:#1A2533;margin-bottom:8px}
+        .cta-banner p{font-size:15px;color:#3D5066;max-width:520px;line-height:1.7;margin:0}
+        @media(max-width:900px){.hero-inner,.about-grid{grid-template-columns:1fr;gap:40px}.hero-stats{display:none}.og{grid-template-columns:1fr 1fr}}
+        @media(max-width:600px){.og{grid-template-columns:1fr}.cta-banner{padding:28px 24px}}
+
+        /* How It Works Section */
+        .how-it-works{padding:0 0 64px 0;}
+        .hiw-inner{margin-bottom:48px}
+        .hiw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+        .hiw-card{text-align:center;padding:32px 24px;background:#F9F9F8;border-radius:12px;border:1px solid #E0E0E0;transition:all .2s}
+        .hiw-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,144,158,.12);border-color:#00909E}
+        .hiw-number{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:linear-gradient(135deg,#006E7A,#00909E);color:#fff;border-radius:50%;font-weight:700;font-size:18px;margin-bottom:16px}
+        .hiw-icon{font-size:48px;margin-bottom:16px}
+        .hiw-card h3{font-size:18px;font-weight:600;color:#1A2533;margin-bottom:12px}
+        .hiw-card p{font-size:14px;color:#607899;line-height:1.7;margin:0}
+        
+        /* Calculator Preview Cards */
+        .calculator-preview{background:#F9F9F8;padding:80px 32px;border-bottom:1px solid #D6E4EC}
+        .calc-preview-inner{max-width:1280px;margin:0 auto}
+        .calc-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:16px}
+        .calc-preview-card{background:#fff;border:1px solid #D6E4EC;border-radius:12px;padding:32px 28px;transition:all .25s;position:relative;overflow:hidden}
+        .calc-preview-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#00909E,#006E7A);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+        .calc-preview-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(0,144,158,.15);border-color:#00909E}
+        .calc-preview-card:hover::before{transform:scaleX(1)}
+        .cpc-icon{font-size:52px;margin-bottom:16px;display:block}
+        .cpc-badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px}
+        .free-badge{background:#E8F9F1;color:#00875A;border:1px solid #9FE6C9}
+        .calc-preview-card h3{font-size:20px;font-weight:600;color:#1A2533;margin-bottom:12px;line-height:1.3}
+        .calc-preview-card > p{font-size:14px;color:#607899;line-height:1.7;margin-bottom:20px}
+        .cpc-features{list-style:none;padding:0;margin:0 0 24px 0}
+        .cpc-features li{font-size:13px;color:#3D5066;padding:6px 0;border-bottom:1px solid #F0F0F0}
+        .cpc-features li:last-child{border-bottom:none}
+        .btn-calc-preview{display:inline-block;width:100%;text-align:center;background:#D4A017;color:#1A2533;font-weight:600;font-size:14px;padding:12px 24px;border-radius:6px;text-decoration:none;transition:all .2s}
+        .btn-calc-preview:hover{background:#E6B020;transform:translateY(-2px)}
+        .btn-secondary{display:inline-block;background:transparent;border:1.5px solid #00909E;color:#00909E;font-weight:500;font-size:14px;padding:12px 28px;border-radius:6px;text-decoration:none;transition:all .2s}
+        .btn-secondary:hover{background:rgba(0,144,158,.08);border-color:#006E7A}
+        
+        @media(max-width:900px){
+            .hiw-grid{grid-template-columns:1fr;gap:20px}
+            .calc-cards-grid{grid-template-columns:1fr;gap:20px}
+        }
+
+        
+
+        /* About Us Section */
+        .about-us-section{background:#fff;padding:80px 32px;border-bottom:1px solid #D6E4EC}
+        .about-us-inner{max-width:900px;margin:0 auto}
+        .about-us-content{margin-top:24px}
+        .about-us-story p{font-size:16px;color:#3D5066;line-height:1.8;margin-bottom:20px}
+        .about-us-story p strong{color:#00909E;font-weight:600}
+        
+        .about-us-features{list-style:none;padding:0;margin:32px 0;display:flex;flex-direction:column;gap:20px}
+        .about-us-features li{display:flex;align-items:flex-start;gap:16px;padding:20px 24px;background:#F9F9F8;border-left:4px solid #00909E;border-radius:8px;transition:all .2s}
+        .about-us-features li:hover{background:#F0F7F7;transform:translateX(4px);box-shadow:0 4px 12px rgba(0,144,158,.1)}
+        .about-us-features .feature-icon{font-size:28px;flex-shrink:0}
+        .about-us-features strong{color:#1A2533;font-size:16px;display:block;margin-bottom:4px}
+        .about-us-features div{flex:1;font-size:15px;color:#3D5066;line-height:1.6}
+        
+        .about-us-tagline{margin-top:40px;padding:28px 32px;background:linear-gradient(135deg,#E0F5F7,#CCF0F3);border-radius:12px;border:2px solid #00909E;text-align:center}
+        .about-us-tagline .tagline-icon{font-size:36px;display:block;margin-bottom:12px}
+        .about-us-tagline p{font-size:18px;color:#006E7A;line-height:1.6;margin:0}
+        .about-us-tagline strong{font-weight:600}
+        
+        @media(max-width:768px){
+            .about-us-section{padding:48px 20px}
+            .about-us-story p{font-size:15px}
+            .about-us-features li{padding:16px 20px}
+            .about-us-features .feature-icon{font-size:24px}
+            .about-us-features strong{font-size:15px}
+            .about-us-features div{font-size:14px}
+            .about-us-tagline{padding:20px 24px}
+            .about-us-tagline .tagline-icon{font-size:32px}
+            .about-us-tagline p{font-size:16px}
+        }
+        
+        /* ═══════════════════════════════════════ */
+        /* MOBILE RESPONSIVE - COMPREHENSIVE       */
+        /* ═══════════════════════════════════════ */
+        
+        @media(max-width:768px){
+            /* Hero adjustments */
+            .hero{padding:32px 20px 28px}
+            .hero h1{font-size:28px;line-height:1.2}
+            .hero-copy{max-width:100%;padding:0 16px}
+            .hero > .hero-inner > .hero-copy > p{font-size:15px;margin-bottom:24px}
+            .hero-badge{font-size:11px;padding:4px 12px}
+            .hero-ctas{flex-direction:column;width:100%}
+            .hero-ctas a{width:100%;text-align:center;padding:12px 20px}
+            
+            /* Trust bar */
+            .trust-bar{padding:12px 16px}
+            .trust-inner{gap:16px;font-size:12px}
+            .trust-item{font-size:12px}
+            
+            /* How It Works */
+            .hiw-grid{grid-template-columns:1fr;gap:20px}
+            .hiw-card{padding:24px 20px}
+            .hiw-icon{font-size:40px}
+            
+            /* Calculator Preview Cards */
+            .calculator-preview{padding:48px 20px}
+            .calc-cards-grid{grid-template-columns:1fr;gap:20px}
+            .calc-preview-card{padding:24px 20px}
+            .cpc-icon{font-size:44px}
+            
+            /* About section */
+            .about-grid{grid-template-columns:1fr;gap:32px;padding:0 20px}
+            
+            /* Features list */
+            .features-list{padding:0 20px}
+            .fi{padding:16px;gap:12px}
+            .fi-icon{width:36px;height:36px;font-size:18px}
+            .fi h4{font-size:13px}
+            .fi p{font-size:12px}
+            
+            /* Offerings */
+            .offerings-section{padding:0 20px}
+            .og{grid-template-columns:1fr;gap:16px}
+            .oc{padding:20px}
+            .oc .oi{font-size:28px}
+            
+            /* CTA Banner */
+            .cta-banner{flex-direction:column;padding:24px 20px;gap:20px;text-align:center}
+            .cta-banner h3{font-size:22px}
+            .cta-banner .btn-primary{width:100%}
+            
+            /* Privacy strip */
+            .priv-strip{padding:40px 20px;border-radius:0}
+            .psi h2{font-size:24px}
+            .pp{flex-direction:column;gap:12px;align-items:flex-start}
+            
+            /* Section titles */
+            .section-title{font-size:24px}
+            .section-lead{font-size:14px}
+        }
+        
+        @media(max-width:480px){
+            .hero h1{font-size:24px}
+            .btn-hp,.btn-ho{font-size:14px;padding:10px 18px}
+            .trust-inner{flex-direction:column;gap:8px}
+        }
+    </style>
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-badge"><span class="dot"></span> Free · No registration · No data collection</div>
+      <h1>Take <em>complete control</em> of your financial future</h1>
+      <p>ArthaStambh gives you India's most powerful personal finance calculators — covering retirement corpus, insurance planning, financial goals and more. No spreadsheets. No expensive advisors. No account needed.</p>
+      <div class="hero-ctas">
+        <a href="products.html" class="btn-hp">Start Planning Today →</a>
+        <a href="#about" class="btn-ho">See How It Works →</a>
+      </div>
+    </div>
+    </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span>🔒</span> Your data never leaves your device</div>
+    <div class="trust-item"><span>🚫</span> No account or login required</div>
+    <div class="trust-item"><span>💾</span> Save &amp; load via local JSON file</div>
+    <div class="trust-item"><span>📱</span> Works on any browser, any device</div>
+    <div class="trust-item"><span>🆓</span> Quick Calculators — always free</div>
+  </div>
+</div>
+
+<div id="page-body-wrap" class="page-body-wrap">
+<div class="ad-col-left">
+    <div class="ad-slot">
+        <script>
+          atOptions = {
+            'key' : 'add9795dda13cd521a60e91fce82d442',
+            'format' : 'iframe',
+            'height' : 600,
+            'width' : 160,
+            'params' : {}
+          };
+        </script>
+        <script async src="https://www.highperformanceformat.com/add9795dda13cd521a60e91fce82d442/invoke.js"></script>
+    </div>
+</div>
+
+<main class="page-content" style="padding-top:64px">
+<section class="how-it-works">
+    <div class="hiw-inner">
+        <div class="section-label" style="justify-content:center;margin-bottom:12px">How It Works</div>
+        <h2 class="section-title" style="text-align:center;margin-bottom:48px">Start planning in <em>3 simple steps</em></h2>
+        <div class="hiw-grid">
+            <div class="hiw-card">
+                <div class="hiw-number">1</div>
+                <div class="hiw-icon">🎯</div>
+                <h3>Choose Your Calculator</h3>
+                <p>Select from our suite of tools based on your financial goal — retirement planning, loan optimization, or PPF projections</p>
+            </div>
+            <div class="hiw-card">
+                <div class="hiw-number">2</div>
+                <div class="hiw-icon">💻</div>
+                <h3>Enter Your Numbers</h3>
+                <p>All calculations happen in your browser — no data is ever sent to our servers or stored anywhere</p>
+            </div>
+            <div class="hiw-card">
+                <div class="hiw-number">3</div>
+                <div class="hiw-icon">📊</div>
+                <h3>Get Instant Results</h3>
+                <p>See detailed projections and insights immediately. Save your data locally as a file for future use</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <section id="about" class="about-grid fade-in">
+    <div class="about-text">
+      <div class="section-label">Welcome</div>
+      <h2 class="section-title">Financial planning that <em>empowers</em> you</h2>
+      <p>In today's complex financial environment, having control over your long-term finances is no longer optional — it's essential. Yet most tools either oversimplify the calculations or require you to share sensitive personal data with third parties.</p>
+      <p>ArthaStambh changes that. Our calculators perform <strong>sophisticated calculations</strong> — including retirement corpus projection, inflation-adjusted goal planning, insurance needs analysis, and debt-to-asset ratio monitoring — right in your browser.</p>
+      <p>Everything is calculated locally on your device. We never ask for your name, income, or any personal information. Your financial data is yours alone — always.</p>
+      <p>Whether you're 30 and just starting to plan, or 55 and fine-tuning your retirement strategy, ArthaStambh gives you the clarity to make confident financial decisions independently.</p>
+      <div class="priv-call">
+        <div class="sh">🛡️</div>
+        <div>
+          <h4>Your privacy is absolute</h4>
+          <p>ArthaStambh does not collect, store, or transmit any personal or financial data. All calculations happen entirely within your browser. Save your data as a file on your own computer and load it back anytime — we never see it.</p>
+        </div>
+      </div>
+    </div>
+    <div class="features-list">
+      <div class="fi"><div class="fi-icon">🏖️</div><div><h4>Retirement Corpus Calculator</h4><p>Calculate exactly how much corpus you need at retirement, accounting for inflation, lifestyle changes, and varying returns before and after retirement.</p></div></div>
+      <div class="fi"><div class="fi-icon">📈</div><div><h4>Investment Portfolio Tracker</h4><p>Track your current investments across mutual funds, equities, FDs, gold, real estate, and more — with percentage distribution at a glance.</p></div></div>
+      <div class="fi"><div class="fi-icon">🎯</div><div><h4>Financial Goals Planner</h4><p>Plan for specific life goals — education, weddings, holidays, property — with inflation-adjusted future value calculations.</p></div></div>
+      <div class="fi"><div class="fi-icon">🛡️</div><div><h4>Insurance Needs Analysis</h4><p>Determine the right life insurance cover for each partner based on your actual financial situation, not generic rules of thumb.</p></div></div>
+      <div class="fi"><div class="fi-icon">📊</div><div><h4>Visual Corpus Analysis Chart</h4><p>See your corpus created vs. required over time, alongside projected monthly expenses — all in one interactive chart.</p></div></div>
+    </div>
+  </section>
+
+  <div class="cta-banner fade-in">
+    <div>
+      <h3>Ready to start planning?</h3>
+      <p>Our Personal Finance Calculator gives you a complete picture of your retirement readiness, insurance needs, and financial goals — all in one place, entirely on your device.</p>
+    </div>
+    <a href="products.html" class="btn-primary" style="flex-shrink:0;font-size:15px;padding:16px 32px">Explore All Features →</a>
+  </div>
+
+  
+<section class="calculator-preview">
+    <div class="calc-preview-inner">
+        <div style="text-align:center;margin-bottom:48px">
+            <div class="section-label" style="justify-content:center;margin-bottom:12px">Our Calculators</div>
+            <h2 class="section-title" style="text-align:center">Choose the right tool for <em>your goals</em></h2>
+            <p class="section-lead" style="margin:0 auto;text-align:center;max-width:620px">Comprehensive financial planning tools built specifically for Indian investors — all completely free, no registration required</p>
+        </div>
+        <div class="calc-cards-grid">
+            <div class="calc-preview-card">
+                <div class="cpc-icon">💼</div>
+                <div class="cpc-badge free-badge">Always Free</div>
+                <h3>Personal Finance Calculator</h3>
+                <p>Plan your complete financial future — retirement corpus, investment tracking, insurance needs, and goal-based planning all in one comprehensive tool</p>
+                <ul class="cpc-features">
+                    <li>✓ Retirement corpus planning</li>
+                    <li>✓ Investment portfolio tracking</li>
+                    <li>✓ Life insurance analysis</li>
+                    <li>✓ Financial goals planner</li>
+                </ul>
+                <a href="personal-finance-calculator.html" class="btn-calc-preview">Get Started →</a>
+            </div>
+            <div class="calc-preview-card">
+                <div class="cpc-icon">🏠</div>
+                <div class="cpc-badge free-badge">Always Free</div>
+                <h3>Loan Calculator</h3>
+                <p>Save thousands in interest — optimize your loan strategy with detailed amortization schedules, prepayment planning, and support for loans up to 30 years</p>
+                <ul class="cpc-features">
+                    <li>✓ All loan types supported</li>
+                    <li>✓ Variable interest rates</li>
+                    <li>✓ Prepayment scenarios</li>
+                    <li>✓ Up to 30-year tenure</li>
+                </ul>
+                <a href="loan-calculator.html" class="btn-calc-preview">Get Started →</a>
+            </div>
+            <div class="calc-preview-card">
+                <div class="cpc-icon">📅</div>
+                <div class="cpc-badge free-badge">Always Free</div>
+                <h3>PPF Calculator</h3>
+                <p>Maximize your PPF returns — track deposits, calculate interest accurately, plan withdrawals, and project your balance throughout the full PPF tenure</p>
+                <ul class="cpc-features">
+                    <li>✓ Accurate interest calculation</li>
+                    <li>✓ Loan eligibility tracking</li>
+                    <li>✓ Withdrawal planning</li>
+                    <li>✓ Full tenure projections</li>
+                </ul>
+                <a href="ppf-calculator.html" class="btn-calc-preview">Get Started →</a>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:40px">
+            <p style="font-size:15px;color:#607899;margin-bottom:16px">Need quick calculations?</p>
+            <a href="quick-calculators.html" class="btn-secondary">Explore 16 Free Quick Calculators →</a>
+        </div>
+    </div>
+</section>
+
+<section class="about-us-section fade-in">
+    <div class="about-us-inner">
+      <div class="section-label" style="justify-content:center;margin-bottom:12px">About Us</div>
+      <h2 class="section-title" style="text-align:center;margin-bottom:32px">From Planning to <em>Prosperity</em></h2>
+      
+      <div class="about-us-content">
+        <div class="about-us-story">
+          <p>For years, we helped thousands of Indians navigate their financial journeys as <strong>MoneyAadhaar</strong>. As we evolved, we realized that personal finance isn't just about numbers; it's about being the <strong>Stambh</strong> (Pillar) for your family.</p>
+          
+          <p>Today, as <strong>ArthaStambh</strong>, we provide the mathematical foundation you need to build your dreams. Whether you are calculating the corpus for your child's education, planning a peaceful retirement through an SWP, or simply checking your PPF growth, we bring you tools that are:</p>
+          
+          <ul class="about-us-features">
+            <li>
+              <span class="feature-icon">🎯</span>
+              <div>
+                <strong>Grounded:</strong> No jargon, just clear calculations.
+              </div>
+            </li>
+            <li>
+              <span class="feature-icon">🔍</span>
+              <div>
+                <strong>Transparent:</strong> Built for the Indian middle-class context.
+              </div>
+            </li>
+            <li>
+              <span class="feature-icon">✅</span>
+              <div>
+                <strong>Reliable:</strong> Helping you make decisions today that your future self will thank you for.
+              </div>
+            </li>
+          </ul>
+          
+          <div class="about-us-tagline">
+            <span class="tagline-icon">💪</span>
+            <p><strong>You handle the hard work of earning; let us handle the hard work of the math.</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="offerings-section fade-in">
+    <div style="text-align:center;margin-bottom:44px">
+      <div class="section-label" style="justify-content:center">What We Offer</div>
+      <h2 class="section-title" style="text-align:center">Everything you need to <em>plan smart</em></h2>
+      <p class="section-lead" style="margin:0 auto;text-align:center;max-width:580px">Built on deep knowledge of Indian financial needs — complex calculations made simple and accessible to everyone.</p>
+    </div>
+    <div class="og">
+      <div class="oc"><span class="oi">🏠</span><h3>Loan Analyser</h3><p>Analyse home, car, and personal loans completely. Supports annual, quarterly, and monthly reducing balance methods with full amortisation schedules.</p></div>
+      <div class="oc"><span class="oi">💰</span><h3>Personal Finance Calculator</h3><p>Our flagship tool — a comprehensive retirement and financial planning calculator that considers your complete financial picture, not just savings and returns.</p></div>
+      <div class="oc"><span class="oi">📅</span><h3>PPF Calculator</h3><p>Track your Public Provident Fund with accurate interest calculations, loan eligibility, and withdrawal planning throughout the complete PPF tenure.</p></div>
+      <div class="oc"><span class="oi">📊</span><h3>Quick Calculators</h3><p>A suite of 16 free calculators — Double Your Money, SIP maturity, FD maturity, Gratuity, Loan EMI, Retirement Planning, and many more.</p></div>
+      <div class="oc"><span class="oi">🎯</span><h3>Goal-Based Planning</h3><p>Work backwards from your goals — education, wedding, property, travel — to determine exactly how much to save today to meet them tomorrow.</p></div>
+      <div class="oc"><span class="oi">📐</span><h3>Insurance Calculator</h3><p>Determine the optimal insurance cover for each earning member based on actual income, expenses, liabilities, and dependants.</p></div>
+    </div>
+  </section>
+
+  <section id="privacy" class="priv-strip fade-in">
+    <div class="psi">
+      <h2>Your privacy is our founding principle</h2>
+      <p>Financial planning requires you to think about sensitive numbers — your income, savings, debts, and retirement goals. This information should never leave your hands.</p>
+      <p>ArthaStambh was built from the ground up on a simple promise: <strong style="color:#fff">we will never collect, store, or see your personal data.</strong></p>
+      <div class="pp">
+        <div class="pp-item"><span class="tk">✓</span> No registration required</div>
+        <div class="pp-item"><span class="tk">✓</span> No tracking cookies</div>
+        <div class="pp-item"><span class="tk">✓</span> All data on your device only</div>
+        <div class="pp-item"><span class="tk">✓</span> Save locally as JSON file</div>
+        <div class="pp-item"><span class="tk">✓</span> Transparent calculations</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="ad-col-right">
+    <div class="ad-slot">
+        <script>
+          atOptions = {
+            'key' : '3bb2f4d70a20f00dedd1ed3d9c8895b1',
+            'format' : 'iframe',
+            'height' : 600,
+            'width' : 160,
+            'params' : {}
+          };
+        </script>
+        <script async src="https://www.highperformanceformat.com/3bb2f4d70a20f00dedd1ed3d9c8895b1/invoke.js"></script>
+    </div>
+</div>
+
+</div>
+<div id="footer-placeholder"></div>
+<script src="site - test.js"></script>
+</body>
+</html>
