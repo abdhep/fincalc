@@ -448,7 +448,7 @@
             • Whenever there is a change in the remaining tenure, enter the remaining tenure in the Proposed Tenure in the month when it changes.<br>
             • Whenever there is a change in the EMI, enter the new Proposed EMI in the month when it changes.<br>
             • If there is an EMI moratorium, enter 0 in the Proposed EMI in the month moratorium starts. When the EMI restarts, enter the EMI value in the Proposed EMI in the month when it restarts.<br>
-            • Always prepay the loan before the last EMI to save on any extra interest paid in the last EMI.
+            • Always prepay the loan before the last EMI to save on any extra Principal/Interest paid as part of the last EMI.
     </div>
     </div>
 
@@ -1372,18 +1372,18 @@ function initBlankChart() {
     window.fyChartInstance = new Chart(ctx, {
         type: 'line',
         data: { labels: [], datasets: [
-            { label: 'Outstanding Loan', data: [], borderColor: '#2196F3', yAxisID: 'y' },
-            { label: 'EMI', data: [], borderColor: '#4CAF50', yAxisID: 'y1' },
-            { label: 'Principal', data: [], borderColor: '#FFA726', yAxisID: 'y1' },
-            { label: 'Interest', data: [], borderColor: '#EF5350', yAxisID: 'y1' }
+            { label: 'Outstanding Loan (₹ Lakh)', data: [], borderColor: '#2196F3', yAxisID: 'y' },
+            { label: 'EMI (₹ Thousand)', data: [], borderColor: '#4CAF50', yAxisID: 'y1' },
+            { label: 'Principal (₹ Thousand)', data: [], borderColor: '#FFA726', yAxisID: 'y1' },
+            { label: 'Interest (₹ Thousand)', data: [], borderColor: '#EF5350', yAxisID: 'y1' }
         ]},
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: { legend: { display: true, position: 'bottom' } },
             scales: {
-                y: { type: 'linear', position: 'left', title: { display: true, text: 'Outstanding Loan (₹)' }, ticks: { callback: v => '₹' + (v/100000).toFixed(1) + 'L' } },
-                y1: { type: 'linear', position: 'right', title: { display: true, text: 'EMI / Principal / Interest (₹)' }, ticks: { callback: v => '₹' + (v/1000).toFixed(0) + 'K' }, grid: { drawOnChartArea: false } }
+                y: { type: 'linear', position: 'left', title: { display: true, text: 'Outstanding Loan (₹ Lakh)' }, ticks: { callback: v => '₹' + (v/100000).toFixed(1) + 'L' } },
+                y1: { type: 'linear', position: 'right', title: { display: true, text: 'EMI / Principal / Interest (₹ Thousand)' }, ticks: { callback: v => '₹' + (v/1000).toFixed(0) + 'K' }, grid: { drawOnChartArea: false } }
             }
         }
     });
@@ -1520,7 +1520,7 @@ function updateChart() {
             labels: labels,
             datasets: [
                 {
-                    label: 'Outstanding Loan',
+                    label: 'Outstanding Loan (₹ Lakh)',
                     data: outstandingData,
                     borderColor: '#2196F3',
                     backgroundColor: 'rgba(33, 150, 243, 0.1)',
@@ -1530,7 +1530,7 @@ function updateChart() {
                     tension: 0.1
                 },
                 {
-                    label: 'EMI',
+                    label: 'EMI (₹ Thousand)',
                     data: emiData,
                     borderColor: '#4CAF50',
                     backgroundColor: 'rgba(76, 175, 80, 0.1)',
@@ -1540,7 +1540,7 @@ function updateChart() {
                     tension: 0.1
                 },
                 {
-                    label: 'Principal',
+                    label: 'Principal (₹ Thousand)',
                     data: principalData,
                     borderColor: '#FFA726',
                     backgroundColor: 'rgba(255, 167, 38, 0.1)',
@@ -1550,7 +1550,7 @@ function updateChart() {
                     tension: 0.1
                 },
                 {
-                    label: 'Interest',
+                    label: 'Interest (₹ Thousand)',
                     data: interestData,
                     borderColor: '#EF5350',
                     backgroundColor: 'rgba(239, 83, 80, 0.1)',
@@ -1588,14 +1588,14 @@ function updateChart() {
                     type: 'linear',
                     display: true,
                     position: 'left',
-                    title: { display: true, text: 'Outstanding Loan (₹)' },
+                    title: { display: true, text: 'Outstanding Loan (₹ Lakh)' },
                     ticks: { callback: v => '₹' + (v/100000).toFixed(1) + 'L' }
                 },
                 y1: {
                     type: 'linear',
                     display: true,
                     position: 'right',
-                    title: { display: true, text: 'EMI / Principal / Interest (₹)' },
+                    title: { display: true, text: 'EMI / Principal / Interest (₹ Thousand)' },
                     ticks: { callback: v => '₹' + (v/1000).toFixed(0) + 'K' },
                     grid: { drawOnChartArea: false }
                 }

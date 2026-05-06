@@ -663,6 +663,8 @@
                         <tr><td>Average female life expectancy in India</td><td>74.4 years</td></tr>
                         <tr><td>Annual Cost Inflation Index since 1981-82</td><td>6.51%</td></tr>
                         <tr><td>Annual Cost Inflation Index since 2001-02</td><td>5.67%</td></tr>
+                        <tr><td>Annual Cost Inflation Index in last 10 years</td><td>4.00%</td></tr>
+                        <tr><td>Annual Cost Inflation Index is 75% of CPI (Urban)</td><td></td></tr>
                     </table>
                 </div>
             </div>
@@ -1190,11 +1192,11 @@ function calc() {
         
         if (i < data.length - 1 && d.yr <= timeToDeath) {
             const nextData = data[i + 1];
-            const rate = d.yr < timeToRetirement ? preRetRate : postRetRate;
-            const monthlyRate = NOMINAL(rate, 12) / 12;
+//            const rate = d.yr < timeToRetirement ? preRetRate : postRetRate;
+            const monthlyRatePost = NOMINAL(postRetRate, 12) / 12;
             
             d.corpusReq = PV(
-                monthlyRate, 
+                monthlyRatePost, 
                 12, 
                 -(d.exp + d.fixExp), 
                 -nextData.corpusReq, 
@@ -1235,6 +1237,9 @@ function calc() {
         { blank: true },
         { label: "Time to Latter's Retirement", value: timeToRetirement + ' yrs' },
         { label: "Time to Latter's Death", value: timeToDeath + ' yrs' },
+        { blank: true },
+        { blank: true },
+        { blank: true },
         { label: 'Current Monthly Expenses (incl Fixed)', value: '₹ ' + fmt(currentExpenses, 0) },
         { label: 'Current Net Monthly Investments / Withdrawals', value: '₹ ' + fmt(currentSavings, 0) },
         { blank: true },
