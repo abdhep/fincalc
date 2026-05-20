@@ -36,7 +36,8 @@
             <span class="sep">|</span>
             <a href="privacy.html">Privacy Policy</a>
         </nav>
-        <p class="footer-copy">© ArthaStambh.com 2012–2026. All Rights Reserved.</p>
+        <p class="footer-copy">© ArthaStambh.com 2012–2026. All Rights Reserved.<br>
+            For the best experience, this website is best viewed at a 1366x768 resolution or higher.</p>
         <p class="footer-disclaimer">
             <strong>Disclaimer:</strong> The calculators on this website are provided as self-help financial planning tools for your independent use. While all care has been taken to ensure accuracy, results are estimates based on the assumptions you provide and do not constitute financial advice. Actual outcomes may vary due to changes in market conditions, inflation, tax laws, and personal circumstances. ArthaStambh does not collect, store, or transmit any personal or financial data — all calculations run entirely within your browser and your data remains on your device at all times. Consult a certified financial planner before making any financial decisions.
         </p>
