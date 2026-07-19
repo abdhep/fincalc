@@ -508,6 +508,7 @@ function updateEMIStartOptions() {
     // Create 61 options (0 to 60 months)
     for (let i = 0; i <= 60; i++) {
         const date = new Date(startDate);
+        date.setDate(1);
         date.setMonth(date.getMonth() + i);
         const monthYear = date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
         const option = document.createElement('option');
@@ -898,8 +899,8 @@ function buildSchedule() {
     for (let month = 0; month <= 360; month++) {
         // Calculate date (1st of each month)
         const date = new Date(startDate);
-        date.setMonth(date.getMonth() + month);
         date.setDate(1);
+        date.setMonth(date.getMonth() + month);
         
         // Display month and year (e.g., "Jan 2025")
         const monthYear = date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
