@@ -523,9 +523,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><input type="text" class="fe-d desc-input" placeholder="EMI / Premium"></td><td><input type="text" class="fe-a" onchange="fmtInputOnChange(this, 2)" oninput="calc()"></td><td><input type="number" step="1" class="fe-y center-align" oninput="calc()"></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="fe-d desc-input" placeholder="EMI / Premium"></td><td><input type="text" class="fe-a" onchange="fmtInputOnChange(this, 2)" oninput="calc()"></td><td><input type="number" step="1" class="fe-y center-align" oninput="calc()"></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
-                        <tr><td><input type="text" class="fe-d desc-input" placeholder="EMI / Premium"></td><td><input type="text" class="fe-a" onchange="fmtInputOnChange(this, 2)" oninput="calc()"></td><td><input type="number" step="1" class="fe-y center-align" oninput="calc()"></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="fe-d desc-input" placeholder="EMI / Premium"></td><td><input type="text" class="fe-a" onchange="fmtInputOnChange(this, 2)" oninput="calc()"></td><td><input type="number" step="1" class="fe-y center-align" oninput="calc()" onblur="validateFixedExpYears(this)"></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="fe-d desc-input" placeholder="EMI / Premium"></td><td><input type="text" class="fe-a" onchange="fmtInputOnChange(this, 2)" oninput="calc()"></td><td><input type="number" step="1" class="fe-y center-align" oninput="calc()" onblur="validateFixedExpYears(this)"></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
+                        <tr><td><input type="text" class="fe-d desc-input" placeholder="EMI / Premium"></td><td><input type="text" class="fe-a" onchange="fmtInputOnChange(this, 2)" oninput="calc()"></td><td><input type="number" step="1" class="fe-y center-align" oninput="calc()" onblur="validateFixedExpYears(this)"></td><td><button class="btn-del" onclick="delRow(this)">×</button></td></tr>
                     </tbody>
                 </table>
                 <button class="btn-add" onclick="addRow('fe')">+ Add</button>
@@ -590,10 +590,9 @@
             <div class="section notes-section">
                 <div class="section-title">Notes</div>
                     • The calculator is designed to be used for couples. If you are single or want to plan individually, enter your details as Younger Partner.<br>
-                    • The calculator is forward-looking and expects current values as inputs to estimate future values (up to next 100 years). If you have already retired, then enter Retirement Age as Present Age.<br>
-                    • The calculator does not consider any taxes and expects all values to be net of taxes. Enter all income, returns, etc after accounting for taxes.<br>
+                    • The calculator is forward-looking and expects current values as inputs to estimate future values (up to next 100 years).<br>
+                    • The calculator does not consider any taxes. Apply a multiple to all expenses to account for taxes.<br>
                     • The calculator assumes that the entire Monthly Savings (Income - Expenses) are invested every month and added to the Investment Corpus. If this is not the case, then enter Monthly Income equal to Monthly Expenses + Monthly Investments.<br>
-                    • If the Savings are negative, it means that this amount is the current Monthly Withdrawal amount from the Investment Corpus.<br>
                     • The calculator assumes that Monthly Income after retirement is Nil. Any value entered for Income after retirement is ignored. If you expect any post-retirement income, then enter the Retirement Age as the age till which you expect to receive this income.
             </div>
             
@@ -765,6 +764,36 @@ function fmtPct(element) {
     element.value = value.toFixed(2);
 }
 
+/**
+ * Validate fixed expenses year left input
+ */
+function validateFixedExpYears(input) {
+    // Only validate Years Left field
+    if (!input.classList.contains('fe-y')) {
+        return true;
+    }
+    
+    const yAge = parseNum(document.getElementById('yAge').value);
+    const yDeath = parseNum(document.getElementById('yDeath').value);
+    const eAge = parseNum(document.getElementById('eAge').value);
+    const eDeath = parseNum(document.getElementById('eDeath').value);
+    const feYears = parseNum(input.value);
+    
+    input.classList.remove('error');
+    
+    if (!feYears || !yAge || !yDeath || !eAge || !eDeath) {
+        return true;
+    }
+    
+    if (feYears > yDeath - yAge && feYears > eDeath - eAge) {
+        input.classList.add('error');
+        alert('Years Left (' + feYears + ') must be within the lifetime');
+        return false;
+    }
+
+    return true;
+}
+
 // ═══════════════════════════════════════════════════════════
 // GOAL TABLE MANAGEMENT
 // ═══════════════════════════════════════════════════════════
@@ -802,11 +831,14 @@ function validateGoalAge(input) {
     }
     
     const yAge = parseNum(document.getElementById('yAge').value);
+    const yDeath = parseNum(document.getElementById('yDeath').value);
+    const eAge = parseNum(document.getElementById('eAge').value);
+    const eDeath = parseNum(document.getElementById('eDeath').value);
     const requiredAge = parseNum(input.value);
     
     input.classList.remove('error');
     
-    if (!requiredAge || !yAge) {
+    if (!requiredAge || !yAge || !yDeath || !eAge || !eDeath) {
         return true;
     }
     
@@ -816,6 +848,12 @@ function validateGoalAge(input) {
         return false;
     }
     
+    if (requiredAge >= yDeath && requiredAge >= yAge + eDeath - eAge) {
+        input.classList.add('error');
+        alert('Required at Age (' + requiredAge + ') must be within the lifetime');
+        return false;
+    }
+
     return true;
 }
 
@@ -881,29 +919,31 @@ function validateAges() {
     hideError('yRetErr');
     hideError('yDeathErr');
     
-    // Younger: Retirement >= Present Age
-    if (yRet && yAge && yRet < yAge) {
+    // Younger: Present Age >=14 and <= 150 years
+    if (yAge && (yAge < 14 || yAge > 150)) {
+        document.getElementById('yAge').classList.add('error');
+        showError('yAgeErr', 'Present age must be between 14 and 150 years');
+        valid = false;
+    } else {
+        document.getElementById('yAge').classList.remove('error');
+    }
+    
+    // Younger: Retirement <= 100 years
+    if (yRet && yAge && (yRet - yAge) > 100) {
         document.getElementById('yRet').classList.add('error');
-        showError('yRetErr', 'Retirement age must be >= present age');
+        showError('yRetErr', 'Retirement age cannot exceed present age by more than 100 years');
         valid = false;
     } else {
         document.getElementById('yRet').classList.remove('error');
     }
     
-    // Younger: Life Expectancy >= Retirement
-    if (yDeath && yRet && yDeath < yRet) {
+    // Younger: Life Expectancy >= Present Age and >= Retirement Age and Life span <= 100 years
+    if ((yDeath && yAge && (yDeath < yAge || (yDeath - yAge) > 100)) || (yDeath && yRet && yDeath < yRet)) {
         document.getElementById('yDeath').classList.add('error');
-        showError('yDeathErr', 'Life expectancy must be >= retirement age');
+        showError('yDeathErr', 'Life expectancy must be >= present age and >= retirement age and cannot exceed present age by more than 100 years');
         valid = false;
     } else {
         document.getElementById('yDeath').classList.remove('error');
-    }
-    
-    // Younger: Life span <= 100 years
-    if (yDeath && yAge && (yDeath - yAge) > 100) {
-        document.getElementById('yDeath').classList.add('error');
-        showError('yDeathErr', 'Life expectancy cannot exceed present age by more than 100 years');
-        valid = false;
     }
     
     // Clear elder partner errors
@@ -911,38 +951,31 @@ function validateAges() {
     hideError('eRetErr');
     hideError('eDeathErr');
     
-    // Elder: Retirement >= Present Age
-    if (eRet && eAge && eRet < eAge) {
+    // Elder >= Younger age
+    if ((eAge && (eAge < 14 || eAge > 150)) || (eAge && yAge && eAge < yAge)) {
+        document.getElementById('eAge').classList.add('error');
+        showError('eAgeErr', 'Present age must be between 14 and 150 years and Elder partner age must be >= younger partner age');
+        valid = false;
+    } else {
+        document.getElementById('eAge').classList.remove('error');
+    }
+    
+    // Elder: Retirement <= 100 years
+    if (eRet && eAge && (eRet - eAge) > 100) {
         document.getElementById('eRet').classList.add('error');
-        showError('eRetErr', 'Retirement age must be >= present age');
+        showError('eRetErr', 'Retirement age cannot exceed present age by more than 100 years');
         valid = false;
     } else {
         document.getElementById('eRet').classList.remove('error');
     }
     
-    // Elder: Life Expectancy >= Retirement
-    if (eDeath && eRet && eDeath < eRet) {
+    // Elder: Life Expectancy >= Present Age and >= Retirement Age and Life span <= 100 years
+    if ((eDeath && eAge && (eDeath < eAge || (eDeath - eAge) > 100)) || (eDeath && eRet && eDeath < eRet)) {
         document.getElementById('eDeath').classList.add('error');
-        showError('eDeathErr', 'Life expectancy must be >= retirement age');
+        showError('eDeathErr', 'Life expectancy must be >= present age and >= retirement age and cannot exceed present age by more than 100 years');
         valid = false;
     } else {
         document.getElementById('eDeath').classList.remove('error');
-    }
-    
-    // Elder: Life span <= 100 years
-    if (eDeath && eAge && (eDeath - eAge) > 100) {
-        document.getElementById('eDeath').classList.add('error');
-        showError('eDeathErr', 'Life expectancy cannot exceed present age by more than 100 years');
-        valid = false;
-    }
-    
-    // Elder >= Younger age
-    if (eAge && yAge && eAge < yAge) {
-        document.getElementById('eAge').classList.add('error');
-        showError('eAgeErr', 'Elder partner age must be >= younger partner age');
-        valid = false;
-    } else {
-        document.getElementById('eAge').classList.remove('error');
     }
     
     return valid;
@@ -1192,7 +1225,7 @@ function calc() {
     for (let i = data.length - 1; i >= 0; i--) {
         const d = data[i];
         
-        if (i < data.length - 1 && d.yr <= timeToDeath) {
+        if (i < data.length - 1 && d.yr < timeToDeath) {
             const nextData = data[i + 1];
 //            const rate = d.yr < timeToRetirement ? preRetRate : postRetRate;
             const monthlyRatePost = NOMINAL(postRetRate, 12) / 12;
@@ -1225,9 +1258,9 @@ function calc() {
     
     const totalAssets = corpusAtDeath + totalSC;
     
-    const insuranceElder = data[0].corpusReq > (totalInv - totalLiab) ? 
+    const insuranceElder = timeToERetirement > 0 && elderShare > 0 && data[0].corpusReq > (totalInv - totalLiab) ? 
         (data[0].corpusReq - (totalInv - totalLiab)) * (elderShare * timeToERetirement / ((1 - elderShare) * timeToYRetirement + elderShare * timeToERetirement)) : 0;
-    const insuranceYounger = data[0].corpusReq > (totalInv - totalLiab) ? 
+    const insuranceYounger = timeToYRetirement > 0 && (1 - elderShare) > 0 && data[0].corpusReq > (totalInv - totalLiab) ? 
         (data[0].corpusReq - (totalInv - totalLiab)) * ((1 - elderShare) * timeToYRetirement / ((1 - elderShare) * timeToYRetirement + elderShare * timeToERetirement)) : 0;
     
     // Build output display
@@ -1243,7 +1276,7 @@ function calc() {
         { blank: true },
         { blank: true },
         { label: 'Current Monthly Expenses (incl Fixed)', value: '₹ ' + fmt(currentExpenses, 0) },
-        { label: 'Current Net Monthly Investments / Withdrawals', value: '₹ ' + fmt(currentSavings, 0) },
+        { label: 'Current Net Monthly Investments (+) / Withdrawals (-)', value: '₹ ' + fmt(currentSavings, 0) },
         { blank: true },
         { blank: true },
         { blank: true },
@@ -1393,7 +1426,7 @@ function updateChart(data, retirementYear, deathYear) {
                         color: '#333'
                     },
                     ticks: {
-                        callback: v => '₹' + v + 'Cr',
+                        callback: v => '₹ ' + fmt(v,2) + ' Cr',
                         font: { size: 14, family: 'Calibri' }
                     }
                 },
@@ -1407,7 +1440,7 @@ function updateChart(data, retirementYear, deathYear) {
                         color: '#1565c0'
                     },
                     ticks: {
-                        callback: v => '₹' + v + 'L',
+                        callback: v => '₹ ' + fmt(v,2) + ' L',
                         font: { size: 14, family: 'Calibri' },
                         color: '#1565c0'
                     },
@@ -1459,7 +1492,7 @@ function addRow(tableType) {
     } else if (tableType === 'fe') {
         row.innerHTML = '<td><input type="text" class="fe-d desc-input" placeholder="EMI / Premium"></td>' +
             '<td><input type="text" class="fe-a" onchange="fmtInputOnChange(this, 2)" oninput="calc()"></td>' +
-            '<td><input type="number" step="1" class="fe-y center-align" oninput="calc()"></td>' +
+            '<td><input type="number" step="1" class="fe-y center-align" oninput="calc()" onblur="validateFixedExpYears(this)"></td>' +
             '<td><button class="btn-del" onclick="delRow(this)">×</button></td>';
     } else if (tableType === 'goal') {
         const yAge = parseFloat(document.getElementById('yAge').value) || '';

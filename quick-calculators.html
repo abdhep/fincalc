@@ -1139,7 +1139,7 @@
                 }
                 const realReturn = ((1 + returnRate / 100) / (1 + inflation / 100)) - 1;
                 const firstYearExpenses = expenses * Math.pow(1 + inflation / 100, yearsToRetire);
-                const corpusAtRetirement = (firstYearExpenses / realReturn) * (1 - Math.pow(1 + realReturn, 1 - yearsRetirement)) + firstYearExpenses;
+                const corpusAtRetirement = realReturn === 0 ? firstYearExpenses * yearsRetirement : (firstYearExpenses / realReturn) * (1 - Math.pow(1 + realReturn, 1 - yearsRetirement)) + firstYearExpenses;
                 const presentCorpus = corpusAtRetirement / Math.pow(1 + returnRate / 100, yearsToRetire);
                 const withdrawalRate = (firstYearExpenses / corpusAtRetirement) * 100;
                 document.getElementById('retirement_corpus_present_corpus').value = fmt(presentCorpus, 2);
@@ -1164,7 +1164,7 @@
                 { label: 'Corpus required based on Constant Withdrawal Rate (₹)', id: 'constant_corpus' },
                 { label: 'Corpus remaining after 50 years (₹)', id: 'corpus_50years' }
             ],
-            note: 'If withdrawal from the corpus is at Constant Withdrawal Rate, the withdrawal rate will be the same every year and the corpus will keep growing forever. At this withdrawal rate, the corpus (after withdrawals) will grow at the rate of inflation every year. This is assuming that the Inflation Rate and Rate of Return are constant every year.',
+            note: 'If withdrawal from the corpus is at Constant Withdrawal Rate, the withdrawal rate will be the same every year and the corpus will keep growing forever. At this withdrawal rate, the corpus (after withdrawals) will grow at the rate of inflation every year. This is assuming that the Inflation Rate and Rate of Return are constant every year. Constant Withdrawal Rate is applicable only if the Rate of Return is greater than the Inflation Rate.',
             calculate: function() {
                 const rate = parseNum(document.getElementById('withdrawal_1_rate').value);
                 const expenses = parseNum(document.getElementById('withdrawal_1_expenses').value);
@@ -1182,19 +1182,24 @@
                 const corpus = expenses / (rate / 100);
                 const realReturn = ((1 + returnRate / 100) / (1 + inflation / 100)) - 1;
                 const years = NPER(realReturn, expenses, -corpus, 0, 1);
-                const constantRate = (1 - ((1 + inflation / 100) / (1 + returnRate / 100))) * 100;
-                const constantCorpus = expenses / (constantRate / 100);
-                const corpus50years = constantCorpus * Math.pow(1 + inflation / 100, 50);
-
                 document.getElementById('withdrawal_1_corpus').value = fmt(corpus, 2);
                 if (!isNaN(years) && isFinite(years)) {
                     document.getElementById('withdrawal_1_years').value = years.toFixed(2);
                 } else {
                     document.getElementById('withdrawal_1_years').value = 'Infinite';
                 }
-                document.getElementById('withdrawal_1_constant_rate').value = constantRate.toFixed(4) + '%';
-                document.getElementById('withdrawal_1_constant_corpus').value = fmt(constantCorpus, 2);
-                document.getElementById('withdrawal_1_corpus_50years').value = fmt(corpus50years, 2);
+                if (realReturn > 0) {
+                    const constantRate = (1 - ((1 + inflation / 100) / (1 + returnRate / 100))) * 100;
+                    const constantCorpus = expenses / (constantRate / 100);
+                    const corpus50years = constantCorpus * Math.pow(1 + inflation / 100, 50);
+                    document.getElementById('withdrawal_1_constant_rate').value = constantRate.toFixed(4) + '%';
+                    document.getElementById('withdrawal_1_constant_corpus').value = fmt(constantCorpus, 2);
+                    document.getElementById('withdrawal_1_corpus_50years').value = fmt(corpus50years, 2);
+                } else {
+                    document.getElementById('withdrawal_1_constant_rate').value = 'Not Applicable';
+                    document.getElementById('withdrawal_1_constant_corpus').value = 'Not Applicable';
+                    document.getElementById('withdrawal_1_corpus_50years').value = 'Not Applicable';
+                }
             }
         },
 
@@ -1217,7 +1222,7 @@
                 { label: 'Corpus required based on Constant Withdrawal Rate (₹)', id: 'constant_corpus' },
                 { label: 'Corpus remaining after 50 years (₹)', id: 'corpus_50years' }
             ],
-            note: 'If withdrawal from the corpus is at Constant Withdrawal Rate, the withdrawal rate will be the same every year and the corpus will keep growing forever. At this withdrawal rate, the corpus (after withdrawals) will grow at the rate of inflation every year. This is assuming that the Inflation Rate and Rate of Return are constant every year.',
+            note: 'If withdrawal from the corpus is at Constant Withdrawal Rate, the withdrawal rate will be the same every year and the corpus will keep growing forever. At this withdrawal rate, the corpus (after withdrawals) will grow at the rate of inflation every year. This is assuming that the Inflation Rate and Rate of Return are constant every year. Constant Withdrawal Rate is applicable only if the Blended Rate of Return is greater than the Inflation Rate.',
             calculate: function() {
                 const rate = parseNum(document.getElementById('withdrawal_2_rate').value);
                 const expenses = parseNum(document.getElementById('withdrawal_2_expenses').value);
@@ -1246,10 +1251,6 @@
                 const corpus = expenses / (rate / 100);
                 const realReturn = ((1 + blendedReturn / 100) / (1 + inflation / 100)) - 1;
                 const years = NPER(realReturn, expenses, -corpus, 0, 1);
-                const constantRate = (1 - ((1 + inflation / 100) / (1 + blendedReturn / 100))) * 100;
-                const constantCorpus = expenses / (constantRate / 100);
-                const corpus50years = constantCorpus * Math.pow(1 + inflation / 100, 50);
-
                 document.getElementById('withdrawal_2_blended').value = blendedReturn.toFixed(2) + '%';
                 document.getElementById('withdrawal_2_corpus').value = fmt(corpus, 2);
                 if (!isNaN(years) && isFinite(years)) {
@@ -1257,9 +1258,18 @@
                 } else {
                     document.getElementById('withdrawal_2_years').value = 'Infinite';
                 }
-                document.getElementById('withdrawal_2_constant_rate').value = constantRate.toFixed(4) + '%';
-                document.getElementById('withdrawal_2_constant_corpus').value = fmt(constantCorpus, 2);
-                document.getElementById('withdrawal_2_corpus_50years').value = fmt(corpus50years, 2);
+                if (realReturn > 0) {
+                    const constantRate = (1 - ((1 + inflation / 100) / (1 + blendedReturn / 100))) * 100;
+                    const constantCorpus = expenses / (constantRate / 100);
+                    const corpus50years = constantCorpus * Math.pow(1 + inflation / 100, 50);
+                    document.getElementById('withdrawal_2_constant_rate').value = constantRate.toFixed(4) + '%';
+                    document.getElementById('withdrawal_2_constant_corpus').value = fmt(constantCorpus, 2);
+                    document.getElementById('withdrawal_2_corpus_50years').value = fmt(corpus50years, 2);
+                } else {
+                    document.getElementById('withdrawal_2_constant_rate').value = 'Not Applicable';
+                    document.getElementById('withdrawal_2_constant_corpus').value = 'Not Applicable';
+                    document.getElementById('withdrawal_2_corpus_50years').value = 'Not Applicable';
+                }
             }
         }
     };
