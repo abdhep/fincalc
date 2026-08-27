@@ -444,11 +444,11 @@
             <div class="section">
                 <div class="section-title">Income & Returns</div>
                 <div class="row">
-                    <label>Current Net Monthly Family Income (₹)</label>
+                    <label>Current Monthly Family Income (₹)</label>
                     <input type="text" id="income" onchange="fmtInputOnChange(this)" oninput="calc()">
                 </div>
                 <div class="row">
-                    <label>Average Annual Increase in Net Income (%)</label>
+                    <label>Average Annual Increase in Family Income (%)</label>
                     <input type="number" step="0.01" id="incGrowth" onblur="fmtPct(this)" oninput="calc()">
                 </div>
                 <div class="row">
@@ -468,7 +468,7 @@
             
             <!-- Expenses & Inflation -->
             <div class="section">
-                <div class="section-title">Expenses & Inflation</div>
+                <div class="section-title">Expenses, Inflation & Taxes</div>
                 <div class="row">
                     <label>Current Monthly Family Expenses (₹)</label>
                     <input type="text" id="expense" onchange="fmtInputOnChange(this)" oninput="calc()">
@@ -480,6 +480,14 @@
                 <div class="row">
                     <label>Average Annual Inflation (%)</label>
                     <input type="number" step="0.01" id="inflation" onblur="fmtPct(this); initGoalDefaults()" oninput="calc()">
+                </div>
+                <div class="row">
+                    <label>Tax Impact on Income (%)</label>
+                    <input type="number" step="0.01" id="incometax" onblur="fmtPct(this)" oninput="calc()">
+                </div>
+                <div class="row">
+                    <label>Tax Impact of Capital Gains on Withdrawals (%)</label>
+                    <input type="number" step="0.01" id="cgtax" onblur="fmtPct(this)" oninput="calc()">
                 </div>
             </div>
             
@@ -590,9 +598,8 @@
             <div class="section notes-section">
                 <div class="section-title">Notes</div>
                     • The calculator is designed to be used for couples. If you are single or want to plan individually, enter your details as Younger Partner.<br>
-                    • The calculator is forward-looking and expects current values as inputs to estimate future values (up to next 100 years).<br>
-                    • The calculator does not consider any taxes. Apply a multiple to all expenses to account for taxes.<br>
-                    • The calculator assumes that the entire Monthly Savings (Income - Expenses) are invested every month and added to the Investment Corpus. If this is not the case, then enter Monthly Income equal to Monthly Expenses + Monthly Investments.<br>
+                    • The calculator is forward-looking and expects current values as inputs to estimate future values <strong>(up to next 100 years only)</strong>.<br>
+                    • The calculator assumes that the entire Monthly Savings (Income after Tax - Expenses) are invested every month and added to the Investment Corpus. If the Investment is less than Savings, then enter Monthly Income equal to (Expenses + Investments), adjusted for Tax.<br>
                     • The calculator assumes that Monthly Income after retirement is Nil. Any value entered for Income after retirement is ignored. If you expect any post-retirement income, then enter the Retirement Age as the age till which you expect to receive this income.
             </div>
             
@@ -1041,6 +1048,8 @@ function calc() {
     const expense = parseNum(document.getElementById('expense').value);
     const lifestyleInflation = parseNum(document.getElementById('lifestyle').value) / 100;
     const inflation = parseNum(document.getElementById('inflation').value) / 100;
+    const incomeTax = parseNum(document.getElementById('incometax').value) / 100;
+    const cgTax = parseNum(document.getElementById('cgtax').value) / 100;
     
     // Calculate Self-Consumption totals
     let totalSC = 0;
@@ -1150,7 +1159,7 @@ function calc() {
             -FV(incomeGrowth, year, 0, (1 - elderShare) * income) : 0;
         const eIncome = (year < timeToERetirement) ? 
             -FV(incomeGrowth, year, 0, elderShare * income) : 0;
-        yearIncome = yIncome + eIncome;
+        yearIncome = (yIncome + eIncome) * (1 - incomeTax);
         
         // Calculate fixed expenses for this year
         let fixedExp = 0;
@@ -1167,6 +1176,7 @@ function calc() {
                 goalExp += g.fv;
             }
         });
+        goalExp /= (1 - cgTax);
         
         // Calculate corpus
         let corpusPre = 0;
@@ -1185,7 +1195,7 @@ function calc() {
                 corpusPre = FV(
                     monthlyRatePre, 
                     12, 
-                    -(prevData.inc - (prevData.exp + prevData.fixExp)), 
+                    -(prevData.inc - (prevData.exp + prevData.fixExp) - Math.max(prevData.exp + prevData.fixExp - prevData.inc, 0) * cgTax / (1 - cgTax)), 
                     -(prevData.corpusPre - prevData.goalExp), 
                     0
                 );
@@ -1198,7 +1208,7 @@ function calc() {
                 corpusPost = FV(
                     monthlyRatePost, 
                     12, 
-                    (prevData.exp + prevData.fixExp), 
+                    (prevData.exp + prevData.fixExp) / (1 - cgTax), 
                     -(prevData.corpusPost - prevData.goalExp), 
                     1
                 );
@@ -1233,7 +1243,7 @@ function calc() {
             d.corpusReq = PV(
                 monthlyRatePost, 
                 12, 
-                -(d.exp + d.fixExp), 
+                -(d.exp + d.fixExp) / (1 - cgTax), 
                 -nextData.corpusReq, 
                 1
             ) + d.goalExp;
@@ -1242,7 +1252,7 @@ function calc() {
     
     // Calculate output metrics
     const currentExpenses = data[0].exp + data[0].fixExp;
-    const currentSavings = data[0].inc - currentExpenses;
+    const currentSavings = data[0].inc - currentExpenses - Math.max(currentExpenses - data[0].inc, 0) * cgTax / (1 - cgTax);
     const retirementExpenses = timeToRetirement < data.length ? data[timeToRetirement].exp : 0;
     const corpusReqAtRet = timeToRetirement < data.length ? data[timeToRetirement].corpusReq : 0;
     const corpusCreatedAtRet = timeToRetirement < data.length ? data[timeToRetirement].corpusPost : 0;
@@ -1275,8 +1285,8 @@ function calc() {
         { blank: true },
         { blank: true },
         { blank: true },
-        { label: 'Current Monthly Expenses (incl Fixed)', value: '₹ ' + fmt(currentExpenses, 0) },
-        { label: 'Current Net Monthly Investments (+) / Withdrawals (-)', value: '₹ ' + fmt(currentSavings, 0) },
+        { label: 'Current Monthly Expenses (including Fixed)', value: '₹ ' + fmt(currentExpenses, 0) },
+        { label: 'Current Monthly Investments (+) / Withdrawals (-)', value: '₹ ' + fmt(currentSavings, 0) },
         { blank: true },
         { blank: true },
         { blank: true },
@@ -1324,9 +1334,13 @@ function updateChart(data, retirementYear, deathYear) {
     const years = chartData.map(d => d.yr);
     const corpusCreated = chartData.map(d => d.corpusPost / 1e7);
     const corpusRequired = chartData.map(d => d.corpusReq / 1e7);
+    const incomeTax = parseNum(document.getElementById('incometax').value) / 100;
+    const cgTax = parseNum(document.getElementById('cgtax').value) / 100;
     const monthlyExpenses = chartData.map(d => (d.exp + d.fixExp) / 1e5);
-    const monthlyInvestments = chartData.map(d => ((d.inc - (d.exp + d.fixExp)) > 0 ? (d.inc - (d.exp + d.fixExp)) : null) / 1e5);
-    const monthlyWithdrawals = chartData.map(d => (((d.exp + d.fixExp) - d.inc) > 0 ? ((d.exp + d.fixExp) - d.inc) : null) / 1e5);
+    const monthlyIncome = chartData.map(d => (d.inc / (1 - incomeTax)) / 1e5);
+    const monthlyInvestments = chartData.map(d => Math.max(d.inc - (d.exp + d.fixExp), 0) / 1e5);
+    const monthlyWithdrawals = chartData.map(d => (Math.max((d.exp + d.fixExp) - d.inc, 0) / (1 - cgTax)) / 1e5);
+    const monthlyTaxes = chartData.map(d => ((d.inc * incomeTax / (1 - incomeTax)) + (Math.max((d.exp + d.fixExp) - d.inc, 0) * cgTax / (1 - cgTax))) / 1e5);
     
     if (chart) {
         chart.destroy();
@@ -1343,7 +1357,7 @@ function updateChart(data, retirementYear, deathYear) {
                     data: corpusCreated,
                     borderColor: '#2e7d32',
                     backgroundColor: 'rgba(46, 125, 50, 0.1)',
-                    borderWidth: 2,
+                    borderWidth: 3,
                     fill: true,
                     tension: 0.3,
                     pointRadius: 0,
@@ -1355,8 +1369,8 @@ function updateChart(data, retirementYear, deathYear) {
                     data: corpusRequired,
                     borderColor: '#d32f2f',
                     backgroundColor: 'rgba(211, 47, 47, 0.1)',
-                    borderWidth: 2,
-                    borderDash: [5, 5],
+                    borderWidth: 3,
+                    borderDash: [12, 3],
                     fill: true,
                     tension: 0.3,
                     pointRadius: 0,
@@ -1366,41 +1380,71 @@ function updateChart(data, retirementYear, deathYear) {
                 {
                     label: 'Monthly Expenses (₹ Lakh)',
                     data: monthlyExpenses,
-                    borderColor: '#1565c0',
-                    backgroundColor: 'rgba(21, 101, 192, 0)',
-                    borderWidth: 2,
+//                    borderColor: '#1565c0',
+//                    backgroundColor: 'rgba(21, 101, 192, 0)',
+                    borderColor: '#f57c00',
+                    backgroundColor: 'rgba(245, 124, 0, 0.1)',
+                    borderWidth: 1.5,
+                    borderDash: [6, 3],
                     fill: false,
                     tension: 0.3,
                     pointRadius: 0,
                     pointHoverRadius: 4,
-                    yAxisID: 'y1',
-                    borderDash: [3, 3]
+                    yAxisID: 'y1'
+                },
+                {
+                    label: 'Monthly Income (₹ Lakh)',
+                    data: monthlyIncome,
+                    borderColor: '#0288d1',
+                    backgroundColor: 'rgba(2, 136, 209, 0.1)',
+                    borderWidth: 1.5,
+                    fill: false,
+                    tension: 0.3,
+                    pointRadius: 0,
+                    pointHoverRadius: 4,
+                    yAxisID: 'y1'
                 },
                 {
                     label: 'Monthly Investments (₹ Lakh)',
                     data: monthlyInvestments,
-                    borderColor: '#2e7d32',
-                    backgroundColor: 'rgba(46, 125, 50, 0)',
-                    borderWidth: 2,
+//                    borderColor: '#2e7d32',
+//                    backgroundColor: 'rgba(46, 125, 50, 0)',
+                    borderColor: '#00897b',
+                    backgroundColor: 'rgba(0, 137, 123, 0.1)',
+                    borderWidth: 1.5,
                     fill: false,
                     tension: 0.3,
                     pointRadius: 0,
                     pointHoverRadius: 4,
-                    yAxisID: 'y1',
-                    borderDash: [3, 3]
+                    yAxisID: 'y1'
                 },
                 {
                     label: 'Monthly Withdrawals (₹ Lakh)',
                     data: monthlyWithdrawals,
-                    borderColor: '#1565c0',
-                    backgroundColor: 'rgba(211, 47, 47, 0)',
-                    borderWidth: 2,
+//                    borderColor: '#1565c0',
+//                    backgroundColor: 'rgba(211, 47, 47, 0)',
+                    borderColor: '#fbc02d',
+                    backgroundColor: 'rgba(251, 192, 45, 0.1)',
+                    borderWidth: 1.5,
+                    borderDash: [12, 3],
                     fill: false,
                     tension: 0.3,
                     pointRadius: 0,
                     pointHoverRadius: 4,
-                    yAxisID: 'y1',
-                    borderDash: [3, 3]
+                    yAxisID: 'y1'
+                },
+                {
+                    label: 'Monthly Taxes (₹ Lakh)',
+                    data: monthlyTaxes,
+                    borderColor: '#78909c',
+                    backgroundColor: 'rgba(120, 144, 156, 0.1)',
+                    borderWidth: 1.5,
+                    borderDash: [6, 3],
+                    fill: false,
+                    tension: 0.3,
+                    pointRadius: 0,
+                    pointHoverRadius: 4,
+                    yAxisID: 'y1'
                 }
             ]
         },
@@ -1449,6 +1493,11 @@ function updateChart(data, retirementYear, deathYear) {
                     }
                 },
                 x: {
+                    title: {
+                        display: true,
+                        text: 'Years',
+                        font: { size: 14, family: 'Calibri' }
+                    },
                     ticks: {
                         font: { size: 14, family: 'Calibri' }
                     }
@@ -1535,6 +1584,8 @@ async function saveData() {
         expense: document.getElementById('expense').value,
         lifestyle: document.getElementById('lifestyle').value,
         inflation: document.getElementById('inflation').value,
+        incometax: document.getElementById('incometax').value,
+        cgtax: document.getElementById('cgtax').value,
         sc: Array.from(document.querySelectorAll('#scTable tbody tr')).map(r => ({
             d: r.querySelector('.sc-d').value,
             a: r.querySelector('.sc-a').value
@@ -1613,8 +1664,8 @@ function handleFileLoad(event) {
             const data = JSON.parse(e.target.result);
             
             // Load basic fields
-            ['yAge', 'yRet', 'yDeath', 'eAge', 'eRet', 'eDeath', 'income', 'incGrowth',
-             'preRet', 'postRet', 'elderShare', 'expense', 'lifestyle', 'inflation'].forEach(key => {
+            ['yAge', 'yRet', 'yDeath', 'eAge', 'eRet', 'eDeath', 'income', 'incGrowth', 'preRet',
+             'postRet', 'elderShare', 'expense', 'lifestyle', 'inflation', 'incometax', 'cgtax'].forEach(key => {
                 const el = document.getElementById(key);
                 if (el) el.value = data[key] || '';
             });
