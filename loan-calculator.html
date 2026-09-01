@@ -1375,10 +1375,10 @@ function initBlankChart() {
     window.fyChartInstance = new Chart(ctx, {
         type: 'line',
         data: { labels: [], datasets: [
-            { label: 'Outstanding Loan (₹ Lakh)', data: [], borderColor: '#2196F3', yAxisID: 'y' },
-            { label: 'EMI (₹ Thousand)', data: [], borderColor: '#4CAF50', yAxisID: 'y1' },
-            { label: 'Principal (₹ Thousand)', data: [], borderColor: '#FFA726', yAxisID: 'y1' },
-            { label: 'Interest (₹ Thousand)', data: [], borderColor: '#EF5350', yAxisID: 'y1' }
+            { label: 'Outstanding Loan', data: [], borderColor: '#2196F3', yAxisID: 'y' },
+            { label: 'EMI', data: [], borderColor: '#4CAF50', yAxisID: 'y1' },
+            { label: 'Principal', data: [], borderColor: '#FFA726', yAxisID: 'y1' },
+            { label: 'Interest', data: [], borderColor: '#EF5350', yAxisID: 'y1' }
         ]},
         options: {
             responsive: true,
@@ -1523,7 +1523,7 @@ function updateChart() {
             labels: labels,
             datasets: [
                 {
-                    label: 'Outstanding Loan (₹ Lakh)',
+                    label: 'Outstanding Loan',
                     data: outstandingData,
                     borderColor: '#2196F3',
                     backgroundColor: 'rgba(33, 150, 243, 0.1)',
@@ -1533,7 +1533,7 @@ function updateChart() {
                     tension: 0.1
                 },
                 {
-                    label: 'EMI (₹ Thousand)',
+                    label: 'EMI',
                     data: emiData,
                     borderColor: '#4CAF50',
                     backgroundColor: 'rgba(76, 175, 80, 0.1)',
@@ -1543,7 +1543,7 @@ function updateChart() {
                     tension: 0.1
                 },
                 {
-                    label: 'Principal (₹ Thousand)',
+                    label: 'Principal',
                     data: principalData,
                     borderColor: '#FFA726',
                     backgroundColor: 'rgba(255, 167, 38, 0.1)',
@@ -1553,7 +1553,7 @@ function updateChart() {
                     tension: 0.1
                 },
                 {
-                    label: 'Interest (₹ Thousand)',
+                    label: 'Interest',
                     data: interestData,
                     borderColor: '#EF5350',
                     backgroundColor: 'rgba(239, 83, 80, 0.1)',

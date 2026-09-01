@@ -690,22 +690,38 @@
             inputs: [
                 { label: 'Amount Invested (₹)', id: 'invested', type: 'number' },
                 { label: 'Amount Received at maturity (₹)', id: 'maturity', type: 'number' },
-                { label: 'Period (months)', id: 'months', type: 'integer' }
+                { label: 'Period (years)', id: 'years', type: 'integer' }
             ],
             outputs: [
-                { label: 'CAGR p.a. (%)', id: 'result' }
+                { label: 'CAGR p.a. (%)', id: 'result' },
+                { label: 'Tax (LTCG 12.5% + 4% Cess) on Maturity (₹)', id: 'tax' },
+                { label: 'Tax Impact on Maturity Value (%)', id: 'taximpact' },
+                { label: 'Post-Tax Maturity Value (₹)', id: 'netmaturity' },
+                { label: 'Post-Tax Return p.a. (%)', id: 'netresult' }
             ],
             calculate: function() {
                 const invested = parseNum(document.getElementById('cagr_invested').value);
                 const maturity = parseNum(document.getElementById('cagr_maturity').value);
-                const months = parseNum(document.getElementById('cagr_months').value);
-                if (invested === null || maturity === null || months === null || invested <= 0 || maturity <= 0 || months <= 0) {
+                const years = parseNum(document.getElementById('cagr_years').value);
+                if (invested === null || maturity === null || years === null || invested <= 0 || maturity <= 0 || years <= 0) {
                     document.getElementById('cagr_result').value = '';
+                    document.getElementById('cagr_tax').value = '';
+                    document.getElementById('cagr_taximpact').value = '';
+                    document.getElementById('cagr_netmaturity').value = '';
+                    document.getElementById('cagr_netresult').value = '';
                     return;
                 }
-                const years = months / 12;
                 const cagr = (Math.pow(maturity / invested, 1 / years) - 1) * 100;
+                const tax = 1.04 * 0.125 * (maturity - invested);
+                const taxImpact = tax / maturity * 100;
+                const netMaturity = maturity - tax;
+                const netCagr = (Math.pow(netMaturity / invested, 1 / years) - 1) * 100;
+
                 document.getElementById('cagr_result').value = cagr.toFixed(2) + '%';
+                document.getElementById('cagr_tax').value = fmt(tax, 2);
+                document.getElementById('cagr_taximpact').value = taxImpact.toFixed(4) + '%';
+                document.getElementById('cagr_netmaturity').value = fmt(netMaturity, 2);
+                document.getElementById('cagr_netresult').value = netCagr.toFixed(2) + '%';
             }
         },
 
@@ -842,7 +858,7 @@
             inputs: [
                 { label: 'Loan Amount (₹)', id: 'principal', type: 'number' },
                 { label: 'Period (months)', id: 'months', type: 'integer' },
-                { label: 'Interest rate (%)', id: 'rate', type: 'percent' }
+                { label: 'Interest rate p.a. (%)', id: 'rate', type: 'percent' }
             ],
             outputs: [
                 { label: 'EMI (₹)', id: 'result' }
@@ -867,7 +883,7 @@
                 { label: 'Outstanding Loan Amount (₹)', id: 'outstanding', type: 'number' },
                 { label: 'Current EMI (₹)', id: 'current_emi', type: 'number' },
                 { label: 'Number of EMIs left', id: 'emis_left', type: 'integer' },
-                { label: 'New Interest Rate (%)', id: 'new_rate', type: 'percent' },
+                { label: 'New Interest Rate p.a. (%)', id: 'new_rate', type: 'percent' },
                 { label: 'New Loan Tenure (months)', id: 'new_tenure', type: 'integer' },
                 { label: 'Prepayment + Processing Fees (₹)', id: 'fees', type: 'number' }
             ],
@@ -900,7 +916,8 @@
             inputs: [
                 { label: 'Initial Investment (if any) (₹)', id: 'initial', type: 'number' },
                 { label: 'Monthly SIP (₹)', id: 'sip', type: 'number' },
-                { label: 'Period (months)', id: 'months', type: 'integer' },
+                { label: 'SIP Period (months)', id: 'months', type: 'integer' },
+                { label: 'Total Holding Period (if greater than SIP period) (years)', id: 'years', type: 'integer' },
                 { label: 'Rate of Return p.a. (%)', id: 'return', type: 'percent' },
                 { label: 'SIP Step-up p.a. (%)', id: 'stepsip', type: 'percent' },
                 { label: 'Step-up Period (if less than SIP period) (years)', id: 'stepyrs', type: 'integer' }
@@ -914,16 +931,24 @@
                 { label: 'Amount Earned with Step-up (₹)', id: 'stepearned' },
                 { label: 'Additional Returns (₹)', id: 'maturitydiff' },
                 { label: 'Additional Investments (₹)', id: 'investeddiff' },
-                { label: 'Additional Earnings (₹)', id: 'earneddiff' }
+                { label: 'Additional Earnings (₹)', id: 'earneddiff' },
+                { label: 'Tax (LTCG 12.5% + 4% Cess) on Maturity without Step-up (₹)', id: 'tax' },
+                { label: 'Tax Impact on Maturity Value without Step-up (%)', id: 'taximpact' },
+                { label: 'Post-Tax Maturity Value without Step-up (₹)', id: 'netmaturity' },
+                { label: 'Tax (LTCG 12.5% + 4% Cess) on Maturity with Step-up (₹)', id: 'steptax' },
+                { label: 'Tax Impact on Maturity Value with Step-up (%)', id: 'steptaximpact' },
+                { label: 'Post-Tax Maturity Value with Step-up (₹)', id: 'stepnetmaturity' }
             ],
             calculate: function() {
                 const initial = parseNum(document.getElementById('sip_maturity_initial').value) || 0;
-                const sip = parseNum(document.getElementById('sip_maturity_sip').value);
-                const months = parseNum(document.getElementById('sip_maturity_months').value);
+                const sip = parseNum(document.getElementById('sip_maturity_sip').value) || 0;
+                const months = parseNum(document.getElementById('sip_maturity_months').value) || 0;
+                const years = parseNum(document.getElementById('sip_maturity_years').value) || Math.ceil(months / 12);
                 const returnRate = parseNum(document.getElementById('sip_maturity_return').value);
                 const stepSip = parseNum(document.getElementById('sip_maturity_stepsip').value) || 0;
                 const stepYrs = parseNum(document.getElementById('sip_maturity_stepyrs').value) || Math.ceil(months / 12 - 1);
-                if (sip === null || months === null || returnRate === null || months <= 0) {
+
+                if ((initial === 0 && sip === 0) || (sip > 0 && months === 0) || years === 0 || years < months / 12 || returnRate === null || months < 0) {
                     document.getElementById('sip_maturity_maturity').value = '';
                     document.getElementById('sip_maturity_invested').value = '';
                     document.getElementById('sip_maturity_earned').value = '';
@@ -933,14 +958,24 @@
                     document.getElementById('sip_maturity_maturitydiff').value = '';
                     document.getElementById('sip_maturity_investeddiff').value = '';
                     document.getElementById('sip_maturity_earneddiff').value = '';
+                    document.getElementById('sip_maturity_tax').value = '';
+                    document.getElementById('sip_maturity_taximpact').value = '';
+                    document.getElementById('sip_maturity_netmaturity').value = '';
+                    document.getElementById('sip_maturity_steptax').value = '';
+                    document.getElementById('sip_maturity_steptaximpact').value = '';
+                    document.getElementById('sip_maturity_stepnetmaturity').value = '';
                     return;
                 }
                 const monthlyRate = NOMINAL(returnRate / 100, 12) / 12;
-                const sipFV = FV(monthlyRate, months, -sip, 0, 1);
-                const initialFV = initial * Math.pow(1 + monthlyRate, months);
+                const sipPeriodFV = FV(monthlyRate, months, -sip, 0, 1);
+                const sipFV = FV(monthlyRate, years * 12 - months, 0, -sipPeriodFV, 1);
+                const initialFV = initial * Math.pow(1 + returnRate / 100, years);
                 const maturity = sipFV + initialFV;
                 const totalInvested = initial + (sip * months);
                 const earned = maturity - totalInvested;
+                const tax = 1.04 * 0.125 * earned;
+                const taxImpact = tax / maturity * 100;
+                const netMaturity = maturity - tax;
 
                 let stepMaturity = 0;
                 let stepInvested = 0;
@@ -948,6 +983,10 @@
                 let maturityDiff = 0;
                 let investedDiff = 0;
                 let earnedDiff = 0;
+                let stepTax = 0;
+                let stepTaxImpact = 0;
+                let stepNetMaturity = 0;
+
                 if (stepSip > 0) {
                     const maxStepYrs = Math.ceil(months / 12 - 1);
                     let prevSip = sip;
@@ -966,6 +1005,9 @@
                     stepInvested = totalInvested + investedDiff;
                     stepEarned = stepMaturity - stepInvested;
                     earnedDiff = maturityDiff - investedDiff;
+                    stepTax = 1.04 * 0.125 * stepEarned;
+                    stepTaxImpact = stepTax / stepMaturity * 100;
+                    stepNetMaturity = stepMaturity - stepTax;
                 }
 
                 document.getElementById('sip_maturity_maturity').value = fmt(maturity, 2);
@@ -977,6 +1019,12 @@
                 document.getElementById('sip_maturity_maturitydiff').value = fmt(maturityDiff, 2);
                 document.getElementById('sip_maturity_investeddiff').value = fmt(investedDiff, 2);
                 document.getElementById('sip_maturity_earneddiff').value = fmt(earnedDiff, 2);
+                document.getElementById('sip_maturity_tax').value = fmt(tax, 2);
+                document.getElementById('sip_maturity_taximpact').value = taxImpact.toFixed(4) + '%';
+                document.getElementById('sip_maturity_netmaturity').value = fmt(netMaturity, 2);
+                document.getElementById('sip_maturity_steptax').value = fmt(stepTax, 2);
+                document.getElementById('sip_maturity_steptaximpact').value = stepTaxImpact.toFixed(4) + '%';
+                document.getElementById('sip_maturity_stepnetmaturity').value = fmt(stepNetMaturity, 2);
             }
         },
 
@@ -1361,7 +1409,7 @@
                 `;
                 
                 // Add gap after specific outputs
-                if (calcId === 'sip_maturity' && (index === 2 || index === 5)) {
+                if (calcId === 'sip_maturity' && (index === 2 || index === 5 || index === 8 || index === 11)) {
                     html += `<div style="height: 8px;"></div>`;
                 } else if (calcId === 'withdrawal_1' && index === 1) {
                     html += `<div style="height: 8px;"></div>`;
