@@ -1376,7 +1376,7 @@ function initBlankChart() {
         type: 'line',
         data: { labels: [], datasets: [
             { label: 'Outstanding Loan', data: [], borderColor: '#2196F3', yAxisID: 'y' },
-            { label: 'EMI', data: [], borderColor: '#4CAF50', yAxisID: 'y1' },
+            { label: 'EMI', data: [], borderColor: '#4CAF50', hidden: true, yAxisID: 'y1' },
             { label: 'Principal', data: [], borderColor: '#FFA726', yAxisID: 'y1' },
             { label: 'Interest', data: [], borderColor: '#EF5350', yAxisID: 'y1' }
         ]},
@@ -1539,6 +1539,7 @@ function updateChart() {
                     backgroundColor: 'rgba(76, 175, 80, 0.1)',
                     borderWidth: 2,
                     pointRadius: 0,
+                    hidden: true,
                     yAxisID: 'y1',
                     tension: 0.1
                 },
