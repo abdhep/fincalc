@@ -605,12 +605,12 @@
             
             <!-- Goals (Spanning 2 Columns) -->
             <div class="section goals">
-                <div class="section-title">Financial Goals</div>
+                <div class="section-title">Financial Goals and non-Annual Expenses</div>
                 <div class="tbl-wrap">
                 <table id="goalTable">
                     <thead>
                         <tr>
-                            <th class="left-align col-goal-desc">Description</th>
+                            <th class="col-goal-desc">Description</th>
                             <th class="col-goal-value">Estimate Value (₹)</th>
                             <th class="col-goal-age">Estimated at Age of Younger Partner</th>
                             <th class="col-goal-age">Required at Age of Younger Partner</th>
@@ -666,9 +666,9 @@
                 <div class="section-title">Reference Data</div>
                 <div class="ref-table">
                     <table>
-                        <tr><td>Average life expectancy in India</td><td>72.7 years</td></tr>
-                        <tr><td>Average male life expectancy in India</td><td>71.2 years</td></tr>
-                        <tr><td>Average female life expectancy in India</td><td>74.4 years</td></tr>
+                        <tr><td>Average urban life expectancy in India</td><td>73.2 years</td></tr>
+                        <tr><td>Average urban male life expectancy in India</td><td>71.6 years</td></tr>
+                        <tr><td>Average urban female life expectancy in India</td><td>75.1 years</td></tr>
                         <tr><td>Annual Cost Inflation Index since 1981-82</td><td>6.41%</td></tr>
                         <tr><td>Annual Cost Inflation Index since 2001-02</td><td>5.53%</td></tr>
                         <tr><td>Annual Cost Inflation Index in last 10 years</td><td>3.82%</td></tr>
@@ -679,7 +679,7 @@
             
             <!-- Chart Section (Full Width) -->
             <div class="chart-section">
-                <div class="section-title">Corpus and Monthly Amounts Over the Years</div>
+                <div class="section-title">Corpus and Monthly & Annual Amounts Over the Years</div>
                 <div class="chart-container">
                     <canvas id="mainChart"></canvas>
                 </div>
@@ -1237,7 +1237,6 @@ function calc() {
         
         if (i < data.length - 1 && d.yr < timeToDeath) {
             const nextData = data[i + 1];
-//            const rate = d.yr < timeToRetirement ? preRetRate : postRetRate;
             const monthlyRatePost = NOMINAL(postRetRate, 12) / 12;
             
             d.corpusReq = PV(
@@ -1330,7 +1329,7 @@ function calc() {
 // ═══════════════════════════════════════════════════════════
 
 function updateChart(data, retirementYear, deathYear) {
-    const chartData = data.slice(0, deathYear + 2);
+    const chartData = data.slice(0, deathYear + 1);
     const years = chartData.map(d => d.yr);
     const corpusCreated = chartData.map(d => d.corpusPost / 1e7);
     const corpusRequired = chartData.map(d => d.corpusReq / 1e7);
@@ -1341,6 +1340,7 @@ function updateChart(data, retirementYear, deathYear) {
     const monthlyInvestments = chartData.map(d => Math.max(d.inc - (d.exp + d.fixExp), 0) / 1e5);
     const monthlyWithdrawals = chartData.map(d => (Math.max((d.exp + d.fixExp) - d.inc, 0) / (1 - cgTax)) / 1e5);
     const monthlyTaxes = chartData.map(d => ((d.inc * incomeTax / (1 - incomeTax)) + (Math.max((d.exp + d.fixExp) - d.inc, 0) * cgTax / (1 - cgTax))) / 1e5);
+    const goals = chartData.map(d => (d.goalExp * (1 - cgTax)) / 1e5);
     
     if (chart) {
         chart.destroy();
@@ -1380,8 +1380,6 @@ function updateChart(data, retirementYear, deathYear) {
                 {
                     label: 'Monthly Expenses',
                     data: monthlyExpenses,
-//                    borderColor: '#1565c0',
-//                    backgroundColor: 'rgba(21, 101, 192, 0)',
                     borderColor: '#f57c00',
                     backgroundColor: 'rgba(245, 124, 0, 0.1)',
                     borderWidth: 1.5,
@@ -1408,8 +1406,6 @@ function updateChart(data, retirementYear, deathYear) {
                 {
                     label: 'Monthly Investments',
                     data: monthlyInvestments,
-//                    borderColor: '#2e7d32',
-//                    backgroundColor: 'rgba(46, 125, 50, 0)',
                     borderColor: '#00897b',
                     backgroundColor: 'rgba(0, 137, 123, 0.1)',
                     borderWidth: 1.5,
@@ -1422,8 +1418,6 @@ function updateChart(data, retirementYear, deathYear) {
                 {
                     label: 'Monthly Withdrawals',
                     data: monthlyWithdrawals,
-//                    borderColor: '#1565c0',
-//                    backgroundColor: 'rgba(211, 47, 47, 0)',
                     borderColor: '#fbc02d',
                     backgroundColor: 'rgba(251, 192, 45, 0.1)',
                     borderWidth: 1.5,
@@ -1448,6 +1442,19 @@ function updateChart(data, retirementYear, deathYear) {
                     pointHoverRadius: 4,
                     hidden: true,
                     yAxisID: 'y1'
+                },
+                {
+                    label: 'Annual Goals',
+                    data: goals,
+                    borderColor: '#7b1fa2',
+                    backgroundColor: 'rgba(123, 31, 162, 0.1)',
+                    borderWidth: 2,
+                    borderDash: [12, 3],
+                    fill: false,
+                    tension: 0.3,
+                    pointRadius: 0,
+                    pointHoverRadius: 4,
+                    yAxisID: 'y2'
                 }
             ]
         },
@@ -1494,6 +1501,26 @@ function updateChart(data, retirementYear, deathYear) {
                     grid: {
                         display: false
                     }
+                },
+                y2: {
+                    beginAtZero: true,
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'Annual Amounts (₹ Lakh)',
+                        font: { size: 14, family: 'Calibri' },
+                        color: '#1565c0'
+                    },
+                    ticks: {
+                        callback: v => '₹ ' + fmt(v,2) + ' L',
+                        font: { size: 14, family: 'Calibri' },
+                        color: '#1565c0'
+                    },
+                    grid: {
+                        display: false
+                    },
+                    stack: 'demo',
+                    stackWeight: 1
                 },
                 x: {
                     title: {
